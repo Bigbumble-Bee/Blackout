@@ -1,154 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>The Words — BLACKOUT</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+    <title>BLACKOUT — Poetry</title>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Permanent+Marker&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-<body>
+<body data-page="poetry">
 
-<div class="grain"></div>
+<div class="wall-spray one">POETRY</div>
+<div class="wall-spray two">WORDS</div>
+<div class="wall-spray three">VOICE</div>
 
 <header class="site-header">
 
-<a href="index.html" class="brand">
-<span class="brand-box">B</span>
-LACKOUT
-</a>
+    <a href="index.html" class="logo">
 
-<button class="menu-toggle">MENU</button>
+        <span class="logo-main">
+            BLACKOUT
+        </span>
 
-<nav class="main-nav">
-<a href="people.html">People</a>
-<a href="music.html">Music</a>
-<a href="art.html">Art</a>
-<a href="history.html">History</a>
-<a href="politics.html">Politics</a>
-<a href="poetry.html">Poetry</a>
-<a href="stories.html">Stories</a>
-<a href="archive.html">Archive</a>
-<a href="gallery.html">Gallery</a>
-<a href="journal.html">Journal</a>
-<a href="resources.html">Resources</a>
-<a href="about.html">About</a>
-</nav>
+        <span class="logo-sub">
+            culture / memory / resistance
+        </span>
+
+    </a>
+
+    <button class="nav-toggle">
+        MENU
+    </button>
+
+    <nav class="main-nav">
+
+        <a href="index.html">Home</a>
+        <a href="people.html">People</a>
+        <a href="music.html">Music</a>
+        <a href="art.html">Art</a>
+        <a href="history.html">History</a>
+        <a href="politics.html">Politics</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="stories.html">Stories</a>
+        <a href="archive.html">Archive</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="sketchbook.html">Sketchbook</a>
+        <a href="journal.html">Journal</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+
+    </nav>
 
 </header>
 
+<main class="page">
 
-<section class="page-hero">
+    <section class="hero">
 
-<p class="section-label">
-06 / THE WORDS
-</p>
+        <div>
 
-<h1>
-THE WORDS
-</h1>
+            <span class="hero-eyebrow">
+                POETRY / SPOKEN WORD / WRITING
+            </span>
 
-<p class="handwriting">
-some things refuse to fit inside a paragraph.
-</p>
+            <h1>
+                WORDS
+                <span>can leave a mark.</span>
+            </h1>
 
-</section>
+            <p class="hero-copy">
+                Poetry doesn't have to sit quietly on a page.
+                Read it. Hear it. Remix the prompt.
+                Write something. Put it on the wall.
+            </p>
 
+            <div class="hero-buttons">
 
-<section class="section">
+                <a
+                    href="#poetryWall"
+                    class="btn yellow">
+                    READ
+                </a>
 
-<p>
-Poetry belongs here because marginalized people have
-always used language to record grief, joy, anger,
-identity, memory, love, and resistance.
-</p>
+                <a
+                    href="#write"
+                    class="btn red">
+                    WRITE
+                </a>
 
-</section>
+                <button
+                    id="randomText"
+                    class="btn blue">
+                    GIVE ME A LINE
+                </button>
 
+            </div>
 
-<section class="quote-list">
+            <div
+                id="randomOutput"
+                class="hand"
+                style="
+                    margin-top:2rem;
+                    font-size:2rem;
+                    color:#e7c84b;
+                ">
+                Click the button.
+            </div>
 
-<article class="quote-card-small">
+        </div>
 
-<blockquote>
-“Poetry is not a luxury.”
-</blockquote>
+        <div class="hero-art">
 
-<cite>
-— Audre Lorde
-</cite>
+            <div class="poster">
 
-</article>
+                <div class="poster-text">
+                    SAY<br>
+                    IT<br>
+                    LOUD
+                </div>
 
+            </div>
 
-<article class="quote-card-small">
+            <span class="sticker a">
+                SPOKEN
+            </span>
 
-<blockquote>
-“Not everything that is faced can be changed; but nothing can be changed until it is faced.”
-</blockquote>
+            <span class="sticker b">
+                WRITE
+            </span>
 
-<cite>
-— James Baldwin
-</cite>
+        </div>
 
-</article>
+    </section>
 
+    <section class="section">
 
-<article class="quote-card-small">
+        <div class="section-heading">
 
-<blockquote>
-“Freedom is a constant struggle.”
-</blockquote>
+            <h2>THE POETRY WALL</h2>
 
-<cite>
-— Angela Davis
-</cite>
+            <p>
+                Click any poem to open the full piece.
+                Save favorites and generate writing prompts.
+            </p>
 
-</article>
+        </div>
 
-</section>
+        <div class="toolbar">
 
+            <input
+                id="poemSearch"
+                class="search-box"
+                type="search"
+                placeholder="Search poems or themes..."
+            >
 
-<section class="section manifesto">
+        </div>
 
-<p class="handwriting">
-your turn
-</p>
+        <div
+            id="poetryWall"
+            class="poetry-wall">
+        </div>
 
-<h2>
-DON'T JUST READ THE WALL.
-</h2>
+    </section>
 
-<p>
-Write something.
-It can be polished or ugly.
-It can be one sentence.
-The point is to leave a trace.
-</p>
+    <section
+        id="write"
+        class="section">
 
-<a href="journal.html" class="button red">
-OPEN THE JOURNAL →
-</a>
+        <div class="section-heading">
 
-</section>
+            <h2>MAKE SOMETHING</h2>
 
+            <p>
+                Start with a prompt or let the site build
+                you a strange little poem to remix.
+            </p>
+
+        </div>
+
+        <div class="card-grid">
+
+            <article class="card">
+
+                <div class="card-meta">
+                    WRITING MACHINE
+                </div>
+
+                <h3>
+                    Random Poem
+                </h3>
+
+                <p>
+                    Generate five original lines and use them
+                    as a starting point. Change everything you want.
+                </p>
+
+                <button
+                    id="generatePoem"
+                    class="btn red">
+                    GENERATE
+                </button>
+
+            </article>
+
+            <article class="card">
+
+                <div class="card-meta">
+                    PROMPT
+                </div>
+
+                <h3>
+                    The Wall
+                </h3>
+
+                <p>
+                    Write from the perspective of a wall that
+                    has watched the same neighborhood change
+                    for fifty years.
+                </p>
+
+            </article>
+
+            <article class="card">
+
+                <div class="card-meta">
+                    PROMPT
+                </div>
+
+                <h3>
+                    Five Sounds
+                </h3>
+
+                <p>
+                    Build a poem from five sounds you heard today.
+                    Don't explain them. Let the sounds create the scene.
+                </p>
+
+            </article>
+
+        </div>
+
+        <div
+            id="generatedPoem"
+            class="card dark-card"
+            style="
+                margin-top:2rem;
+                white-space:pre-line;
+                font-family:var(--hand);
+                font-size:2rem;
+                min-height:180px;
+            ">
+            Your generated poem will appear here.
+        </div>
+
+    </section>
+
+</main>
 
 <footer class="site-footer">
 
-<strong>BLACKOUT</strong>
-<span>made by Von</span>
+    <div class="footer-graffiti">
+        WORDS LEAVE TRACES.
+    </div>
 
 </footer>
 
