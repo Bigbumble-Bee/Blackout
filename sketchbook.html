@@ -1,47 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<title>BLACKOUT — Sketchbook</title>
 
-    <title>BLACKOUT — Sketchbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body data-page="sketchbook">
 
-<div class="wall-spray one">SKETCH</div>
-<div class="wall-spray two">DRAW</div>
-<div class="wall-spray three">CREATE</div>
+<div class="grain"></div>
+
+<div class="wall-spray spray-red">SKETCH</div>
+<div class="wall-spray spray-yellow">DRAW</div>
+<div class="wall-spray spray-blue">CREATE</div>
 
 <header class="site-header">
 
-    <a href="index.html" class="logo">
-
-        <span class="logo-main">
-            BLACKOUT
-        </span>
-
-        <span class="logo-sub">
-            culture / memory / resistance
-        </span>
-
+    <a href="index.html" class="brand">
+        <span class="brand-box">B</span>LACKOUT
     </a>
 
-    <button class="nav-toggle">
+    <button class="menu-toggle" type="button">
         MENU
     </button>
 
     <nav class="main-nav">
 
-        <a href="index.html">Home</a>
         <a href="people.html">People</a>
         <a href="music.html">Music</a>
         <a href="art.html">Art</a>
@@ -51,7 +45,6 @@
         <a href="stories.html">Stories</a>
         <a href="archive.html">Archive</a>
         <a href="gallery.html">Gallery</a>
-        <a href="sketchbook.html">Sketchbook</a>
         <a href="journal.html">Journal</a>
         <a href="resources.html">Resources</a>
         <a href="about.html">About</a>
@@ -60,266 +53,693 @@
 
 </header>
 
-<main class="page">
 
-    <section class="hero">
+<main>
 
-        <div>
+<section class="page-hero">
 
-            <span class="hero-eyebrow">
-                BLACKOUT SKETCHBOOK
-            </span>
+    <p class="section-label">
+        BLACKOUT SKETCHBOOK
+    </p>
 
-            <h1>
-                DRAW
-                <span>no permission required.</span>
-            </h1>
+    <h1>
+        DRAW
+    </h1>
 
-            <p class="hero-copy">
-                Draw directly on the page. Experiment.
-                Make a terrible drawing. Make a great drawing.
-                Write words. Design a tag. Start over.
-            </p>
+    <p class="handwriting">
+        no permission required.
+    </p>
 
-        </div>
+    <div class="hero-copy">
 
-        <div class="hero-art">
+        <p>
+            Draw directly on the page.
+            Experiment. Make a terrible drawing.
+            Make a great drawing. Write words.
+            Design a tag. Start over.
+        </p>
 
-            <div class="poster">
+    </div>
 
-                <div class="poster-text">
-                    DRAW<br>
-                    HERE
-                </div>
+    <div class="sticker-row">
+        <span class="sticker red">YOUR PAGE</span>
+        <span class="sticker yellow">GO WILD</span>
+        <span class="sticker blue">NO GRADES</span>
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="tape tape-yellow"></div>
+
+    <p class="section-label">
+        THE DIGITAL SKETCHBOOK
+    </p>
+
+    <h2>
+        DRAW<br>
+        HERE.
+    </h2>
+
+    <p>
+        Everything happens in your browser.
+        Your saved sketch stays on this device.
+    </p>
+
+
+    <div class="sketchbook-shell">
+
+        <div class="sketch-toolbar">
+
+
+            <div class="tool-group">
+
+                <button
+                    class="color-btn active"
+                    data-color="#111111"
+                    style="background:#111111;"
+                    aria-label="Black">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#d94a3a"
+                    style="background:#d94a3a;"
+                    aria-label="Red">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#e77b2f"
+                    style="background:#e77b2f;"
+                    aria-label="Orange">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#e7c84b"
+                    style="background:#e7c84b;"
+                    aria-label="Yellow">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#347ca6"
+                    style="background:#347ca6;"
+                    aria-label="Blue">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#718d52"
+                    style="background:#718d52;"
+                    aria-label="Green">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#d65b8a"
+                    style="background:#d65b8a;"
+                    aria-label="Pink">
+                </button>
+
+                <button
+                    class="color-btn"
+                    data-color="#8054a6"
+                    style="background:#8054a6;"
+                    aria-label="Purple">
+                </button>
 
             </div>
 
-            <span class="sticker a">
-                YOUR PAGE
-            </span>
 
-            <span class="sticker b">
-                GO WILD
-            </span>
+            <div class="tool-group">
+
+                <label for="brushSize" class="mono">
+                    SIZE
+                </label>
+
+                <input
+                    id="brushSize"
+                    type="range"
+                    min="1"
+                    max="60"
+                    value="8"
+                >
+
+            </div>
+
+
+            <div class="tool-group">
+
+                <button
+                    id="eraser"
+                    class="button"
+                    type="button">
+                    ERASER
+                </button>
+
+                <button
+                    id="undo"
+                    class="button"
+                    type="button">
+                    UNDO
+                </button>
+
+                <button
+                    id="redo"
+                    class="button"
+                    type="button">
+                    REDO
+                </button>
+
+            </div>
+
+
+            <div class="tool-group">
+
+                <button
+                    id="clearCanvas"
+                    class="button red"
+                    type="button">
+                    CLEAR
+                </button>
+
+                <button
+                    id="saveSketch"
+                    class="button yellow"
+                    type="button">
+                    SAVE
+                </button>
+
+                <button
+                    id="loadSketch"
+                    class="button blue"
+                    type="button">
+                    LOAD
+                </button>
+
+                <button
+                    id="downloadSketch"
+                    class="button green"
+                    type="button">
+                    DOWNLOAD PNG
+                </button>
+
+            </div>
 
         </div>
 
-    </section>
 
-    <section class="section">
+        <canvas id="sketchCanvas"></canvas>
 
-        <div class="section-heading">
+    </div>
 
-            <h2>SKETCHBOOK</h2>
+</section>
+
+
+<section class="section">
+
+    <p class="section-label">
+        DRAWING PROMPTS
+    </p>
+
+    <div class="card-grid">
+
+        <article class="person-card">
+
+            <span class="tagline">
+                IDEA
+            </span>
+
+            <h3>
+                Design a Tag
+            </h3>
 
             <p>
-                Everything happens in your browser.
-                Your saved sketch stays on this device.
+                Pick a word. Make five versions.
+                Try different shapes, angles,
+                proportions, and colors.
             </p>
 
-        </div>
+        </article>
 
-        <div class="sketchbook-shell">
 
-            <div class="sketch-toolbar">
+        <article class="person-card">
 
-                <div class="tool-group">
+            <span class="tagline">
+                CHALLENGE
+            </span>
 
-                    <button
-                        class="color-btn active"
-                        data-color="#111111"
-                        style="background:#111111;">
-                    </button>
+            <h3>
+                Draw Without Lifting
+            </h3>
 
-                    <button
-                        class="color-btn"
-                        data-color="#d94a3a"
-                        style="background:#d94a3a;">
-                    </button>
+            <p>
+                Try making an entire picture using
+                one continuous line.
+            </p>
 
-                    <button
-                        class="color-btn"
-                        data-color="#e77b2f"
-                        style="background:#e77b2f;">
-                    </button>
+        </article>
 
-                    <button
-                        class="color-btn"
-                        data-color="#e7c84b"
-                        style="background:#e7c84b;">
-                    </button>
 
-                    <button
-                        class="color-btn"
-                        data-color="#347ca6"
-                        style="background:#347ca6;">
-                    </button>
+        <article class="person-card">
 
-                    <button
-                        class="color-btn"
-                        data-color="#718d52"
-                        style="background:#718d52;">
-                    </button>
+            <span class="tagline">
+                BLACKOUT RULE
+            </span>
 
-                    <button
-                        class="color-btn"
-                        data-color="#d65b8a"
-                        style="background:#d65b8a;">
-                    </button>
+            <h3>
+                Make It Yours
+            </h3>
 
-                    <button
-                        class="color-btn"
-                        data-color="#8054a6"
-                        style="background:#8054a6;">
-                    </button>
+            <p>
+                There is no grading system here.
+                The point is to make something.
+            </p>
 
-                </div>
+        </article>
 
-                <div class="tool-group">
+    </div>
 
-                    <label
-                        for="brushSize"
-                        class="mono">
-                        SIZE
-                    </label>
+</section>
 
-                    <input
-                        id="brushSize"
-                        type="range"
-                        min="1"
-                        max="60"
-                        value="8">
 
-                </div>
+<section class="section dark-section">
 
-                <div class="tool-group">
+    <p class="section-label yellow">
+        CHARACTER LAB
+    </p>
 
-                    <button
-                        id="eraser"
-                        class="btn dark">
-                        ERASER
-                    </button>
+    <h2>
+        DRAW<br>
+        MALIK.<br>
+        VON.<br>
+        DA'VAUN.<br>
+        LEAK.
+    </h2>
 
-                    <button
-                        id="undo"
-                        class="btn dark">
-                        UNDO
-                    </button>
+    <p>
+        Try designing a different outfit,
+        expression, pose, tag, symbol,
+        or piece of graffiti for each character.
+    </p>
 
-                    <button
-                        id="redo"
-                        class="btn dark">
-                        REDO
-                    </button>
-
-                </div>
-
-                <div class="tool-group">
-
-                    <button
-                        id="clearCanvas"
-                        class="btn red">
-                        CLEAR
-                    </button>
-
-                    <button
-                        id="saveSketch"
-                        class="btn yellow">
-                        SAVE SKETCH
-                    </button>
-
-                    <button
-                        id="loadSketch"
-                        class="btn blue">
-                        LOAD
-                    </button>
-
-                    <button
-                        id="downloadSketch"
-                        class="btn green">
-                        DOWNLOAD PNG
-                    </button>
-
-                </div>
-
-            </div>
-
-            <canvas id="sketchCanvas"></canvas>
-
-        </div>
-
-    </section>
-
-    <section class="section">
-
-        <div class="card-grid">
-
-            <article class="card">
-
-                <div class="card-meta">
-                    IDEA
-                </div>
-
-                <h3>
-                    Design a Tag
-                </h3>
-
-                <p>
-                    Pick a word. Make five versions.
-                    Try different shapes, angles and colors.
-                </p>
-
-            </article>
-
-            <article class="card">
-
-                <div class="card-meta">
-                    CHALLENGE
-                </div>
-
-                <h3>
-                    Draw Without Lifting
-                </h3>
-
-                <p>
-                    Try making an entire picture using
-                    one continuous line.
-                </p>
-
-            </article>
-
-            <article class="card">
-
-                <div class="card-meta">
-                    BLACKOUT RULE
-                </div>
-
-                <h3>
-                    Make It Yours
-                </h3>
-
-                <p>
-                    There is no grading system here.
-                    The point is to make something.
-                </p>
-
-            </article>
-
-        </div>
-
-    </section>
+</section>
 
 </main>
 
+
 <footer class="site-footer">
 
-    <div class="footer-graffiti">
+    <strong>BLACKOUT</strong>
+
+    <span>
         DRAW SOMETHING.
-    </div>
+    </span>
 
 </footer>
 
+
 <script src="script.js"></script>
+
+<script>
+const canvas = document.getElementById("sketchCanvas");
+const ctx = canvas.getContext("2d");
+
+const colorButtons =
+    document.querySelectorAll(".color-btn");
+
+const brushSize =
+    document.getElementById("brushSize");
+
+const eraser =
+    document.getElementById("eraser");
+
+const undoButton =
+    document.getElementById("undo");
+
+const redoButton =
+    document.getElementById("redo");
+
+const clearButton =
+    document.getElementById("clearCanvas");
+
+const saveButton =
+    document.getElementById("saveSketch");
+
+const loadButton =
+    document.getElementById("loadSketch");
+
+const downloadButton =
+    document.getElementById("downloadSketch");
+
+
+let drawing = false;
+let currentColor = "#111111";
+let erasing = false;
+
+let history = [];
+let historyIndex = -1;
+
+
+function resizeCanvas() {
+
+    const oldCanvas =
+        canvas.toDataURL();
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const width =
+        Math.max(500, Math.floor(rect.width));
+
+    const height =
+        Math.max(450, Math.floor(window.innerHeight * .65));
+
+    canvas.width = width;
+    canvas.height = height;
+
+    ctx.fillStyle = "#f4ecd9";
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    if (oldCanvas && oldCanvas !== "data:,") {
+
+        const image =
+            new Image();
+
+        image.onload = () => {
+            ctx.drawImage(
+                image,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+        };
+
+        image.src = oldCanvas;
+    }
+}
+
+
+function getPosition(event) {
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+    };
+}
+
+
+function startDrawing(event) {
+
+    drawing = true;
+
+    const position =
+        getPosition(event);
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        position.x,
+        position.y
+    );
+}
+
+
+function draw(event) {
+
+    if (!drawing) return;
+
+    const position =
+        getPosition(event);
+
+    ctx.lineWidth =
+        Number(brushSize.value);
+
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    ctx.strokeStyle =
+        erasing ? "#f4ecd9" : currentColor;
+
+    ctx.lineTo(
+        position.x,
+        position.y
+    );
+
+    ctx.stroke();
+}
+
+
+function stopDrawing() {
+
+    if (!drawing) return;
+
+    drawing = false;
+
+    ctx.closePath();
+
+    saveHistory();
+}
+
+
+function saveHistory() {
+
+    history =
+        history.slice(
+            0,
+            historyIndex + 1
+        );
+
+    history.push(
+        canvas.toDataURL()
+    );
+
+    historyIndex =
+        history.length - 1;
+
+    if (history.length > 30) {
+        history.shift();
+        historyIndex--;
+    }
+}
+
+
+function restoreState(data) {
+
+    const image =
+        new Image();
+
+    image.onload = () => {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        ctx.drawImage(
+            image,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+    };
+
+    image.src = data;
+}
+
+
+canvas.addEventListener(
+    "pointerdown",
+    startDrawing
+);
+
+canvas.addEventListener(
+    "pointermove",
+    draw
+);
+
+canvas.addEventListener(
+    "pointerup",
+    stopDrawing
+);
+
+canvas.addEventListener(
+    "pointerleave",
+    stopDrawing
+);
+
+
+colorButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            colorButtons.forEach(
+                item =>
+                    item.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            currentColor =
+                button.dataset.color;
+
+            erasing = false;
+        }
+    );
+
+});
+
+
+eraser.addEventListener(
+    "click",
+    () => {
+        erasing = !erasing;
+
+        eraser.textContent =
+            erasing
+            ? "ERASER ON"
+            : "ERASER";
+    }
+);
+
+
+undoButton.addEventListener(
+    "click",
+    () => {
+
+        if (historyIndex <= 0) return;
+
+        historyIndex--;
+
+        restoreState(
+            history[historyIndex]
+        );
+    }
+);
+
+
+redoButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            historyIndex >=
+            history.length - 1
+        ) return;
+
+        historyIndex++;
+
+        restoreState(
+            history[historyIndex]
+        );
+    }
+);
+
+
+clearButton.addEventListener(
+    "click",
+    () => {
+
+        ctx.fillStyle = "#f4ecd9";
+
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+        saveHistory();
+    }
+);
+
+
+saveButton.addEventListener(
+    "click",
+    () => {
+
+        localStorage.setItem(
+            "blackoutSketch",
+            canvas.toDataURL()
+        );
+
+        saveButton.textContent =
+            "SAVED ✓";
+
+        setTimeout(() => {
+            saveButton.textContent =
+                "SAVE";
+        }, 1800);
+    }
+);
+
+
+loadButton.addEventListener(
+    "click",
+    () => {
+
+        const saved =
+            localStorage.getItem(
+                "blackoutSketch"
+            );
+
+        if (!saved) return;
+
+        restoreState(saved);
+
+        saveHistory();
+    }
+);
+
+
+downloadButton.addEventListener(
+    "click",
+    () => {
+
+        const link =
+            document.createElement("a");
+
+        link.download =
+            "blackout-sketch.png";
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+        link.click();
+    }
+);
+
+
+window.addEventListener(
+    "resize",
+    () => {
+        resizeCanvas();
+    }
+);
+
+
+resizeCanvas();
+saveHistory();
+
+</script>
 
 </body>
 </html>
