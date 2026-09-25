@@ -1,408 +1,628 @@
 /* =========================================================
-   BLACKOUT — GLOBAL INTERACTION SYSTEM
+   BLACKOUT — GLOBAL JAVASCRIPT
+   People / Music / Art / History / Politics / Poetry /
+   Stories / Archive / Gallery / Journal / Resources /
+   About / Sketchbook
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-    initNavigation();
-    initGraffitiWall();
-    initRevealAnimations();
-    initClickableCards();
-    initModals();
-    initPeoplePage();
-    initTimeline();
-    initPoetryPage();
-    initSearch();
-    initKeyboardSupport();
-});
+"use strict";
 
 
 /* =========================================================
-   NAVIGATION
+   BASIC HELPERS
+   ========================================================= */
+
+const $ = (selector, parent = document) =>
+    parent.querySelector(selector);
+
+const $$ = (selector, parent = document) =>
+    [...parent.querySelectorAll(selector)];
+
+const escapeHTML = (value = "") => {
+    const div = document.createElement("div");
+    div.textContent = String(value);
+    return div.innerHTML;
+};
+
+
+/* =========================================================
+   MOBILE NAVIGATION
    ========================================================= */
 
 function initNavigation() {
-    const toggles = document.querySelectorAll(
-        ".menu-toggle, .nav-toggle, .mobile-menu-button"
-    );
 
-    toggles.forEach(toggle => {
-        toggle.addEventListener("click", () => {
-            const nav =
-                toggle.parentElement?.querySelector(".nav-links") ||
-                toggle.parentElement?.querySelector("nav ul") ||
-                document.querySelector(".nav-links") ||
-                document.querySelector("nav ul");
+    const toggle = $(".menu-toggle");
+    const nav =
+        $(".main-nav") ||
+        $(".nav-links") ||
+        $(".site-nav");
 
-            if (!nav) return;
+    if (!toggle || !nav) return;
 
+    toggle.addEventListener("click", () => {
+
+        const isOpen =
             nav.classList.toggle("open");
-            nav.classList.toggle("active");
 
-            const expanded =
-                nav.classList.contains("open") ||
-                nav.classList.contains("active");
+        toggle.classList.toggle(
+            "open",
+            isOpen
+        );
 
-            toggle.setAttribute("aria-expanded", expanded);
-        });
+        toggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
     });
 
-    const currentPage =
-        window.location.pathname.split("/").pop() || "index.html";
 
-    document.querySelectorAll(
-        ".nav-link, nav a"
-    ).forEach(link => {
-        const href = link.getAttribute("href");
+    /* Close mobile menu after clicking a link */
 
-        if (!href) return;
+    $$("a", nav).forEach(link => {
 
-        const cleanHref = href.split("#")[0];
-
-        if (
-            cleanHref === currentPage ||
-            (currentPage === "" && cleanHref === "index.html")
-        ) {
-            link.classList.add("active-page");
-            link.setAttribute("aria-current", "page");
-        }
-    });
-
-    document.querySelectorAll(
-        ".nav-link, nav a"
-    ).forEach(link => {
         link.addEventListener("click", () => {
-            const nav =
-                document.querySelector(".nav-links.open") ||
-                document.querySelector("nav ul.open") ||
-                document.querySelector(".nav-links.active") ||
-                document.querySelector("nav ul.active");
 
-            if (nav) {
-                nav.classList.remove("open", "active");
-            }
+            nav.classList.remove("open");
+            toggle.classList.remove("open");
+
+            toggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
         });
+
     });
+
 }
 
 
 /* =========================================================
-   GRAFFITI WALL
+   ACTIVE NAVIGATION
    ========================================================= */
 
-function initGraffitiWall() {
-    if (document.querySelector(".blackout-graffiti")) return;
+function initActiveNavigation() {
 
-    const wall = document.createElement("div");
-    wall.className = "blackout-graffiti";
-    wall.setAttribute("aria-hidden", "true");
+    const currentPage =
+        document.body.dataset.page;
 
-    wall.innerHTML = `
-        <span class="g1">CREATE</span>
-        <span class="g2">REMEMBER</span>
-        <span class="g3">QUESTION</span>
-        <span class="g4">LISTEN</span>
-    `;
+    if (!currentPage) return;
 
-    document.body.prepend(wall);
+    const pageMap = {
+        people: "people.html",
+        music: "music.html",
+        art: "art.html",
+        history: "history.html",
+        politics: "politics.html",
+        poetry: "poetry.html",
+        stories: "stories.html",
+        archive: "archive.html",
+        gallery: "gallery.html",
+        journal: "journal.html",
+        resources: "resources.html",
+        about: "about.html",
+        sketchbook: "sketchbook.html"
+    };
+
+    const currentFile =
+        pageMap[currentPage];
+
+    if (!currentFile) return;
+
+    $$(
+        ".main-nav a, .nav-links a, .site-nav a"
+    ).forEach(link => {
+
+        const href =
+            link.getAttribute("href");
+
+        if (
+            href === currentFile ||
+            href?.endsWith("/" + currentFile)
+        ) {
+
+            link.classList.add("active");
+
+            link.setAttribute(
+                "aria-current",
+                "page"
+            );
+        }
+
+    });
+
 }
 
 
 /* =========================================================
-   REVEAL ANIMATIONS
+   SCROLL REVEALS
    ========================================================= */
 
 function initRevealAnimations() {
-    const items = document.querySelectorAll(
-        ".card, .panel, .content-card, .person-card, " +
-        ".poem-card, .story-card, .resource-card, " +
-        ".archive-card, section"
-    );
 
-    items.forEach((item, index) => {
-        if (item.classList.contains("hero") ||
-            item.classList.contains("page-hero")) {
-            return;
-        }
+    const elements =
+        $$(".reveal");
 
-        item.classList.add("reveal");
+    if (!elements.length) return;
 
-        const observer = new IntersectionObserver(
+
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        elements.forEach(el =>
+            el.classList.add("visible")
+        );
+
+        return;
+    }
+
+
+    const observer =
+        new IntersectionObserver(
             entries => {
+
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
                     }
+
                 });
+
             },
             {
-                threshold: 0.08
+                threshold: 0.12
             }
         );
 
-        observer.observe(item);
-    });
+
+    elements.forEach(el =>
+        observer.observe(el)
+    );
+
 }
 
 
 /* =========================================================
-   CLICKABLE CARDS
+   EXPANDABLE CARDS
    ========================================================= */
 
-function initClickableCards() {
-    document.querySelectorAll("[data-href]").forEach(card => {
-        card.addEventListener("click", event => {
-            if (event.target.closest("a, button")) return;
+function initExpandableCards() {
 
-            const destination = card.dataset.href;
+    $$(".expand-card").forEach(button => {
 
-            if (destination) {
-                window.location.href = destination;
+        button.addEventListener("click", event => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            const card =
+                button.closest(
+                    ".person-card, .card, .paper-card, article"
+                );
+
+            if (!card) return;
+
+            const note =
+                $(".hidden-note", card);
+
+            const expanded =
+                card.classList.toggle(
+                    "expanded"
+                );
+
+            if (note) {
+
+                note.hidden = !expanded;
+
             }
+
+            if (
+                button.dataset.openText ||
+                button.dataset.closeText
+            ) {
+
+                button.textContent =
+                    expanded
+                        ? (
+                            button.dataset.closeText ||
+                            "CLOSE −"
+                        )
+                        : (
+                            button.dataset.openText ||
+                            "OPEN +"
+                        );
+
+            }
+
         });
 
-        card.setAttribute("tabindex", "0");
-
-        card.addEventListener("keydown", event => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                card.click();
-            }
-        });
     });
+
 }
 
 
 /* =========================================================
-   MODALS
+   GENERIC SEARCH
+   =========================================================
+   Supports:
+   data-search-input
+   data-search-target="#some-grid"
    ========================================================= */
 
-function initModals() {
-    document.querySelectorAll("[data-modal-target]").forEach(trigger => {
-        trigger.addEventListener("click", () => {
-            const targetID = trigger.dataset.modalTarget;
-            const modal = document.getElementById(targetID);
+function initSearchInputs() {
 
-            if (modal) openModal(modal);
-        });
-    });
+    $$("[data-search-input]").forEach(input => {
 
-    document.querySelectorAll(
-        ".modal-close, .close-modal, [data-close-modal]"
-    ).forEach(button => {
-        button.addEventListener("click", () => {
-            const modal = button.closest(".modal, .overlay");
+        const targetSelector =
+            input.dataset.searchTarget;
 
-            if (modal) closeModal(modal);
-        });
-    });
+        if (!targetSelector) return;
 
-    document.querySelectorAll(".modal, .overlay").forEach(modal => {
-        modal.addEventListener("click", event => {
-            if (event.target === modal) {
-                closeModal(modal);
+        const target =
+            $(targetSelector);
+
+        if (!target) return;
+
+        const items =
+            $$(
+                ":scope > *",
+                target
+            );
+
+
+        input.addEventListener(
+            "input",
+            () => {
+
+                const query =
+                    input.value
+                        .trim()
+                        .toLowerCase();
+
+                let visible = 0;
+
+
+                items.forEach(item => {
+
+                    const searchable = (
+                        item.dataset.search ||
+                        item.textContent ||
+                        ""
+                    ).toLowerCase();
+
+                    const matches =
+                        !query ||
+                        searchable.includes(query);
+
+                    item.style.display =
+                        matches ? "" : "none";
+
+                    if (matches) {
+                        visible++;
+                    }
+
+                });
+
+
+                const empty =
+                    input.dataset.searchEmpty
+                        ? $(
+                            input.dataset.searchEmpty
+                        )
+                        : null;
+
+                if (empty) {
+
+                    empty.style.display =
+                        visible === 0
+                            ? ""
+                            : "none";
+                }
+
             }
-        });
+        );
+
     });
 
-    document.addEventListener("keydown", event => {
-        if (event.key !== "Escape") return;
-
-        document.querySelectorAll(
-            ".modal.active, .modal.open, .overlay.active"
-        ).forEach(closeModal);
-    });
-}
-
-function openModal(modal) {
-    modal.classList.add("active", "open");
-    document.body.style.overflow = "hidden";
-
-    const close =
-        modal.querySelector(".modal-close") ||
-        modal.querySelector(".close-modal");
-
-    close?.focus();
-}
-
-function closeModal(modal) {
-    modal.classList.remove("active", "open");
-
-    if (
-        !document.querySelector(
-            ".modal.active, .modal.open, .overlay.active"
-        )
-    ) {
-        document.body.style.overflow = "";
-    }
 }
 
 
 /* =========================================================
-   PEOPLE
+   PEOPLE DATA
    ========================================================= */
 
-const blackoutPeople = [
+const BLACKOUT_PEOPLE = [
+
     {
-        name: "Malik",
-        type: "BLACKOUT character",
-        group: "Character",
-        role: "The observer / documentarian",
-        color: "red",
+        name: "James Baldwin",
+        category: "Black culture",
+        era: "1924–1987",
+        role: "Writer / Essayist",
         bio:
-            "One of the recurring BLACKOUT characters. Malik moves through the site like somebody carrying a camera, notebook, and too many questions.",
-        tags: ["BLACKOUT", "Story", "Photography"],
-        character: true
+            "American writer and essayist whose work examined race, sexuality, religion, identity, and American society.",
+        color: "var(--red)",
+        symbol: "JB"
     },
 
     {
-        name: "Von",
-        type: "BLACKOUT character",
-        group: "Character",
-        role: "The writer / questioner",
-        color: "yellow",
+        name: "Angela Davis",
+        category: "Black culture",
+        era: "1944–present",
+        role: "Scholar / Activist",
         bio:
-            "A recurring BLACKOUT character connected to writing, notes, questions, and the messy process of figuring things out.",
-        tags: ["BLACKOUT", "Writing", "Journal"],
-        character: true
+            "Scholar and writer whose work has addressed race, gender, prisons, political movements, and social justice.",
+        color: "var(--yellow)",
+        symbol: "AD"
     },
 
     {
-        name: "Da'Vaun",
-        type: "BLACKOUT character",
-        group: "Character",
-        role: "The sound / culture collector",
-        color: "blue",
+        name: "Nina Simone",
+        category: "Music",
+        era: "1933–2003",
+        role: "Musician / Singer",
         bio:
-            "A recurring character whose world connects music, culture, movement, and the stories carried through sound.",
-        tags: ["BLACKOUT", "Music", "Culture"],
-        character: true
+            "Pianist, singer, and songwriter whose music crossed jazz, blues, classical, soul, and civil-rights expression.",
+        color: "var(--blue)",
+        symbol: "NS"
     },
 
     {
-        name: "Leak",
-        type: "BLACKOUT character",
-        group: "Character",
-        role: "The artist / wall writer",
-        color: "purple",
+        name: "Kendrick Lamar",
+        category: "Contemporary",
+        era: "1987–present",
+        role: "Rapper / Artist",
         bio:
-            "A recurring BLACKOUT character connected to graffiti, visual art, sketchbooks, posters, and the physical feeling of a city wall.",
-        tags: ["BLACKOUT", "Art", "Graffiti"],
-        character: true
-    },
-
-    {
-        name: "Langston Hughes",
-        type: "Poet / writer",
-        group: "Black culture",
-        role: "Poet, writer, cultural figure",
-        wiki: "Langston_Hughes",
-        bio:
-            "American poet and writer associated with the Harlem Renaissance. His work frequently explored Black life, identity, everyday experience, music, and racial inequality.",
-        tags: ["Poetry", "Harlem Renaissance", "Literature"]
-    },
-
-    {
-        name: "Maya Angelou",
-        type: "Poet / writer",
-        group: "Black culture",
-        role: "Poet, memoirist, writer",
-        wiki: "Maya_Angelou",
-        bio:
-            "American poet, memoirist, and writer whose work explored identity, race, resilience, memory, and human dignity.",
-        tags: ["Poetry", "Memoir", "Literature"]
-    },
-
-    {
-        name: "Audre Lorde",
-        type: "Poet / writer",
-        group: "Black culture",
-        role: "Poet, essayist, activist",
-        wiki: "Audre_Lorde",
-        bio:
-            "American poet and essayist whose writing addressed race, gender, sexuality, identity, power, and resistance.",
-        tags: ["Poetry", "Essays", "Identity"]
+            "Rapper and songwriter whose work frequently explores identity, community, violence, faith, race, and American life.",
+        color: "var(--orange)",
+        symbol: "KL"
     },
 
     {
         name: "Joy Harjo",
-        type: "Poet / writer",
-        group: "Indigenous culture",
-        role: "Poet, musician, writer",
-        wiki: "Joy_Harjo",
+        category: "Indigenous history",
+        era: "1951–present",
+        role: "Poet / Musician",
         bio:
-            "Muscogee poet, musician, and writer whose work connects poetry, Indigenous identity, memory, history, land, and music.",
-        tags: ["Poetry", "Indigenous", "Music"]
+            "Muscogee poet, musician, and writer whose work connects memory, Indigenous identity, history, music, and place.",
+        color: "var(--green)",
+        symbol: "JH"
     },
 
     {
-        name: "Gwendolyn Brooks",
-        type: "Poet / writer",
-        group: "Black culture",
-        role: "Poet and writer",
-        wiki: "Gwendolyn_Brooks",
+        name: "César Chávez",
+        category: "Latino culture",
+        era: "1927–1993",
+        role: "Labor Organizer",
         bio:
-            "American poet whose work frequently focused on Black communities, everyday life, social conditions, and the rhythms of urban life.",
-        tags: ["Poetry", "Chicago", "Literature"]
+            "Labor organizer associated with farmworker organizing and the United Farm Workers movement.",
+        color: "var(--red)",
+        symbol: "CC"
     },
 
     {
-        name: "Nikki Giovanni",
-        type: "Poet / writer",
-        group: "Black culture",
-        role: "Poet, writer, educator",
-        wiki: "Nikki_Giovanni",
+        name: "Bob Marley",
+        category: "Music",
+        era: "1945–1981",
+        role: "Musician / Songwriter",
         bio:
-            "American poet, writer, and educator known for poetry addressing Black identity, family, culture, social issues, and personal experience.",
-        tags: ["Poetry", "Black Arts", "Education"]
+            "Jamaican musician whose reggae became internationally influential and whose work often addressed peace, freedom, identity, and social conditions.",
+        color: "var(--yellow)",
+        symbol: "BM"
+    },
+
+    {
+        name: "Frida Kahlo",
+        category: "Art",
+        era: "1907–1954",
+        role: "Painter",
+        bio:
+            "Mexican painter known for self-portraits and work engaging identity, physical experience, Mexican culture, and symbolism.",
+        color: "var(--purple)",
+        symbol: "FK"
     }
+
 ];
 
 
-function initPeoplePage() {
-    const container =
-        document.querySelector("#people-grid") ||
-        document.querySelector(".people-grid");
+/* =========================================================
+   CHARACTER DATA
+   ========================================================= */
 
-    if (!container) return;
+const BLACKOUT_CREW = [
 
-    if (container.children.length > 0 &&
-        !container.dataset.dynamicPeople) {
-        enhanceExistingPeople(container);
+    {
+        name: "Malik",
+        role: "THE OBSERVER",
+        symbol: "M",
+        color: "var(--red)"
+    },
+
+    {
+        name: "Von",
+        role: "THE MAKER",
+        symbol: "V",
+        color: "var(--yellow)"
+    },
+
+    {
+        name: "Da'Vaun",
+        role: "THE QUESTION",
+        symbol: "D",
+        color: "var(--blue)"
+    },
+
+    {
+        name: "Leak",
+        role: "THE INTERRUPTION",
+        symbol: "L",
+        color: "var(--green)"
+    }
+
+];
+
+
+/* =========================================================
+   CHARACTER AVATAR
+   ========================================================= */
+
+function createCharacterFace(character) {
+
+    const face =
+        document.createElement("div");
+
+    face.className =
+        "character-face blackout-character";
+
+    face.style.setProperty(
+        "--character-color",
+        character.color
+    );
+
+    face.innerHTML = `
+        <div class="character-head">
+            <span class="character-hair"></span>
+            <span class="character-eye left"></span>
+            <span class="character-eye right"></span>
+            <span class="character-mouth"></span>
+        </div>
+
+        <span class="character-symbol">
+            ${escapeHTML(character.symbol)}
+        </span>
+    `;
+
+    return face;
+}
+
+
+/* =========================================================
+   PERSON AVATAR
+   ========================================================= */
+
+function createPersonPortrait(person) {
+
+    const portrait =
+        document.createElement("div");
+
+    portrait.className =
+        "person-portrait blackout-portrait";
+
+    portrait.style.setProperty(
+        "--portrait-color",
+        person.color
+    );
+
+    portrait.innerHTML = `
+        <div class="portrait-face">
+            <span class="portrait-hair"></span>
+            <span class="portrait-eye left"></span>
+            <span class="portrait-eye right"></span>
+            <span class="portrait-nose"></span>
+            <span class="portrait-mouth"></span>
+        </div>
+
+        <span class="portrait-initials">
+            ${escapeHTML(person.symbol)}
+        </span>
+    `;
+
+    return portrait;
+}
+
+
+/* =========================================================
+   PEOPLE PAGE
+   ========================================================= */
+
+function renderPeopleCards() {
+
+    const grid =
+        $("#people-grid") ||
+        $("#peopleGrid");
+
+    if (!grid) return;
+
+
+    /*
+       If the HTML already contains people cards,
+       do not destroy them.
+
+       Otherwise create the cards from the
+       BLACKOUT people data.
+    */
+
+    const existing =
+        $$(".person-card", grid);
+
+    if (existing.length) {
+
+        existing.forEach(card => {
+
+            const name =
+                $(".person-name, h3", card)
+                    ?.textContent
+                    ?.trim();
+
+            const person =
+                BLACKOUT_PEOPLE.find(
+                    p =>
+                        p.name.toLowerCase() ===
+                        name?.toLowerCase()
+                );
+
+            if (
+                person &&
+                !$(".person-portrait", card) &&
+                !$(".character-face", card)
+            ) {
+
+                const firstChild =
+                    card.firstElementChild;
+
+                card.insertBefore(
+                    createPersonPortrait(person),
+                    firstChild
+                );
+
+            }
+
+        });
+
         return;
     }
 
-    container.dataset.dynamicPeople = "true";
-    renderPeople(container, blackoutPeople);
-}
 
-function renderPeople(container, people) {
-    container.innerHTML = "";
+    BLACKOUT_PEOPLE.forEach(person => {
 
-    people.forEach(person => {
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
 
-        card.className = "person-card card tape reveal visible";
-        card.dataset.personName = person.name;
+        card.className =
+            "person-card";
+
+        card.dataset.search = `
+            ${person.name}
+            ${person.category}
+            ${person.role}
+            ${person.bio}
+        `;
 
         card.innerHTML = `
-            <div class="person-portrait">
-                ${
-                    person.character
-                        ? createCharacterFace(person.color)
-                        : `
-                            <div class="character-face"
-                                 data-wiki-image="${escapeHTML(person.wiki || "")}">
-                                <div class="portrait-placeholder">
-                                    ${escapeHTML(person.name.charAt(0))}
-                                </div>
-                            </div>
-                        `
-                }
-            </div>
+            <div class="person-portrait-wrap"></div>
 
-            <span class="stamp ${person.color || ""}">
-                ${escapeHTML(person.group)}
+            <span class="tag">
+                ${escapeHTML(person.category)}
             </span>
 
             <h3 class="person-name">
@@ -413,580 +633,967 @@ function renderPeople(container, people) {
                 ${escapeHTML(person.role)}
             </p>
 
-            <div class="person-tags">
-                ${person.tags.map(tag =>
-                    `<span class="tag">${escapeHTML(tag)}</span>`
-                ).join("")}
-            </div>
-
-            <button class="person-more" type="button">
-                OPEN FILE →
-            </button>
-        `;
-
-        card.addEventListener("click", event => {
-            if (event.target.closest("button") ||
-                event.currentTarget === card) {
-                openPerson(person);
-            }
-        });
-
-        container.appendChild(card);
-
-        if (!person.character && person.wiki) {
-            loadWikipediaImage(person, card);
-        }
-    });
-}
-
-
-function enhanceExistingPeople(container) {
-    container.querySelectorAll(
-        ".person-card, .person, .character-card"
-    ).forEach(card => {
-        card.classList.add("person-card", "tape");
-    });
-}
-
-
-function createCharacterFace(color) {
-    return `
-        <div class="character-face character-${color}">
-            <div class="face-hair"></div>
-            <div class="face-head">
-                <span class="eye left"></span>
-                <span class="eye right"></span>
-                <span class="nose"></span>
-                <span class="mouth"></span>
-            </div>
-            <div class="face-neck"></div>
-        </div>
-    `;
-}
-
-
-async function loadWikipediaImage(person, card) {
-    const target = card.querySelector("[data-wiki-image]");
-
-    if (!target || !person.wiki) return;
-
-    try {
-        const url =
-            "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-            encodeURIComponent(person.wiki);
-
-        const response = await fetch(url);
-
-        if (!response.ok) return;
-
-        const data = await response.json();
-
-        if (!data.thumbnail?.source) return;
-
-        target.innerHTML = `
-            <img
-                src="${escapeAttribute(data.thumbnail.source)}"
-                alt="${escapeAttribute(person.name)}"
-                loading="lazy"
-            >
-        `;
-    } catch {
-        /* Keep the BLACKOUT placeholder if the image cannot load. */
-    }
-}
-
-
-function openPerson(person) {
-    let modal = document.getElementById("blackout-person-modal");
-
-    if (!modal) {
-        modal = document.createElement("div");
-        modal.id = "blackout-person-modal";
-        modal.className = "modal";
-
-        modal.innerHTML = `
-            <div class="modal-content tape">
-                <button
-                    class="modal-close"
-                    type="button"
-                    aria-label="Close"
-                >×</button>
-
-                <div id="blackout-person-content"></div>
-            </div>
-        `;
-
-        document.body.appendChild(modal);
-
-        modal.querySelector(".modal-close")
-            .addEventListener("click", () => closeModal(modal));
-
-        modal.addEventListener("click", event => {
-            if (event.target === modal) {
-                closeModal(modal);
-            }
-        });
-    }
-
-    const content =
-        document.getElementById("blackout-person-content");
-
-    content.innerHTML = `
-        <span class="stamp">
-            ${escapeHTML(person.type)}
-        </span>
-
-        <h2>${escapeHTML(person.name)}</h2>
-
-        <p>
-            <strong>${escapeHTML(person.role)}</strong>
-        </p>
-
-        <p>${escapeHTML(person.bio)}</p>
-
-        <div class="person-tags">
-            ${person.tags.map(tag =>
-                `<span class="tag">${escapeHTML(tag)}</span>`
-            ).join("")}
-        </div>
-
-        ${
-            person.wiki
-                ? `
-                    <p style="margin-top:2rem">
-                        <a
-                            class="button"
-                            target="_blank"
-                            rel="noopener"
-                            href="https://en.wikipedia.org/wiki/${encodeURIComponent(person.wiki)}"
-                        >
-                            EXPLORE SOURCE →
-                        </a>
-                    </p>
-                `
-                : ""
-        }
-    `;
-
-    openModal(modal);
-}
-
-
-/* =========================================================
-   TIMELINE
-   ========================================================= */
-
-const blackoutTimeline = [
-    {
-        year: "1920s–1930s",
-        title: "Harlem Renaissance",
-        category: "Black culture",
-        summary:
-            "A major period of Black literary, artistic, musical, and intellectual activity centered especially in Harlem.",
-        color: "red"
-    },
-
-    {
-        year: "1940s–1950s",
-        title: "Black Arts & Cultural Networks",
-        category: "Art",
-        summary:
-            "Artists, writers, musicians, and communities continued developing cultural spaces and forms that challenged exclusion and represented Black life.",
-        color: "yellow"
-    },
-
-    {
-        year: "1950s–1960s",
-        title: "Civil Rights Era",
-        category: "History",
-        summary:
-            "A period of major organizing, protest, litigation, legislation, and cultural activity around racial segregation and civil rights in the United States.",
-        color: "blue"
-    },
-
-    {
-        year: "1960s–1970s",
-        title: "Black Arts Movement",
-        category: "Art",
-        summary:
-            "Writers, visual artists, musicians, and theater makers developed work centered on Black identity, political consciousness, community, and cultural independence.",
-        color: "purple"
-    },
-
-    {
-        year: "1960s–1970s",
-        title: "Chicano Movement",
-        category: "Latino culture",
-        summary:
-            "Mexican American activists, students, workers, artists, and organizers advocated around civil rights, labor, education, land, and cultural identity.",
-        color: "green"
-    },
-
-    {
-        year: "1960s–1970s",
-        title: "American Indian Movement Era",
-        category: "Indigenous history",
-        summary:
-            "Indigenous activists organized around sovereignty, treaty rights, community issues, and the political and cultural visibility of Native peoples.",
-        color: "orange"
-    },
-
-    {
-        year: "1970s–1980s",
-        title: "Hip-Hop Emerges",
-        category: "Music",
-        summary:
-            "Hip-hop culture developed through DJing, MCing, breakdancing, graffiti, and community-centered creative practices, particularly in New York City.",
-        color: "red"
-    },
-
-    {
-        year: "1980s–1990s",
-        title: "Independent Cultural Media",
-        category: "Culture",
-        summary:
-            "Zines, independent music scenes, community publications, street art, and alternative media created additional ways for communities to tell their own stories.",
-        color: "yellow"
-    },
-
-    {
-        year: "2000s–Today",
-        title: "Digital Culture & Archiving",
-        category: "Contemporary",
-        summary:
-            "Digital platforms have expanded how artists, writers, musicians, historians, and communities document, share, remix, and preserve culture.",
-        color: "blue"
-    }
-];
-
-
-function initTimeline() {
-    const timeline =
-        document.querySelector("#people-timeline") ||
-        document.querySelector(".timeline");
-
-    if (!timeline) return;
-
-    if (
-        timeline.dataset.blackoutTimeline === "true"
-    ) {
-        renderTimeline(timeline);
-        return;
-    }
-
-    const existingItems =
-        timeline.querySelectorAll(".timeline-item");
-
-    if (existingItems.length > 0) {
-        existingItems.forEach(item => {
-            item.classList.add("timeline-item");
-        });
-
-        return;
-    }
-
-    timeline.dataset.blackoutTimeline = "true";
-    renderTimeline(timeline);
-}
-
-
-function renderTimeline(container, filter = "all") {
-    const items = filter === "all"
-        ? blackoutTimeline
-        : blackoutTimeline.filter(
-            item => item.category === filter
-        );
-
-    container.innerHTML = items.map((item, index) => `
-        <article class="timeline-item">
-            <span class="timeline-year">
-                ${escapeHTML(item.year)}
-            </span>
-
-            <span class="stamp ${item.color || ""}">
-                ${escapeHTML(item.category)}
-            </span>
-
-            <h3>${escapeHTML(item.title)}</h3>
-
             <p>
-                ${escapeHTML(item.summary)}
+                ${escapeHTML(person.bio)}
             </p>
 
             <button
                 type="button"
-                class="timeline-more"
-                data-index="${index}"
+                class="expand-card"
+                data-open-text="READ NOTE +"
+                data-close-text="CLOSE NOTE −"
             >
-                READ ENTRY →
+                READ NOTE +
             </button>
-        </article>
-    `).join("");
 
-    container.querySelectorAll(".timeline-more")
-        .forEach(button => {
-            button.addEventListener("click", () => {
-                const item =
-                    items[Number(button.dataset.index)];
+            <div class="hidden-note" hidden>
+                <strong>
+                    ${escapeHTML(person.era)}
+                </strong>
 
-                openTimelineEntry(item);
-            });
-        });
-}
+                <p>
+                    ${escapeHTML(person.bio)}
+                </p>
+            </div>
+        `;
 
+        const portrait =
+            createPersonPortrait(person);
 
-function openTimelineEntry(item) {
-    const modal = document.createElement("div");
+        $(".person-portrait-wrap", card)
+            .appendChild(portrait);
 
-    modal.className = "modal active";
+        grid.appendChild(card);
 
-    modal.innerHTML = `
-        <div class="modal-content tape">
-            <button class="modal-close" type="button">×</button>
-
-            <span class="timeline-year">
-                ${escapeHTML(item.year)}
-            </span>
-
-            <h2>${escapeHTML(item.title)}</h2>
-
-            <span class="stamp">
-                ${escapeHTML(item.category)}
-            </span>
-
-            <p>
-                ${escapeHTML(item.summary)}
-            </p>
-        </div>
-    `;
-
-    document.body.appendChild(modal);
-    document.body.style.overflow = "hidden";
-
-    const close = () => {
-        modal.remove();
-        document.body.style.overflow = "";
-    };
-
-    modal.querySelector(".modal-close")
-        .addEventListener("click", close);
-
-    modal.addEventListener("click", event => {
-        if (event.target === modal) close();
     });
+
 }
 
 
 /* =========================================================
-   POETRY
+   PEOPLE TIMELINE
    ========================================================= */
 
-const blackoutPoets = [
+const PEOPLE_TIMELINE = [
+
     {
-        poet: "Langston Hughes",
-        title: "Selected Work",
-        category: "Harlem Renaissance",
-        excerpt:
-            "A short excerpt can be placed here from a public-domain poem.",
-        description:
-            "Explore Hughes through the relationship between poetry, music, Black life, and the Harlem Renaissance.",
-        source:
-            "https://www.poetryfoundation.org/poets/langston-hughes"
+        year: "1924",
+        title: "James Baldwin",
+        category: "Black culture",
+        text:
+            "James Baldwin was born in New York City and later became an internationally recognized writer and essayist."
     },
 
     {
-        poet: "Maya Angelou",
-        title: "Selected Work",
-        category: "Identity / Memory",
-        excerpt:
-            "Use a brief authorized excerpt here rather than reproducing an entire copyrighted poem.",
-        description:
-            "Angelou's poetry and prose frequently explore identity, memory, race, resilience, and human dignity.",
-        source:
-            "https://www.poetryfoundation.org/poets/maya-angelou"
+        year: "1927",
+        title: "César Chávez",
+        category: "Latino culture",
+        text:
+            "César Chávez was born in Arizona and later became associated with farmworker organizing."
     },
 
     {
-        poet: "Audre Lorde",
-        title: "Selected Work",
-        category: "Identity / Power",
-        excerpt:
-            "A short excerpt belongs here when an authorized source permits it.",
-        description:
-            "Lorde's poetry and essays examine identity, power, race, gender, sexuality, and resistance.",
-        source:
-            "https://www.poetryfoundation.org/poets/audre-lorde"
+        year: "1933",
+        title: "Nina Simone",
+        category: "Music",
+        text:
+            "Nina Simone was born in North Carolina and became a major pianist, singer, and songwriter."
     },
 
     {
-        poet: "Gwendolyn Brooks",
-        title: "Selected Work",
-        category: "Black Life",
-        excerpt:
-            "A short excerpt can be displayed here.",
-        description:
-            "Brooks frequently wrote about Black communities, ordinary life, social conditions, and urban experience.",
-        source:
-            "https://www.poetryfoundation.org/poets/gwendolyn-brooks"
+        year: "1944",
+        title: "Angela Davis",
+        category: "Black culture",
+        text:
+            "Angela Davis was born in Alabama and became a scholar, writer, and activist."
     },
 
     {
-        poet: "Joy Harjo",
-        title: "Selected Work",
-        category: "Indigenous / Memory",
-        excerpt:
-            "Use a short excerpt or your own commentary here.",
-        description:
-            "Harjo's work brings poetry, music, Indigenous identity, history, memory, and place into conversation.",
-        source:
-            "https://www.poetryfoundation.org/poets/joy-harjo"
+        year: "1945",
+        title: "Bob Marley",
+        category: "Music",
+        text:
+            "Bob Marley was born in Jamaica and became one of reggae's most internationally recognized musicians."
     },
 
     {
-        poet: "Nikki Giovanni",
-        title: "Selected Work",
-        category: "Black Arts",
-        excerpt:
-            "A short authorized excerpt can appear here.",
-        description:
-            "Giovanni's writing spans poetry, family, Black identity, culture, education, and social questions.",
-        source:
-            "https://www.poetryfoundation.org/poets/nikki-giovanni"
+        year: "1951",
+        title: "Joy Harjo",
+        category: "Indigenous history",
+        text:
+            "Joy Harjo was born in Oklahoma and became a poet, musician, and writer of Muscogee heritage."
+    },
+
+    {
+        year: "1954",
+        title: "Frida Kahlo enters the historical record as a continuing cultural influence",
+        category: "Art",
+        text:
+            "Frida Kahlo's paintings continued to have a major cultural presence after her death in 1954."
+    },
+
+    {
+        year: "1987",
+        title: "Kendrick Lamar",
+        category: "Contemporary",
+        text:
+            "Kendrick Lamar was born in Compton, California and later became an internationally recognized rapper and songwriter."
     }
+
 ];
 
 
-function initPoetryPage() {
-    const grid =
-        document.querySelector("#poetry-grid") ||
-        document.querySelector(".poetry-grid");
+function renderTimeline(element, filter = "all") {
 
-    if (!grid) return;
+    if (!element) return;
 
-    if (
-        grid.children.length > 0 &&
-        !grid.dataset.blackoutPoetry
-    ) {
-        grid.dataset.blackoutPoetry = "true";
-        enhancePoetryCards(grid);
+    const entries =
+        PEOPLE_TIMELINE.filter(item => {
+
+            if (!filter || filter === "all") {
+                return true;
+            }
+
+            return (
+                item.category.toLowerCase() ===
+                filter.toLowerCase()
+            );
+
+        });
+
+
+    element.innerHTML = entries.map(item => `
+        <article
+            class="timeline-item"
+            data-category="${escapeHTML(item.category)}"
+        >
+
+            <div class="timeline-year">
+                ${escapeHTML(item.year)}
+            </div>
+
+            <div class="timeline-content">
+
+                <h3>
+                    ${escapeHTML(item.title)}
+                </h3>
+
+                <span class="tag">
+                    ${escapeHTML(item.category)}
+                </span>
+
+                <p>
+                    ${escapeHTML(item.text)}
+                </p>
+
+            </div>
+
+        </article>
+    `).join("");
+
+}
+
+
+/* =========================================================
+   PEOPLE TIMELINE FILTER
+   ========================================================= */
+
+function initPeopleTimeline() {
+
+    const timeline =
+        $("#peopleTimeline") ||
+        $("#people-timeline");
+
+    if (!timeline) return;
+
+
+    const filter =
+        $("#timelineFilter");
+
+
+    if (filter) {
+
+        renderTimeline(
+            timeline,
+            filter.value || "all"
+        );
+
+        filter.addEventListener(
+            "change",
+            () => {
+
+                renderTimeline(
+                    timeline,
+                    filter.value || "all"
+                );
+
+            }
+        );
+
+    } else {
+
+        renderTimeline(
+            timeline,
+            "all"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PEOPLE CREW
+   ========================================================= */
+
+function initCrewCards() {
+
+    const container =
+        $("#crewGrid") ||
+        $("#crew-grid");
+
+    if (!container) return;
+
+
+    if (container.children.length) {
         return;
     }
 
-    renderPoetry(grid, blackoutPoets);
-}
 
+    BLACKOUT_CREW.forEach(character => {
 
-function renderPoetry(container, poems) {
-    container.innerHTML = poems.map(poem => `
-        <article class="poetry-card poem-card tape">
-            <span class="stamp">
-                ${escapeHTML(poem.category)}
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "person-card crew-card";
+
+        card.innerHTML = `
+            <div class="crew-face"></div>
+
+            <span class="tag">
+                BLACKOUT CREW
             </span>
 
-            <h3 class="poet-name">
-                ${escapeHTML(poem.poet)}
+            <h3>
+                ${escapeHTML(character.name)}
             </h3>
 
-            <p class="poem-title">
-                ${escapeHTML(poem.title)}
-            </p>
-
-            <blockquote>
-                ${escapeHTML(poem.excerpt)}
-            </blockquote>
-
             <p>
-                ${escapeHTML(poem.description)}
+                ${escapeHTML(character.role)}
             </p>
+        `;
 
-            <a
-                class="button"
-                href="${escapeAttribute(poem.source)}"
-                target="_blank"
-                rel="noopener"
-            >
-                READ / EXPLORE →
-            </a>
-        </article>
-    `).join("");
-}
+        $(".crew-face", card)
+            .appendChild(
+                createCharacterFace(character)
+            );
 
+        container.appendChild(card);
 
-function enhancePoetryCards(grid) {
-    grid.querySelectorAll(
-        ".poetry-card, .poem-card"
-    ).forEach(card => {
-        card.classList.add("poem-card", "tape");
     });
+
 }
 
 
 /* =========================================================
-   SEARCH
+   FILTER BUTTONS
    ========================================================= */
 
-function initSearch() {
-    document.querySelectorAll(
-        "[data-search-input]"
-    ).forEach(input => {
+function initFilterButtons() {
+
+    $$("[data-filter-group]").forEach(group => {
+
         const targetSelector =
-            input.dataset.searchTarget;
+            group.dataset.filterTarget;
 
         const target =
-            document.querySelector(targetSelector);
+            targetSelector
+                ? $(targetSelector)
+                : null;
 
         if (!target) return;
 
-        input.addEventListener("input", () => {
-            const query =
-                input.value.trim().toLowerCase();
 
-            target.querySelectorAll(
-                ".card, .poem-card, .person-card, " +
-                ".story-card, .resource-card, " +
-                ".archive-card, .timeline-item"
-            ).forEach(item => {
-                const text =
-                    item.textContent.toLowerCase();
+        const buttons =
+            $$("[data-filter]", group);
 
-                item.style.display =
-                    !query || text.includes(query)
-                        ? ""
-                        : "none";
-            });
+
+        const items =
+            $$("[data-filter-item]", target);
+
+
+        buttons.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    buttons.forEach(
+                        b =>
+                            b.classList.remove(
+                                "active"
+                            )
+                    );
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                    const filter =
+                        button.dataset.filter;
+
+
+                    items.forEach(item => {
+
+                        const categories =
+                            (
+                                item.dataset.filterItem ||
+                                ""
+                            )
+                                .toLowerCase()
+                                .split(",");
+
+                        const show =
+                            filter === "all" ||
+                            categories.includes(
+                                filter.toLowerCase()
+                            );
+
+                        item.style.display =
+                            show ? "" : "none";
+
+                    });
+
+                }
+            );
+
         });
+
     });
+
 }
 
 
 /* =========================================================
-   KEYBOARD SUPPORT
+   ART FILTER
    ========================================================= */
 
-function initKeyboardSupport() {
-    document.addEventListener("keydown", event => {
-        if (event.key !== "Escape") return;
+function initArtFilters() {
 
-        document.querySelectorAll(
-            ".modal.active, .modal.open, .overlay.active"
-        ).forEach(closeModal);
+    const wall =
+        $("#artWall");
+
+    if (!wall) return;
+
+
+    const buttons =
+        $$("[data-art-filter]");
+
+    const cards =
+        $$(".art-card", wall);
+
+
+    buttons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                buttons.forEach(
+                    b =>
+                        b.classList.remove(
+                            "active"
+                        )
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+                const filter =
+                    button.dataset.artFilter;
+
+
+                cards.forEach(card => {
+
+                    const category =
+                        (
+                            card.dataset.category ||
+                            ""
+                        ).toLowerCase();
+
+                    card.style.display =
+                        filter === "all" ||
+                        category === filter
+                            ? ""
+                            : "none";
+
+                });
+
+            }
+        );
+
     });
+
 }
 
 
 /* =========================================================
-   HELPERS
+   HISTORY FILTER
    ========================================================= */
 
-function escapeHTML(value) {
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+function initHistoryFilters() {
+
+    const timeline =
+        $("#historyTimeline");
+
+    if (!timeline) return;
+
+
+    const buttons =
+        $$("[data-history-filter]");
+
+    const entries =
+        $$(".history-entry", timeline);
+
+
+    buttons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                buttons.forEach(
+                    b =>
+                        b.classList.remove(
+                            "active"
+                        )
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+                const filter =
+                    button.dataset.historyFilter;
+
+
+                entries.forEach(entry => {
+
+                    const category =
+                        (
+                            entry.dataset.history ||
+                            ""
+                        ).toLowerCase();
+
+                    entry.style.display =
+                        filter === "all" ||
+                        category === filter
+                            ? ""
+                            : "none";
+
+                });
+
+            }
+        );
+
+    });
+
 }
 
-function escapeAttribute(value) {
-    return escapeHTML(value);
+
+/* =========================================================
+   HISTORY JUMP LINKS
+   ========================================================= */
+
+function initHistoryJumps() {
+
+    $$("[data-target]").forEach(button => {
+
+        const targetID =
+            button.dataset.target;
+
+        if (!targetID) return;
+
+        const target =
+            document.getElementById(
+                targetID
+            );
+
+        if (!target) return;
+
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   MUSIC CARD INTERACTIONS
+   ========================================================= */
+
+function initMusicCards() {
+
+    $$(".music-card, .album-card").forEach(card => {
+
+        card.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target.closest(
+                        "a, button"
+                    )
+                ) {
+                    return;
+                }
+
+                card.classList.toggle(
+                    "selected"
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   POETRY SEARCH / FILTER
+   ========================================================= */
+
+function initPoetryFilters() {
+
+    const wall =
+        $("#poetryWall") ||
+        $("#poetry-grid");
+
+    if (!wall) return;
+
+
+    const search =
+        $("#poemSearch");
+
+    const cards =
+        $(
+            ".poetry-card, .poem-card",
+            wall
+        );
+
+
+    function filterPoems() {
+
+        const query =
+            search
+                ? search.value
+                    .trim()
+                    .toLowerCase()
+                : "";
+
+
+        cards.forEach(card => {
+
+            const text =
+                card.textContent
+                    .toLowerCase();
+
+            card.style.display =
+                !query ||
+                text.includes(query)
+                    ? ""
+                    : "none";
+
+        });
+
+    }
+
+
+    if (search) {
+        search.addEventListener(
+            "input",
+            filterPoems
+        );
+    }
+
+
+    $$(
+        "[data-poetry-filter]"
+    ).forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const filter =
+                    button.dataset.poetryFilter;
+
+                $$(
+                    "[data-poetry-filter]"
+                ).forEach(
+                    b =>
+                        b.classList.remove(
+                            "active"
+                        )
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                cards.forEach(card => {
+
+                    if (
+                        filter === "all"
+                    ) {
+
+                        card.style.display =
+                            "";
+
+                        return;
+                    }
+
+
+                    const categories =
+                        (
+                            card.dataset.category ||
+                            ""
+                        )
+                            .toLowerCase();
+
+
+                    card.style.display =
+                        categories.includes(
+                            filter.toLowerCase()
+                        )
+                            ? ""
+                            : "none";
+
+                });
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   RANDOM TEXT / QUOTE
+   ========================================================= */
+
+function initRandomText() {
+
+    const buttons =
+        $$("[data-random-text]");
+
+    buttons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const outputSelector =
+                    button.dataset.randomTarget;
+
+                const output =
+                    outputSelector
+                        ? $(outputSelector)
+                        : null;
+
+                if (!output) return;
+
+
+                const choices =
+                    (
+                        button.dataset.randomText ||
+                        ""
+                    )
+                        .split("|")
+                        .map(x => x.trim())
+                        .filter(Boolean);
+
+
+                if (!choices.length) return;
+
+
+                const choice =
+                    choices[
+                        Math.floor(
+                            Math.random() *
+                            choices.length
+                        )
+                    ];
+
+
+                output.textContent =
+                    choice;
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   GENERIC BUTTON → SCROLL
+   ========================================================= */
+
+function initScrollButtons() {
+
+    $$("[data-scroll-to]").forEach(button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                const target =
+                    $(
+                        button.dataset.scrollTo
+                    );
+
+                if (!target) return;
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+   ========================================================= */
+
+function initKeyboardShortcuts() {
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            /*
+               "/" focuses a search box when
+               the user isn't already typing.
+            */
+
+            if (
+                event.key === "/" &&
+                !["INPUT", "TEXTAREA", "SELECT"]
+                    .includes(
+                        document.activeElement.tagName
+                    )
+            ) {
+
+                const search =
+                    $(
+                        "#peopleSearch, #poemSearch, #siteSearch"
+                    );
+
+                if (search) {
+
+                    event.preventDefault();
+                    search.focus();
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   EXTERNAL LINKS
+   ========================================================= */
+
+function initExternalLinks() {
+
+    $$("a[href]").forEach(link => {
+
+        const href =
+            link.getAttribute("href");
+
+        if (!href) return;
+
+
+        if (
+            href.startsWith("http://") ||
+            href.startsWith("https://")
+        ) {
+
+            link.setAttribute(
+                "target",
+                "_blank"
+            );
+
+            link.setAttribute(
+                "rel",
+                "noopener noreferrer"
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   ACTIVE HASH SECTION
+   ========================================================= */
+
+function initHashNavigation() {
+
+    if (!window.location.hash) return;
+
+    const id =
+        window.location.hash.slice(1);
+
+    const target =
+        document.getElementById(id);
+
+    if (!target) return;
+
+
+    setTimeout(() => {
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 150);
+
+}
+
+
+/* =========================================================
+   LITTLE RANDOM ROTATIONS
+   ========================================================= */
+
+function initRandomCardMotion() {
+
+    $$(".paper-card, .person-card, .poem-card").forEach(
+        card => {
+
+            if (
+                card.dataset.noRotate === "true"
+            ) {
+                return;
+            }
+
+
+            if (
+                card.style.transform
+            ) {
+                return;
+            }
+
+
+            const rotation =
+                (
+                    Math.random() * 3
+                ) - 1.5;
+
+
+            card.style.setProperty(
+                "--blackout-rotation",
+                `${rotation}deg`
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PAGE INITIALIZATION
+   ========================================================= */
+
+function initBLACKOUT() {
+
+    initNavigation();
+    initActiveNavigation();
+
+    initRevealAnimations();
+
+    initExpandableCards();
+
+    initSearchInputs();
+
+    renderPeopleCards();
+    initPeopleTimeline();
+    initCrewCards();
+
+    initFilterButtons();
+
+    initArtFilters();
+    initHistoryFilters();
+    initHistoryJumps();
+
+    initMusicCards();
+    initPoetryFilters();
+
+    initRandomText();
+    initScrollButtons();
+
+    initKeyboardShortcuts();
+
+    initExternalLinks();
+
+    initHashNavigation();
+
+    initRandomCardMotion();
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+if (
+    document.readyState === "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initBLACKOUT
+    );
+
+} else {
+
+    initBLACKOUT();
+
 }
