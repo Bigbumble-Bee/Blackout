@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,217 +8,802 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Permanent+Marker&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body>
+<body data-page="history">
 
 <div class="grain"></div>
 
 <header class="site-header">
 
-<a href="index.html" class="brand">
-<span class="brand-box">B</span>
-LACKOUT
-</a>
+    <a href="index.html" class="brand">
+        <span class="brand-box">B</span>LACKOUT
+    </a>
 
-<button class="menu-toggle">MENU</button>
+    <button class="menu-toggle" type="button">MENU</button>
 
-<nav class="main-nav">
-<a href="people.html">People</a>
-<a href="music.html">Music</a>
-<a href="art.html">Art</a>
-<a href="history.html">History</a>
-<a href="politics.html">Politics</a>
-<a href="poetry.html">Poetry</a>
-<a href="stories.html">Stories</a>
-<a href="archive.html">Archive</a>
-<a href="gallery.html">Gallery</a>
-<a href="journal.html">Journal</a>
-<a href="resources.html">Resources</a>
-<a href="about.html">About</a>
-</nav>
+    <nav class="main-nav">
+        <a href="people.html">People</a>
+        <a href="music.html">Music</a>
+        <a href="art.html">Art</a>
+        <a href="history.html">History</a>
+        <a href="politics.html">Politics</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="stories.html">Stories</a>
+        <a href="archive.html">Archive</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="journal.html">Journal</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+    </nav>
 
 </header>
 
+<div class="wall-spray spray-red">MEMORY</div>
+<div class="wall-spray spray-yellow">REMEMBER</div>
+<div class="wall-spray spray-blue">TRACE</div>
+
+
+<main>
 
 <section class="page-hero">
 
-<p class="section-label">
-04 / THE MEMORY
-</p>
+    <p class="section-label">04 / THE MEMORY</p>
 
-<h1>
-THE MEMORY
-</h1>
+    <h1>
+        THE<br>
+        MEMORY
+    </h1>
 
-<p class="handwriting">
-if somebody tried to erase it, learn the shape of the eraser.
-</p>
+    <p class="handwriting">
+        if somebody tried to erase it, learn the shape of the eraser.
+    </p>
+
+    <div class="hero-copy">
+        <p>
+            History is not one hallway.
+            It is a wall covered in layers.
+        </p>
+    </div>
+
+    <div class="sticker-row">
+        <span class="sticker red">LOOK BACK</span>
+        <span class="sticker yellow">READ THE RECORD</span>
+        <span class="sticker blue">FOLLOW THE THREAD</span>
+    </div>
+
+</section>
+
+
+<section class="section ripped-section">
+
+    <div class="tape tape-yellow"></div>
+
+    <p class="section-label">A STARTING MAP</p>
+
+    <h2>
+        HISTORY<br>
+        HAS LAYERS.
+    </h2>
+
+    <p>
+        BLACKOUT connects Black, Latino, Indigenous,
+        Asian American, immigrant, LGBTQ+, and other
+        community histories with the larger stories
+        around them.
+    </p>
+
+    <div class="history-map">
+
+        <button class="history-jump" data-target="black-history">
+            BLACK HISTORY
+        </button>
+
+        <button class="history-jump" data-target="latino-history">
+            LATINO HISTORY
+        </button>
+
+        <button class="history-jump" data-target="indigenous-history">
+            INDIGENOUS HISTORY
+        </button>
+
+        <button class="history-jump" data-target="asian-history">
+            ASIAN AMERICAN HISTORY
+        </button>
+
+        <button class="history-jump" data-target="queer-history">
+            LGBTQ+ HISTORY
+        </button>
+
+        <button class="history-jump" data-target="local-history">
+            LOCAL HISTORY
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="timeline" class="section">
+
+    <p class="section-label">THE TIMELINE</p>
+
+    <h2>
+        PIECES<br>
+        OF THE WALL.
+    </h2>
+
+    <div class="timeline-filter">
+
+        <button class="active" data-history-filter="all">
+            ALL
+        </button>
+
+        <button data-history-filter="black">
+            BLACK HISTORY
+        </button>
+
+        <button data-history-filter="latino">
+            LATINO
+        </button>
+
+        <button data-history-filter="indigenous">
+            INDIGENOUS
+        </button>
+
+        <button data-history-filter="lgbtq">
+            LGBTQ+
+        </button>
+
+    </div>
+
+
+    <div class="history-timeline" id="historyTimeline">
+
+
+        <article class="history-entry" data-history="black">
+
+            <div class="timeline-year">
+                1865–1877
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    RECONSTRUCTION
+                </span>
+
+                <h3>
+                    Building freedom after slavery
+                </h3>
+
+                <p>
+                    Reconstruction brought major changes in
+                    citizenship, political participation, voting,
+                    and the legal status of formerly enslaved people.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Look at the 13th, 14th, and 15th Amendments,
+                    Black political participation, Freedmen's
+                    conventions, and the struggles surrounding
+                    Reconstruction.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="black">
+
+            <div class="timeline-year">
+                1896
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    LAW / SEGREGATION
+                </span>
+
+                <h3>
+                    Plessy v. Ferguson
+                </h3>
+
+                <p>
+                    The Supreme Court decision became a major
+                    part of the legal history of segregation
+                    in the United States.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Compare this case with later legal challenges
+                    to segregation, especially Brown v. Board of
+                    Education.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="black">
+
+            <div class="timeline-year">
+                1916–1945
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    GREAT MIGRATION
+                </span>
+
+                <h3>
+                    Millions move.
+                </h3>
+
+                <p>
+                    Large numbers of African Americans moved from
+                    the South to cities in other parts of the United
+                    States, reshaping communities and culture.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Follow the connections between migration,
+                    labor, housing, music, newspapers, politics,
+                    and the growth of Black urban communities.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="black">
+
+            <div class="timeline-year">
+                1920s
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    HARLEM RENAISSANCE
+                </span>
+
+                <h3>
+                    Art becomes an archive.
+                </h3>
+
+                <p>
+                    Literature, music, visual art, performance,
+                    journalism, and intellectual life became
+                    central to a major period of Black cultural
+                    expression.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Connect poetry, jazz, newspapers, photography,
+                    literature, migration, and debates about
+                    identity.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="black">
+
+            <div class="timeline-year">
+                1954
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    BROWN v. BOARD
+                </span>
+
+                <h3>
+                    School segregation challenged.
+                </h3>
+
+                <p>
+                    Brown v. Board of Education became a landmark
+                    Supreme Court decision in the history of
+                    school desegregation.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Research the cases and events that led toward
+                    the decision and the resistance that followed it.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="black">
+
+            <div class="timeline-year">
+                1955–1968
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    CIVIL RIGHTS ERA
+                </span>
+
+                <h3>
+                    Organizing, protest, law, and change
+                </h3>
+
+                <p>
+                    A wide range of organizers, students, lawyers,
+                    community groups, churches, and activists
+                    challenged racial segregation and discrimination.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Do not reduce this period to a handful of famous
+                    names. Study local organizing, youth activism,
+                    women organizers, legal challenges, voting-rights
+                    work, and community institutions.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="latino">
+
+            <div class="timeline-year">
+                MANY ERAS
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    LATINO HISTORY
+                </span>
+
+                <h3>
+                    Migration + labor + culture
+                </h3>
+
+                <p>
+                    Latino history in the United States includes
+                    many different communities, regions, migrations,
+                    cultures, political movements, and experiences.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Follow Mexican American, Puerto Rican, Cuban,
+                    Dominican, Central American, South American,
+                    Caribbean, and other Latino histories rather
+                    than treating them as one story.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="indigenous">
+
+            <div class="timeline-year">
+                BEFORE / DURING / AFTER COLONIZATION
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    INDIGENOUS HISTORY
+                </span>
+
+                <h3>
+                    Nations, sovereignty, survival
+                </h3>
+
+                <p>
+                    Indigenous histories begin long before the
+                    creation of the United States and continue
+                    into the present.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Study individual nations and communities,
+                    sovereignty, treaties, removal, boarding schools,
+                    language revitalization, art, land, and
+                    contemporary community life.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="history-entry" data-history="lgbtq">
+
+            <div class="timeline-year">
+                MANY ERAS
+            </div>
+
+            <div class="timeline-card">
+
+                <span class="tagline">
+                    LGBTQ+ HISTORY
+                </span>
+
+                <h3>
+                    People have always made history.
+                </h3>
+
+                <p>
+                    LGBTQ+ history includes changing identities,
+                    communities, cultural expression, organizing,
+                    discrimination, relationships, art, and politics.
+                </p>
+
+                <button class="history-expand" type="button">
+                    OPEN NOTE +
+                </button>
+
+                <div class="history-note">
+                    Study specific communities and periods instead
+                    of treating LGBTQ+ history as a single event.
+                    Stonewall is one part of a much larger history.
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section id="black-history" class="section dark-section">
+
+    <p class="section-label yellow">BLACK HISTORY</p>
+
+    <h2>
+        NOT JUST<br>
+        A MONTH.
+    </h2>
+
+    <div class="history-grid">
+
+        <div class="paper-note">
+            <span class="note-number">01</span>
+            <h3>Reconstruction</h3>
+            <p>
+                Citizenship, voting, political participation,
+                education, and the unfinished struggle over freedom.
+            </p>
+        </div>
+
+        <div class="paper-note">
+            <span class="note-number">02</span>
+            <h3>Great Migration</h3>
+            <p>
+                Movement, cities, labor, family, newspapers,
+                music, art, and community.
+            </p>
+        </div>
+
+        <div class="paper-note">
+            <span class="note-number">03</span>
+            <h3>Civil Rights</h3>
+            <p>
+                Organizing happened through many people,
+                organizations, communities, and strategies.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="latino-history" class="section">
+
+    <p class="section-label">LATINO HISTORY</p>
+
+    <h2>
+        MANY<br>
+        HISTORIES.
+    </h2>
+
+    <p>
+        Latino history is not one single timeline.
+        Communities have different migration histories,
+        languages, cultures, political traditions,
+        and relationships to place.
+    </p>
+
+    <div class="paper-note yellow-note">
+
+        <span class="note-number">NOTE</span>
+
+        <p>
+            Start with a specific community rather than
+            trying to explain everyone at once.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section id="indigenous-history" class="section">
+
+    <p class="section-label">INDIGENOUS HISTORY</p>
+
+    <h2>
+        START<br>
+        BEFORE 1492.
+    </h2>
+
+    <p>
+        Indigenous history does not begin with European
+        arrival. Study individual nations, languages,
+        political systems, traditions, treaties, land,
+        sovereignty, and contemporary life.
+    </p>
+
+</section>
+
+
+<section id="asian-history" class="section">
+
+    <p class="section-label">ASIAN AMERICAN HISTORY</p>
+
+    <h2>
+        MIGRATION.<br>
+        DIASPORA.<br>
+        COMMUNITY.
+    </h2>
+
+    <p>
+        Explore the different histories of Asian American
+        and Pacific Islander communities, including migration,
+        labor, exclusion, wartime incarceration, immigration,
+        culture, and organizing.
+    </p>
+
+</section>
+
+
+<section id="queer-history" class="section dark-section">
+
+    <p class="section-label yellow">LGBTQ+ HISTORY</p>
+
+    <h2>
+        THE ARCHIVE<br>
+        IS BIGGER THAN<br>
+        STONEWALL.
+    </h2>
+
+    <p>
+        Study specific people, communities, organizations,
+        cultural spaces, legal battles, art, activism,
+        and everyday life across different periods.
+    </p>
+
+</section>
+
+
+<section id="local-history" class="section manifesto">
+
+    <p class="handwriting">start at home.</p>
+
+    <h2>
+        YOUR CITY<br>
+        HAS A HISTORY.
+    </h2>
+
+    <p>
+        County records, newspapers, libraries, cemeteries,
+        oral histories, old photographs, murals, buildings,
+        school records, and family stories can become
+        historical sources.
+    </p>
+
+    <a href="archive.html" class="button red">
+        OPEN THE ARCHIVE →
+    </a>
 
 </section>
 
 
 <section class="section">
 
-<p class="section-label">
-A STARTING MAP
-</p>
+    <p class="section-label">RESEARCH RULE</p>
 
-<h2>
-HISTORY IS NOT<br>
-ONE HALLWAY.
-</h2>
+    <h2>
+        FOLLOW<br>
+        THE SOURCE.
+    </h2>
 
-<p>
-BLACKOUT focuses on histories of Black, Latino,
-Indigenous, Asian, immigrant, queer, and other
-marginalized communities while connecting them
-to larger systems.
-</p>
+    <div class="source-wall">
 
-</section>
+        <a
+            class="source-card"
+            href="https://www.archives.gov/"
+            target="_blank"
+            rel="noopener"
+        >
+            <span>NATIONAL ARCHIVES</span>
+            <strong>PRIMARY DOCUMENTS</strong>
+            <small>documents / photographs / records</small>
+        </a>
 
+        <a
+            class="source-card"
+            href="https://www.si.edu/explore/history"
+            target="_blank"
+            rel="noopener"
+        >
+            <span>SMITHSONIAN</span>
+            <strong>HISTORY + CULTURE</strong>
+            <small>museums / collections / research</small>
+        </a>
 
-<section class="card-grid">
+        <a
+            class="source-card"
+            href="https://latino.si.edu/learn"
+            target="_blank"
+            rel="noopener"
+        >
+            <span>AMERICAN LATINO</span>
+            <strong>LATINO HISTORY</strong>
+            <small>history / culture / learning</small>
+        </a>
 
+        <a
+            class="source-card"
+            href="https://americanhistory.si.edu/topics/lgbtq-history"
+            target="_blank"
+            rel="noopener"
+        >
+            <span>AMERICAN HISTORY MUSEUM</span>
+            <strong>LGBTQ+ HISTORY</strong>
+            <small>collections / stories / archives</small>
+        </a>
 
-<article class="person-card">
-
-<span class="tagline">
-BLACK HISTORY
-</span>
-
-<h2>
-Reconstruction → Civil Rights
-</h2>
-
-<p>
-Study emancipation, Reconstruction, Jim Crow,
-the Great Migration, organizing, the Civil Rights
-Movement, Black Power, and their legacies.
-</p>
-
-</article>
-
-
-<article class="person-card">
-
-<span class="tagline">
-LATINO HISTORY
-</span>
-
-<h2>
-Migration + Labor + Power
-</h2>
-
-<p>
-Explore Mexican-American history,
-farmworker organizing, Puerto Rican and
-Caribbean histories, immigration policy,
-and Latino political movements.
-</p>
-
-</article>
-
-
-<article class="person-card">
-
-<span class="tagline">
-INDIGENOUS HISTORY
-</span>
-
-<h2>
-Sovereignty + Survival
-</h2>
-
-<p>
-Study Indigenous nations, colonization,
-removal, boarding schools, sovereignty,
-language revitalization, land rights,
-and contemporary organizing.
-</p>
-
-</article>
-
-
-<article class="person-card">
-
-<span class="tagline">
-ASIAN AMERICAN HISTORY
-</span>
-
-<h2>
-Migration + Diaspora
-</h2>
-
-<p>
-Explore exclusion laws, labor,
-internment, immigration, diaspora,
-community organizing, and Asian
-American movements.
-</p>
-
-</article>
-
-
-<article class="person-card">
-
-<span class="tagline">
-QUEER HISTORY
-</span>
-
-<h2>
-Visibility + Resistance
-</h2>
-
-<p>
-Study LGBTQ+ organizing, Stonewall,
-HIV/AIDS activism, queer art,
-chosen family, and continuing
-struggles over equal rights.
-</p>
-
-</article>
-
-
-<article class="person-card">
-
-<span class="tagline">
-LOCAL HISTORY
-</span>
-
-<h2>
-Start where you live.
-</h2>
-
-<p>
-County archives, oral histories,
-newspapers, cemeteries, libraries,
-murals, and old photographs can
-reveal stories textbooks miss.
-</p>
-
-</article>
-
+    </div>
 
 </section>
+
+</main>
 
 
 <footer class="site-footer">
-
-<strong>BLACKOUT</strong>
-<span>made by Von</span>
-
+    <strong>BLACKOUT</strong>
+    <span>made by Von</span>
 </footer>
 
+
 <script src="script.js"></script>
+
+<script>
+/* CATEGORY FILTER */
+
+const historyFilters = document.querySelectorAll("[data-history-filter]");
+const historyEntries = document.querySelectorAll(".history-entry");
+
+historyFilters.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        historyFilters.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const filter = button.dataset.historyFilter;
+
+        historyEntries.forEach(entry => {
+
+            if (
+                filter === "all" ||
+                entry.dataset.history === filter
+            ) {
+                entry.style.display = "";
+            } else {
+                entry.style.display = "none";
+            }
+
+        });
+
+    });
+
+});
+
+
+/* EXPAND TIMELINE NOTES */
+
+document.querySelectorAll(".history-expand").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const card = button.closest(".timeline-card");
+
+        card.classList.toggle("expanded");
+
+        button.textContent =
+            card.classList.contains("expanded")
+            ? "CLOSE NOTE −"
+            : "OPEN NOTE +";
+
+    });
+
+});
+
+
+/* JUMP AROUND THE HISTORY WALL */
+
+document.querySelectorAll(".history-jump").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const target = document.getElementById(
+            button.dataset.target
+        );
+
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+    });
+
+});
+
+</script>
 
 </body>
 </html>
