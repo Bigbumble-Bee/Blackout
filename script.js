@@ -4,28 +4,60 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* -----------------------------------------------------
-       GLOBAL
-    ----------------------------------------------------- */
-
-    const page = document.body.dataset.page || "";
+    /* =====================================================
+       DATA
+       ===================================================== */
 
     const people = [
+
         {
             id: "baldwin",
             name: "James Baldwin",
             category: "Writer / Essayist",
+            wiki: "James Baldwin",
             letter: "JB",
-            imageName: "James Baldwin",
+
             bio:
                 "An American writer and essayist whose work examined race, identity, sexuality, religion, belonging, and American society.",
-            tags: ["literature", "race", "identity", "philosophy"],
+
+            tags: [
+                "literature",
+                "race",
+                "identity",
+                "philosophy"
+            ],
+
             timeline: [
-                ["1924", "Born in New York City."],
-                ["1953", "Published Go Tell It on the Mountain."],
-                ["1955", "Published Notes of a Native Son."],
-                ["1963", "Published The Fire Next Time."],
-                ["1987", "Died in France."]
+                {
+                    year: "1924",
+                    title: "Born",
+                    description:
+                        "James Baldwin was born in New York City."
+                },
+                {
+                    year: "1953",
+                    title: "Go Tell It on the Mountain",
+                    description:
+                        "Baldwin published his first major novel, exploring religion, family, identity, and growing up."
+                },
+                {
+                    year: "1955",
+                    title: "Notes of a Native Son",
+                    description:
+                        "Baldwin published a collection of essays examining race, culture, literature, and American life."
+                },
+                {
+                    year: "1963",
+                    title: "The Fire Next Time",
+                    description:
+                        "Baldwin published a major work examining race, religion, and the United States."
+                },
+                {
+                    year: "1987",
+                    title: "Death",
+                    description:
+                        "Baldwin died in Saint-Paul-de-Vence, France."
+                }
             ]
         },
 
@@ -33,17 +65,50 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "davis",
             name: "Angela Davis",
             category: "Scholar / Author / Activist",
+            wiki: "Angela Davis",
             letter: "AD",
-            imageName: "Angela Davis",
+
             bio:
                 "A scholar and author whose work has addressed prisons, race, gender, political movements, and social justice.",
-            tags: ["prisons", "race", "gender", "philosophy"],
+
+            tags: [
+                "prisons",
+                "race",
+                "gender",
+                "philosophy"
+            ],
+
             timeline: [
-                ["1944", "Born in Birmingham, Alabama."],
-                ["1960s", "Became involved in civil rights and political organizing."],
-                ["1970s", "Became a major figure in debates about prisons and political repression."],
-                ["1981", "Published Women, Race & Class."],
-                ["Today", "Continues writing and teaching."]
+                {
+                    year: "1944",
+                    title: "Born",
+                    description:
+                        "Angela Davis was born in Birmingham, Alabama."
+                },
+                {
+                    year: "1960s",
+                    title: "Political Organizing",
+                    description:
+                        "Davis became involved in civil-rights and political organizing."
+                },
+                {
+                    year: "1970s",
+                    title: "Prison and Political Repression",
+                    description:
+                        "Her case became part of a major national debate involving prisons, political repression, and civil liberties."
+                },
+                {
+                    year: "1981",
+                    title: "Women, Race & Class",
+                    description:
+                        "Davis published Women, Race & Class, examining relationships among race, gender, class, and historical movements."
+                },
+                {
+                    year: "Today",
+                    title: "Scholarship",
+                    description:
+                        "Davis continues to write, teach, and speak about politics, prisons, race, gender, and social movements."
+                }
             ]
         },
 
@@ -51,17 +116,50 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "nin",
             name: "Nina Simone",
             category: "Musician / Composer",
+            wiki: "Nina Simone",
             letter: "NS",
-            imageName: "Nina Simone",
+
             bio:
-                "A pianist, singer, and composer whose music crossed jazz, blues, classical, soul, and protest traditions.",
-            tags: ["music", "jazz", "protest", "art"],
+                "A pianist, singer, and composer whose work crossed jazz, blues, classical, soul, and protest traditions.",
+
+            tags: [
+                "music",
+                "jazz",
+                "protest",
+                "art"
+            ],
+
             timeline: [
-                ["1933", "Born in North Carolina."],
-                ["1950s", "Began recording professionally."],
-                ["1960s", "Released music connected with the civil-rights era."],
-                ["1970s", "Moved and continued performing internationally."],
-                ["2003", "Died in France."]
+                {
+                    year: "1933",
+                    title: "Born",
+                    description:
+                        "Nina Simone was born Eunice Kathleen Waymon in Tryon, North Carolina."
+                },
+                {
+                    year: "1950s",
+                    title: "Recording Career",
+                    description:
+                        "Simone began building a professional recording career that crossed several musical traditions."
+                },
+                {
+                    year: "1960s",
+                    title: "Civil Rights Era",
+                    description:
+                        "Her music increasingly engaged with racial injustice, identity, and the political atmosphere of the period."
+                },
+                {
+                    year: "1970s",
+                    title: "International Career",
+                    description:
+                        "Simone continued performing and recording internationally."
+                },
+                {
+                    year: "2003",
+                    title: "Death",
+                    description:
+                        "Nina Simone died in Carry-le-Rouet, France."
+                }
             ]
         },
 
@@ -69,17 +167,50 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "kendrick",
             name: "Kendrick Lamar",
             category: "Rapper / Songwriter",
+            wiki: "Kendrick Lamar",
             letter: "KL",
-            imageName: "Kendrick Lamar",
+
             bio:
                 "A rapper and songwriter from Compton, California, known for concept-driven albums addressing identity, community, inequality, faith, and personal experience.",
-            tags: ["hip-hop", "storytelling", "identity", "music"],
+
+            tags: [
+                "hip-hop",
+                "storytelling",
+                "identity",
+                "music"
+            ],
+
             timeline: [
-                ["1987", "Born in Compton, California."],
-                ["2012", "Released good kid, m.A.A.d city."],
-                ["2015", "Released To Pimp a Butterfly."],
-                ["2017", "Released DAMN."],
-                ["2022", "Released Mr. Morale & the Big Steppers."]
+                {
+                    year: "1987",
+                    title: "Born",
+                    description:
+                        "Kendrick Lamar was born in Compton, California."
+                },
+                {
+                    year: "2012",
+                    title: "good kid, m.A.A.d city",
+                    description:
+                        "Lamar released a major concept album centered on adolescence, environment, family, violence, faith, and personal identity."
+                },
+                {
+                    year: "2015",
+                    title: "To Pimp a Butterfly",
+                    description:
+                        "The album explored race, fame, identity, community, music history, and personal conflict."
+                },
+                {
+                    year: "2017",
+                    title: "DAMN.",
+                    description:
+                        "Lamar released DAMN., another concept-driven album exploring identity, morality, faith, and public life."
+                },
+                {
+                    year: "2022",
+                    title: "Mr. Morale & the Big Steppers",
+                    description:
+                        "The album explored family, identity, relationships, generational experiences, and personal reflection."
+                }
             ]
         },
 
@@ -87,17 +218,50 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "joy",
             name: "Joy Harjo",
             category: "Poet / Musician / Writer",
+            wiki: "Joy Harjo",
             letter: "JH",
-            imageName: "Joy Harjo",
+
             bio:
                 "A Muscogee poet, musician, and writer whose work explores memory, Indigenous identity, history, place, and survival.",
-            tags: ["poetry", "Indigenous", "music", "memory"],
+
+            tags: [
+                "poetry",
+                "Indigenous",
+                "music",
+                "memory"
+            ],
+
             timeline: [
-                ["1951", "Born in Tulsa, Oklahoma."],
-                ["1970s", "Began publishing poetry."],
-                ["1980s", "Published major poetry collections."],
-                ["2019", "Became the first Native American U.S. Poet Laureate."],
-                ["Today", "Continues writing and performing."]
+                {
+                    year: "1951",
+                    title: "Born",
+                    description:
+                        "Joy Harjo was born in Tulsa, Oklahoma."
+                },
+                {
+                    year: "1970s",
+                    title: "Poetry",
+                    description:
+                        "Harjo developed her writing and performance practice."
+                },
+                {
+                    year: "1980s",
+                    title: "Major Publications",
+                    description:
+                        "Harjo published poetry collections exploring Indigenous identity, memory, place, and history."
+                },
+                {
+                    year: "2019",
+                    title: "U.S. Poet Laureate",
+                    description:
+                        "Harjo became the first Native American to serve as U.S. Poet Laureate."
+                },
+                {
+                    year: "Today",
+                    title: "Writing and Music",
+                    description:
+                        "Harjo continues working across poetry, music, performance, and cultural memory."
+                }
             ]
         },
 
@@ -105,17 +269,50 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "cesar",
             name: "César Chávez",
             category: "Labor Organizer / Activist",
+            wiki: "Cesar Chavez",
             letter: "CC",
-            imageName: "Cesar Chavez",
+
             bio:
                 "A labor organizer who worked with farm workers and helped build a major labor movement in the United States.",
-            tags: ["labor", "Latino", "organizing", "history"],
+
+            tags: [
+                "labor",
+                "Latino",
+                "organizing",
+                "history"
+            ],
+
             timeline: [
-                ["1927", "Born in Arizona."],
-                ["1950s", "Worked as a community organizer."],
-                ["1960s", "Helped organize farm workers."],
-                ["1970s", "Continued labor organizing and advocacy."],
-                ["1993", "Died in Arizona."]
+                {
+                    year: "1927",
+                    title: "Born",
+                    description:
+                        "César Chávez was born in Yuma, Arizona."
+                },
+                {
+                    year: "1950s",
+                    title: "Community Organizing",
+                    description:
+                        "Chávez worked as a community organizer before moving more deeply into farm-worker organizing."
+                },
+                {
+                    year: "1960s",
+                    title: "Farm Worker Organizing",
+                    description:
+                        "Chávez helped organize farm workers and build a labor movement."
+                },
+                {
+                    year: "1970s",
+                    title: "Labor Advocacy",
+                    description:
+                        "He continued organizing and advocating around working conditions and labor rights."
+                },
+                {
+                    year: "1993",
+                    title: "Death",
+                    description:
+                        "Chávez died in San Luis, Arizona."
+                }
             ]
         },
 
@@ -123,17 +320,50 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "marley",
             name: "Bob Marley",
             category: "Musician / Songwriter",
+            wiki: "Bob Marley",
             letter: "BM",
-            imageName: "Bob Marley",
+
             bio:
                 "A Jamaican musician and songwriter whose work helped bring reggae to a worldwide audience and frequently addressed spirituality, unity, freedom, and social conditions.",
-            tags: ["reggae", "music", "Jamaica", "culture"],
+
+            tags: [
+                "reggae",
+                "music",
+                "Jamaica",
+                "culture"
+            ],
+
             timeline: [
-                ["1945", "Born in Jamaica."],
-                ["1960s", "Recorded with The Wailers."],
-                ["1970s", "Became an internationally recognized reggae artist."],
-                ["1980", "Performed his final concert."],
-                ["1981", "Died in Miami."]
+                {
+                    year: "1945",
+                    title: "Born",
+                    description:
+                        "Bob Marley was born in Nine Mile, Jamaica."
+                },
+                {
+                    year: "1960s",
+                    title: "The Wailers",
+                    description:
+                        "Marley developed his recording career with The Wailers."
+                },
+                {
+                    year: "1970s",
+                    title: "International Recognition",
+                    description:
+                        "Marley became one of the most internationally recognized reggae musicians."
+                },
+                {
+                    year: "1980",
+                    title: "Final Concert",
+                    description:
+                        "Marley performed his final concert in Pittsburgh."
+                },
+                {
+                    year: "1981",
+                    title: "Death",
+                    description:
+                        "Bob Marley died in Miami, Florida."
+                }
             ]
         },
 
@@ -141,228 +371,293 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "frida",
             name: "Frida Kahlo",
             category: "Artist",
+            wiki: "Frida Kahlo",
             letter: "FK",
-            imageName: "Frida Kahlo",
+
             bio:
                 "A Mexican painter known for self-portraits and work dealing with identity, the body, Mexican culture, relationships, and personal experience.",
-            tags: ["art", "Mexico", "identity", "painting"],
+
+            tags: [
+                "art",
+                "Mexico",
+                "identity",
+                "painting"
+            ],
+
             timeline: [
-                ["1907", "Born in Coyoacán, Mexico."],
-                ["1920s", "Began developing her painting practice."],
-                ["1930s", "Exhibited internationally."],
-                ["1940s", "Continued producing major paintings."],
-                ["1954", "Died in Mexico City."]
+                {
+                    year: "1907",
+                    title: "Born",
+                    description:
+                        "Frida Kahlo was born in Coyoacán, Mexico City."
+                },
+                {
+                    year: "1920s",
+                    title: "Painting",
+                    description:
+                        "Kahlo developed her distinctive painting practice."
+                },
+                {
+                    year: "1930s",
+                    title: "International Exhibitions",
+                    description:
+                        "Her work began receiving international attention."
+                },
+                {
+                    year: "1940s",
+                    title: "Major Works",
+                    description:
+                        "Kahlo continued producing paintings centered on identity, experience, symbolism, and Mexican culture."
+                },
+                {
+                    year: "1954",
+                    title: "Death",
+                    description:
+                        "Frida Kahlo died in Mexico City."
+                }
             ]
         }
     ];
 
-    const poems = [
-        {
-            title: "Concrete Flowers",
-            author: "BLACKOUT Original",
-            tags: ["city", "hope", "identity"],
-            text:
-`The sidewalk remembers
-every shoe that crossed it.
+    /* =====================================================
+       MOBILE NAV
+       ===================================================== */
 
-Every laugh.
-Every argument.
-Every name scratched into brick.
+    const navToggle =
+        document.querySelector(".nav-toggle");
 
-Something still grows
-where nobody planted anything.
-
-Maybe that is the point.`
-        },
-
-        {
-            title: "No Permission",
-            author: "BLACKOUT Original",
-            tags: ["voice", "freedom", "identity"],
-            text:
-`They told the wall
-to stay quiet.
-
-So the wall learned color.
-
-They told the microphone
-to lower its voice.
-
-So the room learned rhythm.
-
-Some things do not disappear
-when you tell them
-to disappear.`
-        },
-
-        {
-            title: "Names",
-            author: "BLACKOUT Original",
-            tags: ["memory", "history", "family"],
-            text:
-`Write the names.
-
-Not because the page
-can hold everything.
-
-Write them
-because memory
-needs somewhere to stand.`
-        },
-
-        {
-            title: "Corner Store Philosophy",
-            author: "BLACKOUT Original",
-            tags: ["philosophy", "community", "city"],
-            text:
-`The old man said
-every block has a philosophy.
-
-You just have to listen.
-
-A bus teaches patience.
-A mural teaches memory.
-A grandmother teaches time.
-
-The city has been talking
-the whole time.`
-        }
-    ];
-
-    /* -----------------------------------------------------
-       MOBILE NAVIGATION
-    ----------------------------------------------------- */
-
-    const navToggle = document.querySelector(".nav-toggle");
-    const mainNav = document.querySelector(".main-nav");
+    const mainNav =
+        document.querySelector(".main-nav");
 
     if (navToggle && mainNav) {
-        navToggle.addEventListener("click", () => {
-            mainNav.classList.toggle("open");
-        });
+
+        navToggle.addEventListener(
+            "click",
+            () => {
+                mainNav.classList.toggle("open");
+            }
+        );
     }
 
-    /* -----------------------------------------------------
+    /* =====================================================
        ACTIVE NAV
-    ----------------------------------------------------- */
+       ===================================================== */
 
     const currentFile =
-        location.pathname.split("/").pop() || "index.html";
+        location.pathname.split("/").pop() ||
+        "index.html";
 
-    document.querySelectorAll(".main-nav a").forEach(link => {
-        const href = link.getAttribute("href");
+    document
+        .querySelectorAll(".main-nav a")
+        .forEach(link => {
 
-        if (href === currentFile) {
-            link.classList.add("active");
-        }
-    });
+            if (
+                link.getAttribute("href") ===
+                currentFile
+            ) {
+                link.classList.add("active");
+            }
 
-    /* -----------------------------------------------------
-       MODAL SYSTEM
-    ----------------------------------------------------- */
+        });
+
+    /* =====================================================
+       MODALS
+       ===================================================== */
 
     function openModal(html) {
-        let modal = document.getElementById("blackoutModal");
+
+        let modal =
+            document.querySelector("#blackoutModal");
 
         if (!modal) {
-            modal = document.createElement("div");
-            modal.id = "blackoutModal";
-            modal.className = "modal";
+
+            modal =
+                document.createElement("div");
+
+            modal.id =
+                "blackoutModal";
+
+            modal.className =
+                "modal";
 
             modal.innerHTML = `
                 <div class="modal-content">
-                    <button class="modal-close" aria-label="Close">X</button>
+
+                    <button
+                        class="modal-close"
+                        aria-label="Close">
+                        X
+                    </button>
+
                     <div class="modal-body"></div>
+
                 </div>
             `;
 
             document.body.appendChild(modal);
 
-            modal.addEventListener("click", event => {
-                if (
-                    event.target === modal ||
-                    event.target.classList.contains("modal-close")
-                ) {
-                    closeModal();
-                }
-            });
+            modal.addEventListener(
+                "click",
+                event => {
 
-            document.addEventListener("keydown", event => {
-                if (event.key === "Escape") {
-                    closeModal();
+                    if (
+                        event.target === modal ||
+                        event.target.classList.contains(
+                            "modal-close"
+                        )
+                    ) {
+                        closeModal();
+                    }
+
                 }
-            });
+            );
         }
 
-        modal.querySelector(".modal-body").innerHTML = html;
+        modal
+            .querySelector(".modal-body")
+            .innerHTML = html;
+
         modal.classList.add("open");
-        document.body.style.overflow = "hidden";
+
+        document.body.style.overflow =
+            "hidden";
     }
 
     function closeModal() {
-        const modal = document.getElementById("blackoutModal");
+
+        const modal =
+            document.querySelector(
+                "#blackoutModal"
+            );
 
         if (modal) {
+
             modal.classList.remove("open");
-            document.body.style.overflow = "";
+
+            document.body.style.overflow =
+                "";
         }
     }
 
-    /* -----------------------------------------------------
-       PEOPLE
-    ----------------------------------------------------- */
+    document.addEventListener(
+        "keydown",
+        event => {
 
-    const peopleGrid = document.querySelector("#peopleGrid");
+            if (event.key === "Escape") {
+                closeModal();
+            }
+
+        }
+    );
+
+    /* =====================================================
+       PEOPLE
+       ===================================================== */
+
+    const peopleGrid =
+        document.querySelector("#peopleGrid");
 
     if (peopleGrid) {
+
         renderPeople(people);
 
-        const search = document.querySelector("#peopleSearch");
+        /*
+         * THIS IS THE IMPORTANT CHANGE:
+         * Load every person's image immediately.
+         */
+        loadPeopleImages();
+
+        const search =
+            document.querySelector(
+                "#peopleSearch"
+            );
 
         if (search) {
-            search.addEventListener("input", () => {
-                const value = search.value.toLowerCase();
 
-                const filtered = people.filter(person =>
-                    `${person.name} ${person.category} ${person.tags.join(" ")}`
-                        .toLowerCase()
-                        .includes(value)
-                );
+            search.addEventListener(
+                "input",
+                () => {
 
-                renderPeople(filtered);
-            });
+                    const value =
+                        search.value
+                            .toLowerCase()
+                            .trim();
+
+                    const filtered =
+                        people.filter(person =>
+                            (
+                                person.name +
+                                " " +
+                                person.category +
+                                " " +
+                                person.tags.join(" ")
+                            )
+                                .toLowerCase()
+                                .includes(value)
+                        );
+
+                    renderPeople(filtered);
+
+                    loadPeopleImages();
+                }
+            );
         }
     }
 
     function renderPeople(list) {
+
         if (!peopleGrid) return;
 
         peopleGrid.innerHTML = "";
 
         if (!list.length) {
+
             peopleGrid.innerHTML = `
                 <div class="notice">
                     No people matched that search.
                 </div>
             `;
+
             return;
         }
 
         list.forEach(person => {
-            const card = document.createElement("article");
 
-            card.className = "person-card";
+            const card =
+                document.createElement("article");
+
+            card.className =
+                "person-card";
+
+            card.dataset.person =
+                person.id;
 
             card.innerHTML = `
-                <div class="person-image">
+
+                <div
+                    class="person-image"
+                    id="person-image-${person.id}">
+
                     <div class="person-initial">
                         ${person.letter}
                     </div>
+
+                    <span class="person-loading">
+                        LOADING IMAGE...
+                    </span>
+
                 </div>
 
                 <div class="person-info">
-                    <h3>${person.name}</h3>
-                    <p>${person.category}</p>
+
+                    <h3>
+                        ${person.name}
+                    </h3>
+
+                    <p>
+                        ${person.category}
+                    </p>
+
                 </div>
 
                 <span class="click-label">
@@ -370,393 +665,375 @@ the whole time.`
                 </span>
             `;
 
-            card.addEventListener("click", () => {
-                openPerson(person);
-            });
+            card.addEventListener(
+                "click",
+                () => openPerson(person)
+            );
 
             peopleGrid.appendChild(card);
         });
     }
 
-    async function openPerson(person) {
+    async function loadPeopleImages() {
+
+        for (const person of people) {
+
+            const box =
+                document.querySelector(
+                    `#person-image-${person.id}`
+                );
+
+            if (!box) continue;
+
+            try {
+
+                const endpoint =
+                    "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+                    encodeURIComponent(person.wiki);
+
+                const response =
+                    await fetch(endpoint);
+
+                if (!response.ok) {
+                    continue;
+                }
+
+                const data =
+                    await response.json();
+
+                if (
+                    data.thumbnail &&
+                    data.thumbnail.source
+                ) {
+
+                    box.innerHTML = `
+                        <img
+                            src="${data.thumbnail.source}"
+                            alt="${escapeHTML(person.name)}"
+                            loading="lazy">
+                    `;
+                }
+
+            } catch (error) {
+
+                /*
+                 * If the image cannot load,
+                 * the person's initials remain.
+                 */
+
+                const loading =
+                    box.querySelector(
+                        ".person-loading"
+                    );
+
+                if (loading) {
+                    loading.remove();
+                }
+            }
+        }
+    }
+
+    function openPerson(person) {
 
         openModal(`
+
             <div class="modal-layout">
 
                 <div>
-                    <div class="modal-image" id="personImageBox">
+
+                    <div
+                        class="modal-image"
+                        id="modalPersonImage">
+
                         <div class="person-initial">
                             ${person.letter}
                         </div>
+
                     </div>
+
                 </div>
 
                 <div>
+
                     <span class="modal-label">
                         ${person.category}
                     </span>
 
-                    <h2>${person.name}</h2>
+                    <h2>
+                        ${person.name}
+                    </h2>
 
-                    <p>${person.bio}</p>
+                    <p>
+                        ${person.bio}
+                    </p>
 
-                    <div class="toolbar">
-                        ${person.tags.map(tag =>
-                            `<span class="btn dark">${tag}</span>`
-                        ).join("")}
+                    <div
+                        class="toolbar">
+
+                        ${person.tags.map(tag => `
+                            <span class="btn dark">
+                                ${tag}
+                            </span>
+                        `).join("")}
+
                     </div>
 
-                    <h3>Timeline</h3>
+                    <h3>
+                        TIMELINE
+                    </h3>
 
                     <div class="timeline">
-                        ${person.timeline.map(item => `
-                            <div class="timeline-item">
+
+                        ${person.timeline.map(event => `
+
+                            <article
+                                class="timeline-item">
+
                                 <div class="timeline-year">
-                                    ${item[0]}
+                                    ${event.year}
                                 </div>
-                                <div>
-                                    ${item[1]}
+
+                                <div class="timeline-person">
+                                    ${person.name}
                                 </div>
-                            </div>
+
+                                <div class="timeline-title">
+                                    ${event.title}
+                                </div>
+
+                                <div class="timeline-description">
+                                    ${event.description}
+                                </div>
+
+                            </article>
+
                         `).join("")}
+
                     </div>
 
                     <div class="notice">
-                        Profile information is provided as a starting point for
-                        further research. Use the resource section to dig deeper.
+
+                        Use the profile as a starting point.
+                        Explore the person's actual work and
+                        additional sources for deeper research.
+
                     </div>
+
                 </div>
 
             </div>
         `);
 
         /*
-         * Wikipedia's public REST endpoint is used only to retrieve
-         * a thumbnail for the profile.
+         * Reuse the already-loaded image if possible.
          */
-        try {
-            const endpoint =
-                "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-                encodeURIComponent(person.imageName);
+        const cardImage =
+            document.querySelector(
+                `#person-image-${person.id} img`
+            );
 
-            const response = await fetch(endpoint);
+        const modalImage =
+            document.querySelector(
+                "#modalPersonImage"
+            );
 
-            if (!response.ok) return;
+        if (
+            cardImage &&
+            modalImage
+        ) {
 
-            const data = await response.json();
-
-            if (data.thumbnail && data.thumbnail.source) {
-                const box = document.getElementById("personImageBox");
-
-                if (box) {
-                    box.innerHTML = `
-                        <img
-                            src="${data.thumbnail.source}"
-                            alt="${person.name}"
-                        >
-                    `;
-                }
-            }
-        } catch (error) {
-            console.log("Profile image unavailable.");
+            modalImage.innerHTML = `
+                <img
+                    src="${cardImage.src}"
+                    alt="${escapeHTML(person.name)}">
+            `;
         }
     }
 
-    /* -----------------------------------------------------
-       PEOPLE TIMELINE FILTER
-    ----------------------------------------------------- */
+    /* =====================================================
+       PEOPLE TIMELINE
+       ===================================================== */
 
-    const peopleTimeline = document.querySelector("#peopleTimeline");
+    const peopleTimeline =
+        document.querySelector(
+            "#peopleTimeline"
+        );
 
     if (peopleTimeline) {
 
+        renderTimeline("");
+
+        const filter =
+            document.querySelector(
+                "#timelineFilter"
+            );
+
+        if (filter) {
+
+            filter.addEventListener(
+                "change",
+                () => {
+
+                    renderTimeline(
+                        filter.value
+                    );
+
+                }
+            );
+        }
+    }
+
+    function renderTimeline(filter) {
+
+        if (!peopleTimeline) return;
+
+        peopleTimeline.innerHTML = "";
+
+        const events = [];
+
         people.forEach(person => {
-            person.timeline.forEach(item => {
 
-                const article = document.createElement("article");
+            if (
+                filter &&
+                person.id !== filter
+            ) {
+                return;
+            }
 
-                article.className = "timeline-item";
+            person.timeline.forEach(event => {
 
-                article.dataset.person = person.id;
+                events.push({
+                    ...event,
+                    person:
+                        person.name,
+                    personId:
+                        person.id
+                });
 
-                article.innerHTML = `
-                    <div class="timeline-year">
-                        ${item[0]}
-                    </div>
-
-                    <strong>${person.name}</strong>
-
-                    <p>${item[1]}</p>
-                `;
-
-                peopleTimeline.appendChild(article);
             });
         });
 
-        const timelineFilter =
-            document.querySelector("#timelineFilter");
+        /*
+         * Sort recognizable years first.
+         * "Today" goes to the bottom.
+         */
+        events.sort((a,b) => {
 
-        if (timelineFilter) {
-            timelineFilter.addEventListener("change", () => {
+            const yearA =
+                parseInt(a.year);
 
-                document
-                    .querySelectorAll("#peopleTimeline .timeline-item")
-                    .forEach(item => {
+            const yearB =
+                parseInt(b.year);
 
-                        if (
-                            !timelineFilter.value ||
-                            item.dataset.person === timelineFilter.value
-                        ) {
-                            item.classList.remove("hidden");
-                        } else {
-                            item.classList.add("hidden");
-                        }
+            if (
+                Number.isNaN(yearA) &&
+                Number.isNaN(yearB)
+            ) return 0;
 
-                    });
-            });
-        }
-    }
+            if (Number.isNaN(yearA)) return 1;
 
-    /* -----------------------------------------------------
-       POETRY
-    ----------------------------------------------------- */
+            if (Number.isNaN(yearB)) return -1;
 
-    const poetryWall = document.querySelector("#poetryWall");
+            return yearA - yearB;
+        });
 
-    if (poetryWall) {
+        events.forEach(event => {
 
-        renderPoems(poems);
-
-        const poemSearch =
-            document.querySelector("#poemSearch");
-
-        if (poemSearch) {
-            poemSearch.addEventListener("input", () => {
-
-                const value =
-                    poemSearch.value.toLowerCase();
-
-                renderPoems(
-                    poems.filter(poem =>
-                        `${poem.title} ${poem.author} ${poem.tags.join(" ")}`
-                            .toLowerCase()
-                            .includes(value)
-                    )
+            const item =
+                document.createElement(
+                    "article"
                 );
-            });
-        }
-    }
 
-    function renderPoems(list) {
+            item.className =
+                "timeline-item";
 
-        if (!poetryWall) return;
+            item.innerHTML = `
 
-        poetryWall.innerHTML = "";
-
-        list.forEach((poem, index) => {
-
-            const article = document.createElement("article");
-
-            article.className = "poem-card";
-
-            article.innerHTML = `
-                <div class="card-meta">
-                    ${poem.author}
+                <div class="timeline-year">
+                    ${event.year}
                 </div>
 
-                <div class="poem-title">
-                    ${poem.title}
+                <div class="timeline-person">
+                    ${event.person}
                 </div>
 
-                <div class="poem-preview">
-                    ${poem.text.split("\n").slice(0, 5).join("\n")}
+                <div class="timeline-title">
+                    ${event.title}
                 </div>
 
-                <div class="card-meta">
-                    ${poem.tags.join(" / ")}
+                <div class="timeline-description">
+                    ${event.description}
                 </div>
+
             `;
 
-            article.addEventListener("click", () => {
-                openPoem(poem);
-            });
-
-            poetryWall.appendChild(article);
+            peopleTimeline.appendChild(item);
         });
     }
 
-    function openPoem(poem) {
-
-        const favoriteKey =
-            `blackout-poem-${poem.title}`;
-
-        const saved =
-            localStorage.getItem(favoriteKey) === "true";
-
-        openModal(`
-            <span class="modal-label">
-                ${poem.author}
-            </span>
-
-            <h2>${poem.title}</h2>
-
-            <div class="poem-preview"
-                 style="font-size:2rem; max-width:800px;">
-                ${poem.text}
-            </div>
-
-            <div class="toolbar">
-
-                <button
-                    class="btn yellow"
-                    id="favoritePoem">
-                    ${saved ? "★ SAVED" : "☆ SAVE POEM"}
-                </button>
-
-                <button
-                    class="btn dark"
-                    id="randomPrompt">
-                    NEW PROMPT
-                </button>
-
-            </div>
-
-            <div
-                id="poemPrompt"
-                class="notice">
-                Write about something ordinary
-                that secretly means everything.
-            </div>
-        `);
-
-        const favorite =
-            document.querySelector("#favoritePoem");
-
-        if (favorite) {
-            favorite.addEventListener("click", () => {
-
-                const current =
-                    localStorage.getItem(favoriteKey) === "true";
-
-                localStorage.setItem(
-                    favoriteKey,
-                    String(!current)
-                );
-
-                favorite.textContent =
-                    !current ? "★ SAVED" : "☆ SAVE POEM";
-            });
-        }
-
-        const prompts = [
-            "Write about a place that remembers you.",
-            "Write a poem using five street sounds.",
-            "Write about something people overlook.",
-            "Write from the perspective of an old photograph.",
-            "Write about a name and what it carries.",
-            "Write about a wall that could talk.",
-            "Write about a song without quoting its lyrics."
-        ];
-
-        const promptButton =
-            document.querySelector("#randomPrompt");
-
-        if (promptButton) {
-            promptButton.addEventListener("click", () => {
-
-                const prompt =
-                    prompts[Math.floor(Math.random() * prompts.length)];
-
-                document.querySelector("#poemPrompt").textContent =
-                    prompt;
-            });
-        }
-    }
-
-    /* -----------------------------------------------------
-       POETRY GENERATOR
-    ----------------------------------------------------- */
-
-    const poemGenerator =
-        document.querySelector("#generatePoem");
-
-    if (poemGenerator) {
-
-        poemGenerator.addEventListener("click", () => {
-
-            const lines = [
-                "The city keeps a thousand secrets.",
-                "Someone painted over the warning.",
-                "A window stayed open.",
-                "The sidewalk remembered every footstep.",
-                "There was music three blocks away.",
-                "Nobody asked the wall for permission.",
-                "The night made room for another voice.",
-                "A name survived the rain.",
-                "The corner store became a classroom.",
-                "Someone laughed like tomorrow was possible."
-            ];
-
-            const selected = [];
-
-            for (let i = 0; i < 5; i++) {
-                selected.push(
-                    lines[Math.floor(Math.random() * lines.length)]
-                );
-            }
-
-            const output =
-                document.querySelector("#generatedPoem");
-
-            if (output) {
-                output.textContent =
-                    selected.join("\n");
-            }
-        });
-    }
-
-    /* -----------------------------------------------------
+    /* =====================================================
        GRAFFITI WALL
-    ----------------------------------------------------- */
+       ===================================================== */
 
     const graffitiWall =
-        document.querySelector("#graffitiWall");
+        document.querySelector(
+            "#graffitiWall"
+        );
 
     if (graffitiWall) {
 
         const defaultTags = [
+
             ["MALIK", 10, 15, -5, "#e7c84b"],
+
             ["VON", 70, 20, 7, "#d94a3a"],
+
             ["DA'VAUN", 25, 65, -8, "#347ca6"],
+
             ["LEAK", 72, 70, 4, "#d65b8a"],
+
             ["BLACKOUT", 40, 40, -3, "#718d52"]
+
         ];
 
-        defaultTags.forEach(tag => {
-            createGraffitiTag(...tag);
-        });
+        defaultTags.forEach(
+            tag => createGraffitiTag(...tag)
+        );
 
-        const addButton =
-            document.querySelector("#addGraffiti");
+        const button =
+            document.querySelector(
+                "#addGraffiti"
+            );
 
-        if (addButton) {
-            addButton.addEventListener("click", () => {
+        if (button) {
 
-                const input =
-                    document.querySelector("#graffitiInput");
+            button.addEventListener(
+                "click",
+                () => {
 
-                if (!input || !input.value.trim()) return;
+                    const input =
+                        document.querySelector(
+                            "#graffitiInput"
+                        );
 
-                createGraffitiTag(
-                    input.value.trim(),
-                    Math.random() * 75 + 5,
-                    Math.random() * 75 + 5,
-                    Math.random() * 18 - 9,
-                    randomGraffitiColor()
-                );
+                    if (
+                        !input ||
+                        !input.value.trim()
+                    ) {
+                        return;
+                    }
 
-                input.value = "";
-            });
+                    createGraffitiTag(
+                        input.value.trim(),
+                        Math.random() * 75 + 5,
+                        Math.random() * 75 + 5,
+                        Math.random() * 18 - 9,
+                        randomGraffitiColor()
+                    );
+
+                    input.value = "";
+                }
+            );
         }
     }
 
@@ -773,15 +1050,23 @@ the whole time.`
         const tag =
             document.createElement("div");
 
-        tag.className = "graffiti-tag";
+        tag.className =
+            "graffiti-tag";
 
-        tag.textContent = text;
+        tag.textContent =
+            text;
 
-        tag.style.left = `${left}%`;
-        tag.style.top = `${top}%`;
+        tag.style.left =
+            `${left}%`;
+
+        tag.style.top =
+            `${top}%`;
+
         tag.style.transform =
             `rotate(${rotation}deg)`;
-        tag.style.color = color;
+
+        tag.style.color =
+            color;
 
         makeDraggable(tag);
 
@@ -801,65 +1086,107 @@ the whole time.`
         ];
 
         return colors[
-            Math.floor(Math.random() * colors.length)
+            Math.floor(
+                Math.random() *
+                colors.length
+            )
         ];
     }
 
     function makeDraggable(element) {
 
         let dragging = false;
+
         let offsetX = 0;
         let offsetY = 0;
 
-        element.addEventListener("pointerdown", event => {
+        element.addEventListener(
+            "pointerdown",
+            event => {
 
-            dragging = true;
+                dragging = true;
 
-            const rect =
-                element.getBoundingClientRect();
+                const rect =
+                    element.getBoundingClientRect();
 
-            offsetX =
-                event.clientX - rect.left;
+                offsetX =
+                    event.clientX -
+                    rect.left;
 
-            offsetY =
-                event.clientY - rect.top;
+                offsetY =
+                    event.clientY -
+                    rect.top;
 
-            element.setPointerCapture(event.pointerId);
-        });
+                element.setPointerCapture(
+                    event.pointerId
+                );
+            }
+        );
 
-        element.addEventListener("pointermove", event => {
+        element.addEventListener(
+            "pointermove",
+            event => {
 
-            if (!dragging) return;
+                if (!dragging) return;
 
-            const parent =
-                element.parentElement.getBoundingClientRect();
+                const parent =
+                    element.parentElement
+                        .getBoundingClientRect();
 
-            let x =
-                ((event.clientX - parent.left - offsetX)
-                    / parent.width) * 100;
+                let x =
+                    (
+                        event.clientX -
+                        parent.left -
+                        offsetX
+                    ) /
+                    parent.width *
+                    100;
 
-            let y =
-                ((event.clientY - parent.top - offsetY)
-                    / parent.height) * 100;
+                let y =
+                    (
+                        event.clientY -
+                        parent.top -
+                        offsetY
+                    ) /
+                    parent.height *
+                    100;
 
-            x = Math.max(0, Math.min(90, x));
-            y = Math.max(0, Math.min(90, y));
+                x =
+                    Math.max(
+                        0,
+                        Math.min(90,x)
+                    );
 
-            element.style.left = `${x}%`;
-            element.style.top = `${y}%`;
-        });
+                y =
+                    Math.max(
+                        0,
+                        Math.min(90,y)
+                    );
 
-        element.addEventListener("pointerup", () => {
-            dragging = false;
-        });
+                element.style.left =
+                    `${x}%`;
+
+                element.style.top =
+                    `${y}%`;
+            }
+        );
+
+        element.addEventListener(
+            "pointerup",
+            () => {
+                dragging = false;
+            }
+        );
     }
 
-    /* -----------------------------------------------------
+    /* =====================================================
        SKETCHBOOK
-    ----------------------------------------------------- */
+       ===================================================== */
 
     const canvas =
-        document.querySelector("#sketchCanvas");
+        document.querySelector(
+            "#sketchCanvas"
+        );
 
     if (canvas) {
         initializeSketchbook(canvas);
@@ -870,28 +1197,38 @@ the whole time.`
         const ctx =
             canvas.getContext("2d");
 
-        const wrapper =
-            canvas.parentElement;
+        let drawing = false;
+
+        let color = "#111111";
+
+        let size = 8;
+
+        let eraser = false;
+
+        const undoStack = [];
+
+        const redoStack = [];
 
         function resizeCanvas() {
-
-            const oldImage =
-                canvas.width && canvas.height
-                    ? ctx.getImageData(
-                        0,
-                        0,
-                        canvas.width,
-                        canvas.height
-                    )
-                    : null;
 
             const rect =
                 canvas.getBoundingClientRect();
 
-            canvas.width = rect.width;
-            canvas.height = rect.height;
+            const old =
+                canvas.width > 0 &&
+                canvas.height > 0
+                    ? canvas.toDataURL()
+                    : null;
 
-            ctx.fillStyle = "#ebe2cf";
+            canvas.width =
+                rect.width;
+
+            canvas.height =
+                rect.height;
+
+            ctx.fillStyle =
+                "#ebe2cf";
+
             ctx.fillRect(
                 0,
                 0,
@@ -899,8 +1236,24 @@ the whole time.`
                 canvas.height
             );
 
-            if (oldImage) {
-                ctx.putImageData(oldImage, 0, 0);
+            if (old) {
+
+                const image =
+                    new Image();
+
+                image.onload = () => {
+
+                    ctx.drawImage(
+                        image,
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    );
+                };
+
+                image.src =
+                    old;
             }
         }
 
@@ -911,33 +1264,7 @@ the whole time.`
             resizeCanvas
         );
 
-        let drawing = false;
-        let color = "#111111";
-        let size = 8;
-        let eraser = false;
-
-        const undoStack = [];
-        const redoStack = [];
-
-        function saveState() {
-
-            undoStack.push(
-                ctx.getImageData(
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                )
-            );
-
-            if (undoStack.length > 30) {
-                undoStack.shift();
-            }
-
-            redoStack.length = 0;
-        }
-
-        function getPosition(event) {
+        function position(event) {
 
             const rect =
                 canvas.getBoundingClientRect();
@@ -953,6 +1280,27 @@ the whole time.`
             };
         }
 
+        function saveState() {
+
+            undoStack.push(
+                ctx.getImageData(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                )
+            );
+
+            if (
+                undoStack.length >
+                30
+            ) {
+                undoStack.shift();
+            }
+
+            redoStack.length = 0;
+        }
+
         canvas.addEventListener(
             "pointerdown",
             event => {
@@ -965,11 +1313,15 @@ the whole time.`
                     event.pointerId
                 );
 
-                const pos =
-                    getPosition(event);
+                const p =
+                    position(event);
 
                 ctx.beginPath();
-                ctx.moveTo(pos.x, pos.y);
+
+                ctx.moveTo(
+                    p.x,
+                    p.y
+                );
             }
         );
 
@@ -979,20 +1331,28 @@ the whole time.`
 
                 if (!drawing) return;
 
-                const pos =
-                    getPosition(event);
+                const p =
+                    position(event);
 
-                ctx.lineWidth = size;
-                ctx.lineCap = "round";
-                ctx.lineJoin = "round";
+                ctx.lineWidth =
+                    size;
 
-                if (eraser) {
-                    ctx.strokeStyle = "#ebe2cf";
-                } else {
-                    ctx.strokeStyle = color;
-                }
+                ctx.lineCap =
+                    "round";
 
-                ctx.lineTo(pos.x, pos.y);
+                ctx.lineJoin =
+                    "round";
+
+                ctx.strokeStyle =
+                    eraser
+                        ? "#ebe2cf"
+                        : color;
+
+                ctx.lineTo(
+                    p.x,
+                    p.y
+                );
+
                 ctx.stroke();
             }
         );
@@ -1000,15 +1360,10 @@ the whole time.`
         canvas.addEventListener(
             "pointerup",
             () => {
-                drawing = false;
-                ctx.closePath();
-            }
-        );
 
-        canvas.addEventListener(
-            "pointerleave",
-            () => {
                 drawing = false;
+
+                ctx.closePath();
             }
         );
 
@@ -1021,12 +1376,19 @@ the whole time.`
                     () => {
 
                         document
-                            .querySelectorAll(".color-btn")
+                            .querySelectorAll(
+                                ".color-btn"
+                            )
                             .forEach(
-                                b => b.classList.remove("active")
+                                b =>
+                                    b.classList.remove(
+                                        "active"
+                                    )
                             );
 
-                        button.classList.add("active");
+                        button.classList.add(
+                            "active"
+                        );
 
                         color =
                             button.dataset.color;
@@ -1036,27 +1398,39 @@ the whole time.`
                 );
             });
 
-        const brushSize =
-            document.querySelector("#brushSize");
+        const brush =
+            document.querySelector(
+                "#brushSize"
+            );
 
-        if (brushSize) {
-            brushSize.addEventListener(
+        if (brush) {
+
+            brush.addEventListener(
                 "input",
                 () => {
+
                     size =
-                        Number(brushSize.value);
+                        Number(
+                            brush.value
+                        );
                 }
             );
         }
 
         const eraserButton =
-            document.querySelector("#eraser");
+            document.querySelector(
+                "#eraser"
+            );
 
         if (eraserButton) {
+
             eraserButton.addEventListener(
                 "click",
                 () => {
-                    eraser = !eraser;
+
+                    eraser =
+                        !eraser;
+
                     eraserButton.textContent =
                         eraser
                             ? "ERASER ON"
@@ -1065,15 +1439,20 @@ the whole time.`
             );
         }
 
-        const undoButton =
-            document.querySelector("#undo");
+        const undo =
+            document.querySelector(
+                "#undo"
+            );
 
-        if (undoButton) {
-            undoButton.addEventListener(
+        if (undo) {
+
+            undo.addEventListener(
                 "click",
                 () => {
 
-                    if (!undoStack.length) return;
+                    if (
+                        !undoStack.length
+                    ) return;
 
                     redoStack.push(
                         ctx.getImageData(
@@ -1093,15 +1472,20 @@ the whole time.`
             );
         }
 
-        const redoButton =
-            document.querySelector("#redo");
+        const redo =
+            document.querySelector(
+                "#redo"
+            );
 
-        if (redoButton) {
-            redoButton.addEventListener(
+        if (redo) {
+
+            redo.addEventListener(
                 "click",
                 () => {
 
-                    if (!redoStack.length) return;
+                    if (
+                        !redoStack.length
+                    ) return;
 
                     undoStack.push(
                         ctx.getImageData(
@@ -1121,17 +1505,21 @@ the whole time.`
             );
         }
 
-        const clearButton =
-            document.querySelector("#clearCanvas");
+        const clear =
+            document.querySelector(
+                "#clearCanvas"
+            );
 
-        if (clearButton) {
-            clearButton.addEventListener(
+        if (clear) {
+
+            clear.addEventListener(
                 "click",
                 () => {
 
                     saveState();
 
-                    ctx.fillStyle = "#ebe2cf";
+                    ctx.fillStyle =
+                        "#ebe2cf";
 
                     ctx.fillRect(
                         0,
@@ -1143,11 +1531,14 @@ the whole time.`
             );
         }
 
-        const saveButton =
-            document.querySelector("#saveSketch");
+        const save =
+            document.querySelector(
+                "#saveSketch"
+            );
 
-        if (saveButton) {
-            saveButton.addEventListener(
+        if (save) {
+
+            save.addEventListener(
                 "click",
                 () => {
 
@@ -1156,22 +1547,28 @@ the whole time.`
                         canvas.toDataURL()
                     );
 
-                    saveButton.textContent =
+                    save.textContent =
                         "SAVED ✓";
 
-                    setTimeout(() => {
-                        saveButton.textContent =
-                            "SAVE SKETCH";
-                    }, 1500);
+                    setTimeout(
+                        () => {
+                            save.textContent =
+                                "SAVE SKETCH";
+                        },
+                        1500
+                    );
                 }
             );
         }
 
-        const loadButton =
-            document.querySelector("#loadSketch");
+        const load =
+            document.querySelector(
+                "#loadSketch"
+            );
 
-        if (loadButton) {
-            loadButton.addEventListener(
+        if (load) {
+
+            load.addEventListener(
                 "click",
                 () => {
 
@@ -1185,45 +1582,54 @@ the whole time.`
                     const image =
                         new Image();
 
-                    image.onload = () => {
+                    image.onload =
+                        () => {
 
-                        ctx.clearRect(
-                            0,
-                            0,
-                            canvas.width,
-                            canvas.height
-                        );
+                            ctx.clearRect(
+                                0,
+                                0,
+                                canvas.width,
+                                canvas.height
+                            );
 
-                        ctx.drawImage(
-                            image,
-                            0,
-                            0,
-                            canvas.width,
-                            canvas.height
-                        );
-                    };
+                            ctx.drawImage(
+                                image,
+                                0,
+                                0,
+                                canvas.width,
+                                canvas.height
+                            );
+                        };
 
-                    image.src = saved;
+                    image.src =
+                        saved;
                 }
             );
         }
 
-        const downloadButton =
-            document.querySelector("#downloadSketch");
+        const download =
+            document.querySelector(
+                "#downloadSketch"
+            );
 
-        if (downloadButton) {
-            downloadButton.addEventListener(
+        if (download) {
+
+            download.addEventListener(
                 "click",
                 () => {
 
                     const link =
-                        document.createElement("a");
+                        document.createElement(
+                            "a"
+                        );
 
                     link.download =
                         "blackout-sketch.png";
 
                     link.href =
-                        canvas.toDataURL("image/png");
+                        canvas.toDataURL(
+                            "image/png"
+                        );
 
                     link.click();
                 }
@@ -1231,52 +1637,14 @@ the whole time.`
         }
     }
 
-    /* -----------------------------------------------------
-       RANDOM QUOTE / TEXT
-    ----------------------------------------------------- */
-
-    const randomText =
-        document.querySelector("#randomText");
-
-    if (randomText) {
-
-        const messages = [
-            "Make something worth remembering.",
-            "Culture is memory with a pulse.",
-            "Question what you were told.",
-            "The wall can be a page.",
-            "Art can document what statistics miss.",
-            "Listen before you speak.",
-            "Archive the ordinary.",
-            "Make room for another voice."
-        ];
-
-        randomText.addEventListener(
-            "click",
-            () => {
-
-                const output =
-                    document.querySelector("#randomOutput");
-
-                if (!output) return;
-
-                output.textContent =
-                    messages[
-                        Math.floor(
-                            Math.random() *
-                            messages.length
-                        )
-                    ];
-            }
-        );
-    }
-
-    /* -----------------------------------------------------
-       JOURNAL LOCAL STORAGE
-    ----------------------------------------------------- */
+    /* =====================================================
+       JOURNAL
+       ===================================================== */
 
     const journalForm =
-        document.querySelector("#journalForm");
+        document.querySelector(
+            "#journalForm"
+        );
 
     if (journalForm) {
 
@@ -1289,12 +1657,20 @@ the whole time.`
                 event.preventDefault();
 
                 const title =
-                    document.querySelector("#journalTitle")
-                        .value.trim();
+                    document
+                        .querySelector(
+                            "#journalTitle"
+                        )
+                        .value
+                        .trim();
 
                 const text =
-                    document.querySelector("#journalText")
-                        .value.trim();
+                    document
+                        .querySelector(
+                            "#journalText"
+                        )
+                        .value
+                        .trim();
 
                 if (!text) return;
 
@@ -1307,10 +1683,14 @@ the whole time.`
 
                 entries.unshift({
                     title:
-                        title || "Untitled",
+                        title ||
+                        "Untitled",
+
                     text,
+
                     date:
-                        new Date().toLocaleDateString()
+                        new Date()
+                            .toLocaleDateString()
                 });
 
                 localStorage.setItem(
@@ -1328,7 +1708,9 @@ the whole time.`
     function renderJournal() {
 
         const container =
-            document.querySelector("#journalEntries");
+            document.querySelector(
+                "#journalEntries"
+            );
 
         if (!container) return;
 
@@ -1341,53 +1723,78 @@ the whole time.`
 
         container.innerHTML = "";
 
-        entries.forEach((entry, index) => {
+        entries.forEach(
+            (entry,index) => {
 
-            const article =
-                document.createElement("article");
+                const article =
+                    document.createElement(
+                        "article"
+                    );
 
-            article.className =
-                "card dark-card";
+                article.className =
+                    "card dark-card";
 
-            article.innerHTML = `
-                <div class="card-meta">
-                    ${entry.date}
-                </div>
+                article.innerHTML = `
 
-                <h3>${escapeHTML(entry.title)}</h3>
+                    <div class="card-meta">
+                        ${entry.date}
+                    </div>
 
-                <p>
-                    ${escapeHTML(entry.text)}
-                </p>
+                    <h3>
+                        ${escapeHTML(
+                            entry.title
+                        )}
+                    </h3>
 
-                <button
-                    class="btn red"
-                    data-delete="${index}">
-                    DELETE
-                </button>
-            `;
+                    <p>
+                        ${escapeHTML(
+                            entry.text
+                        )}
+                    </p>
 
-            container.appendChild(article);
-        });
+                    <button
+                        class="btn red"
+                        data-delete="${index}">
+                        DELETE
+                    </button>
+
+                `;
+
+                container.appendChild(
+                    article
+                );
+            }
+        );
 
         container
-            .querySelectorAll("[data-delete]")
+            .querySelectorAll(
+                "[data-delete]"
+            )
             .forEach(button => {
 
                 button.addEventListener(
                     "click",
                     () => {
 
-                        const index =
-                            Number(
-                                button.dataset.delete
+                        const entries =
+                            JSON.parse(
+                                localStorage.getItem(
+                                    "blackout-journal"
+                                ) || "[]"
                             );
 
-                        entries.splice(index, 1);
+                        entries.splice(
+                            Number(
+                                button.dataset.delete
+                            ),
+                            1
+                        );
 
                         localStorage.setItem(
                             "blackout-journal",
-                            JSON.stringify(entries)
+                            JSON.stringify(
+                                entries
+                            )
                         );
 
                         renderJournal();
@@ -1396,14 +1803,33 @@ the whole time.`
             });
     }
 
+    /* =====================================================
+       SAFE TEXT
+       ===================================================== */
+
     function escapeHTML(value) {
 
-        return value
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
+        return String(value)
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
     }
 
 });
