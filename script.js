@@ -1,1835 +1,992 @@
 /* =========================================================
-   BLACKOUT — INTERACTION ENGINE
+   BLACKOUT — GLOBAL INTERACTION SYSTEM
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       DATA
-       ===================================================== */
-
-    const people = [
-
-        {
-            id: "baldwin",
-            name: "James Baldwin",
-            category: "Writer / Essayist",
-            wiki: "James Baldwin",
-            letter: "JB",
-
-            bio:
-                "An American writer and essayist whose work examined race, identity, sexuality, religion, belonging, and American society.",
-
-            tags: [
-                "literature",
-                "race",
-                "identity",
-                "philosophy"
-            ],
-
-            timeline: [
-                {
-                    year: "1924",
-                    title: "Born",
-                    description:
-                        "James Baldwin was born in New York City."
-                },
-                {
-                    year: "1953",
-                    title: "Go Tell It on the Mountain",
-                    description:
-                        "Baldwin published his first major novel, exploring religion, family, identity, and growing up."
-                },
-                {
-                    year: "1955",
-                    title: "Notes of a Native Son",
-                    description:
-                        "Baldwin published a collection of essays examining race, culture, literature, and American life."
-                },
-                {
-                    year: "1963",
-                    title: "The Fire Next Time",
-                    description:
-                        "Baldwin published a major work examining race, religion, and the United States."
-                },
-                {
-                    year: "1987",
-                    title: "Death",
-                    description:
-                        "Baldwin died in Saint-Paul-de-Vence, France."
-                }
-            ]
-        },
-
-        {
-            id: "davis",
-            name: "Angela Davis",
-            category: "Scholar / Author / Activist",
-            wiki: "Angela Davis",
-            letter: "AD",
-
-            bio:
-                "A scholar and author whose work has addressed prisons, race, gender, political movements, and social justice.",
-
-            tags: [
-                "prisons",
-                "race",
-                "gender",
-                "philosophy"
-            ],
-
-            timeline: [
-                {
-                    year: "1944",
-                    title: "Born",
-                    description:
-                        "Angela Davis was born in Birmingham, Alabama."
-                },
-                {
-                    year: "1960s",
-                    title: "Political Organizing",
-                    description:
-                        "Davis became involved in civil-rights and political organizing."
-                },
-                {
-                    year: "1970s",
-                    title: "Prison and Political Repression",
-                    description:
-                        "Her case became part of a major national debate involving prisons, political repression, and civil liberties."
-                },
-                {
-                    year: "1981",
-                    title: "Women, Race & Class",
-                    description:
-                        "Davis published Women, Race & Class, examining relationships among race, gender, class, and historical movements."
-                },
-                {
-                    year: "Today",
-                    title: "Scholarship",
-                    description:
-                        "Davis continues to write, teach, and speak about politics, prisons, race, gender, and social movements."
-                }
-            ]
-        },
-
-        {
-            id: "nin",
-            name: "Nina Simone",
-            category: "Musician / Composer",
-            wiki: "Nina Simone",
-            letter: "NS",
-
-            bio:
-                "A pianist, singer, and composer whose work crossed jazz, blues, classical, soul, and protest traditions.",
-
-            tags: [
-                "music",
-                "jazz",
-                "protest",
-                "art"
-            ],
-
-            timeline: [
-                {
-                    year: "1933",
-                    title: "Born",
-                    description:
-                        "Nina Simone was born Eunice Kathleen Waymon in Tryon, North Carolina."
-                },
-                {
-                    year: "1950s",
-                    title: "Recording Career",
-                    description:
-                        "Simone began building a professional recording career that crossed several musical traditions."
-                },
-                {
-                    year: "1960s",
-                    title: "Civil Rights Era",
-                    description:
-                        "Her music increasingly engaged with racial injustice, identity, and the political atmosphere of the period."
-                },
-                {
-                    year: "1970s",
-                    title: "International Career",
-                    description:
-                        "Simone continued performing and recording internationally."
-                },
-                {
-                    year: "2003",
-                    title: "Death",
-                    description:
-                        "Nina Simone died in Carry-le-Rouet, France."
-                }
-            ]
-        },
-
-        {
-            id: "kendrick",
-            name: "Kendrick Lamar",
-            category: "Rapper / Songwriter",
-            wiki: "Kendrick Lamar",
-            letter: "KL",
-
-            bio:
-                "A rapper and songwriter from Compton, California, known for concept-driven albums addressing identity, community, inequality, faith, and personal experience.",
-
-            tags: [
-                "hip-hop",
-                "storytelling",
-                "identity",
-                "music"
-            ],
-
-            timeline: [
-                {
-                    year: "1987",
-                    title: "Born",
-                    description:
-                        "Kendrick Lamar was born in Compton, California."
-                },
-                {
-                    year: "2012",
-                    title: "good kid, m.A.A.d city",
-                    description:
-                        "Lamar released a major concept album centered on adolescence, environment, family, violence, faith, and personal identity."
-                },
-                {
-                    year: "2015",
-                    title: "To Pimp a Butterfly",
-                    description:
-                        "The album explored race, fame, identity, community, music history, and personal conflict."
-                },
-                {
-                    year: "2017",
-                    title: "DAMN.",
-                    description:
-                        "Lamar released DAMN., another concept-driven album exploring identity, morality, faith, and public life."
-                },
-                {
-                    year: "2022",
-                    title: "Mr. Morale & the Big Steppers",
-                    description:
-                        "The album explored family, identity, relationships, generational experiences, and personal reflection."
-                }
-            ]
-        },
-
-        {
-            id: "joy",
-            name: "Joy Harjo",
-            category: "Poet / Musician / Writer",
-            wiki: "Joy Harjo",
-            letter: "JH",
-
-            bio:
-                "A Muscogee poet, musician, and writer whose work explores memory, Indigenous identity, history, place, and survival.",
-
-            tags: [
-                "poetry",
-                "Indigenous",
-                "music",
-                "memory"
-            ],
-
-            timeline: [
-                {
-                    year: "1951",
-                    title: "Born",
-                    description:
-                        "Joy Harjo was born in Tulsa, Oklahoma."
-                },
-                {
-                    year: "1970s",
-                    title: "Poetry",
-                    description:
-                        "Harjo developed her writing and performance practice."
-                },
-                {
-                    year: "1980s",
-                    title: "Major Publications",
-                    description:
-                        "Harjo published poetry collections exploring Indigenous identity, memory, place, and history."
-                },
-                {
-                    year: "2019",
-                    title: "U.S. Poet Laureate",
-                    description:
-                        "Harjo became the first Native American to serve as U.S. Poet Laureate."
-                },
-                {
-                    year: "Today",
-                    title: "Writing and Music",
-                    description:
-                        "Harjo continues working across poetry, music, performance, and cultural memory."
-                }
-            ]
-        },
-
-        {
-            id: "cesar",
-            name: "César Chávez",
-            category: "Labor Organizer / Activist",
-            wiki: "Cesar Chavez",
-            letter: "CC",
-
-            bio:
-                "A labor organizer who worked with farm workers and helped build a major labor movement in the United States.",
-
-            tags: [
-                "labor",
-                "Latino",
-                "organizing",
-                "history"
-            ],
-
-            timeline: [
-                {
-                    year: "1927",
-                    title: "Born",
-                    description:
-                        "César Chávez was born in Yuma, Arizona."
-                },
-                {
-                    year: "1950s",
-                    title: "Community Organizing",
-                    description:
-                        "Chávez worked as a community organizer before moving more deeply into farm-worker organizing."
-                },
-                {
-                    year: "1960s",
-                    title: "Farm Worker Organizing",
-                    description:
-                        "Chávez helped organize farm workers and build a labor movement."
-                },
-                {
-                    year: "1970s",
-                    title: "Labor Advocacy",
-                    description:
-                        "He continued organizing and advocating around working conditions and labor rights."
-                },
-                {
-                    year: "1993",
-                    title: "Death",
-                    description:
-                        "Chávez died in San Luis, Arizona."
-                }
-            ]
-        },
-
-        {
-            id: "marley",
-            name: "Bob Marley",
-            category: "Musician / Songwriter",
-            wiki: "Bob Marley",
-            letter: "BM",
-
-            bio:
-                "A Jamaican musician and songwriter whose work helped bring reggae to a worldwide audience and frequently addressed spirituality, unity, freedom, and social conditions.",
-
-            tags: [
-                "reggae",
-                "music",
-                "Jamaica",
-                "culture"
-            ],
-
-            timeline: [
-                {
-                    year: "1945",
-                    title: "Born",
-                    description:
-                        "Bob Marley was born in Nine Mile, Jamaica."
-                },
-                {
-                    year: "1960s",
-                    title: "The Wailers",
-                    description:
-                        "Marley developed his recording career with The Wailers."
-                },
-                {
-                    year: "1970s",
-                    title: "International Recognition",
-                    description:
-                        "Marley became one of the most internationally recognized reggae musicians."
-                },
-                {
-                    year: "1980",
-                    title: "Final Concert",
-                    description:
-                        "Marley performed his final concert in Pittsburgh."
-                },
-                {
-                    year: "1981",
-                    title: "Death",
-                    description:
-                        "Bob Marley died in Miami, Florida."
-                }
-            ]
-        },
-
-        {
-            id: "frida",
-            name: "Frida Kahlo",
-            category: "Artist",
-            wiki: "Frida Kahlo",
-            letter: "FK",
-
-            bio:
-                "A Mexican painter known for self-portraits and work dealing with identity, the body, Mexican culture, relationships, and personal experience.",
-
-            tags: [
-                "art",
-                "Mexico",
-                "identity",
-                "painting"
-            ],
-
-            timeline: [
-                {
-                    year: "1907",
-                    title: "Born",
-                    description:
-                        "Frida Kahlo was born in Coyoacán, Mexico City."
-                },
-                {
-                    year: "1920s",
-                    title: "Painting",
-                    description:
-                        "Kahlo developed her distinctive painting practice."
-                },
-                {
-                    year: "1930s",
-                    title: "International Exhibitions",
-                    description:
-                        "Her work began receiving international attention."
-                },
-                {
-                    year: "1940s",
-                    title: "Major Works",
-                    description:
-                        "Kahlo continued producing paintings centered on identity, experience, symbolism, and Mexican culture."
-                },
-                {
-                    year: "1954",
-                    title: "Death",
-                    description:
-                        "Frida Kahlo died in Mexico City."
-                }
-            ]
-        }
-    ];
-
-    /* =====================================================
-       MOBILE NAV
-       ===================================================== */
-
-    const navToggle =
-        document.querySelector(".nav-toggle");
-
-    const mainNav =
-        document.querySelector(".main-nav");
-
-    if (navToggle && mainNav) {
-
-        navToggle.addEventListener(
-            "click",
-            () => {
-                mainNav.classList.toggle("open");
-            }
-        );
-    }
-
-    /* =====================================================
-       ACTIVE NAV
-       ===================================================== */
-
-    const currentFile =
-        location.pathname.split("/").pop() ||
-        "index.html";
-
-    document
-        .querySelectorAll(".main-nav a")
-        .forEach(link => {
-
-            if (
-                link.getAttribute("href") ===
-                currentFile
-            ) {
-                link.classList.add("active");
-            }
-
-        });
-
-    /* =====================================================
-       MODALS
-       ===================================================== */
-
-    function openModal(html) {
-
-        let modal =
-            document.querySelector("#blackoutModal");
-
-        if (!modal) {
-
-            modal =
-                document.createElement("div");
-
-            modal.id =
-                "blackoutModal";
-
-            modal.className =
-                "modal";
-
-            modal.innerHTML = `
-                <div class="modal-content">
-
-                    <button
-                        class="modal-close"
-                        aria-label="Close">
-                        X
-                    </button>
-
-                    <div class="modal-body"></div>
-
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-
-            modal.addEventListener(
-                "click",
-                event => {
-
-                    if (
-                        event.target === modal ||
-                        event.target.classList.contains(
-                            "modal-close"
-                        )
-                    ) {
-                        closeModal();
-                    }
-
-                }
-            );
-        }
-
-        modal
-            .querySelector(".modal-body")
-            .innerHTML = html;
-
-        modal.classList.add("open");
-
-        document.body.style.overflow =
-            "hidden";
-    }
-
-    function closeModal() {
-
-        const modal =
-            document.querySelector(
-                "#blackoutModal"
-            );
-
-        if (modal) {
-
-            modal.classList.remove("open");
-
-            document.body.style.overflow =
-                "";
-        }
-    }
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key === "Escape") {
-                closeModal();
-            }
-
-        }
+    initNavigation();
+    initGraffitiWall();
+    initRevealAnimations();
+    initClickableCards();
+    initModals();
+    initPeoplePage();
+    initTimeline();
+    initPoetryPage();
+    initSearch();
+    initKeyboardSupport();
+});
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function initNavigation() {
+    const toggles = document.querySelectorAll(
+        ".menu-toggle, .nav-toggle, .mobile-menu-button"
     );
 
-    /* =====================================================
-       PEOPLE
-       ===================================================== */
+    toggles.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            const nav =
+                toggle.parentElement?.querySelector(".nav-links") ||
+                toggle.parentElement?.querySelector("nav ul") ||
+                document.querySelector(".nav-links") ||
+                document.querySelector("nav ul");
 
-    const peopleGrid =
-        document.querySelector("#peopleGrid");
+            if (!nav) return;
 
-    if (peopleGrid) {
+            nav.classList.toggle("open");
+            nav.classList.toggle("active");
 
-        renderPeople(people);
+            const expanded =
+                nav.classList.contains("open") ||
+                nav.classList.contains("active");
 
-        /*
-         * THIS IS THE IMPORTANT CHANGE:
-         * Load every person's image immediately.
-         */
-        loadPeopleImages();
+            toggle.setAttribute("aria-expanded", expanded);
+        });
+    });
 
-        const search =
-            document.querySelector(
-                "#peopleSearch"
-            );
+    const currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
 
-        if (search) {
+    document.querySelectorAll(
+        ".nav-link, nav a"
+    ).forEach(link => {
+        const href = link.getAttribute("href");
 
-            search.addEventListener(
-                "input",
-                () => {
+        if (!href) return;
 
-                    const value =
-                        search.value
-                            .toLowerCase()
-                            .trim();
+        const cleanHref = href.split("#")[0];
 
-                    const filtered =
-                        people.filter(person =>
-                            (
-                                person.name +
-                                " " +
-                                person.category +
-                                " " +
-                                person.tags.join(" ")
-                            )
-                                .toLowerCase()
-                                .includes(value)
-                        );
-
-                    renderPeople(filtered);
-
-                    loadPeopleImages();
-                }
-            );
+        if (
+            cleanHref === currentPage ||
+            (currentPage === "" && cleanHref === "index.html")
+        ) {
+            link.classList.add("active-page");
+            link.setAttribute("aria-current", "page");
         }
-    }
+    });
 
-    function renderPeople(list) {
+    document.querySelectorAll(
+        ".nav-link, nav a"
+    ).forEach(link => {
+        link.addEventListener("click", () => {
+            const nav =
+                document.querySelector(".nav-links.open") ||
+                document.querySelector("nav ul.open") ||
+                document.querySelector(".nav-links.active") ||
+                document.querySelector("nav ul.active");
 
-        if (!peopleGrid) return;
+            if (nav) {
+                nav.classList.remove("open", "active");
+            }
+        });
+    });
+}
 
-        peopleGrid.innerHTML = "";
 
-        if (!list.length) {
+/* =========================================================
+   GRAFFITI WALL
+   ========================================================= */
 
-            peopleGrid.innerHTML = `
-                <div class="notice">
-                    No people matched that search.
-                </div>
-            `;
+function initGraffitiWall() {
+    if (document.querySelector(".blackout-graffiti")) return;
 
+    const wall = document.createElement("div");
+    wall.className = "blackout-graffiti";
+    wall.setAttribute("aria-hidden", "true");
+
+    wall.innerHTML = `
+        <span class="g1">CREATE</span>
+        <span class="g2">REMEMBER</span>
+        <span class="g3">QUESTION</span>
+        <span class="g4">LISTEN</span>
+    `;
+
+    document.body.prepend(wall);
+}
+
+
+/* =========================================================
+   REVEAL ANIMATIONS
+   ========================================================= */
+
+function initRevealAnimations() {
+    const items = document.querySelectorAll(
+        ".card, .panel, .content-card, .person-card, " +
+        ".poem-card, .story-card, .resource-card, " +
+        ".archive-card, section"
+    );
+
+    items.forEach((item, index) => {
+        if (item.classList.contains("hero") ||
+            item.classList.contains("page-hero")) {
             return;
         }
 
-        list.forEach(person => {
-
-            const card =
-                document.createElement("article");
-
-            card.className =
-                "person-card";
-
-            card.dataset.person =
-                person.id;
-
-            card.innerHTML = `
-
-                <div
-                    class="person-image"
-                    id="person-image-${person.id}">
-
-                    <div class="person-initial">
-                        ${person.letter}
-                    </div>
-
-                    <span class="person-loading">
-                        LOADING IMAGE...
-                    </span>
-
-                </div>
-
-                <div class="person-info">
-
-                    <h3>
-                        ${person.name}
-                    </h3>
-
-                    <p>
-                        ${person.category}
-                    </p>
-
-                </div>
-
-                <span class="click-label">
-                    OPEN PROFILE →
-                </span>
-            `;
-
-            card.addEventListener(
-                "click",
-                () => openPerson(person)
-            );
-
-            peopleGrid.appendChild(card);
-        });
-    }
-
-    async function loadPeopleImages() {
-
-        for (const person of people) {
-
-            const box =
-                document.querySelector(
-                    `#person-image-${person.id}`
-                );
-
-            if (!box) continue;
-
-            try {
-
-                const endpoint =
-                    "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-                    encodeURIComponent(person.wiki);
-
-                const response =
-                    await fetch(endpoint);
-
-                if (!response.ok) {
-                    continue;
-                }
-
-                const data =
-                    await response.json();
-
-                if (
-                    data.thumbnail &&
-                    data.thumbnail.source
-                ) {
-
-                    box.innerHTML = `
-                        <img
-                            src="${data.thumbnail.source}"
-                            alt="${escapeHTML(person.name)}"
-                            loading="lazy">
-                    `;
-                }
-
-            } catch (error) {
-
-                /*
-                 * If the image cannot load,
-                 * the person's initials remain.
-                 */
-
-                const loading =
-                    box.querySelector(
-                        ".person-loading"
-                    );
-
-                if (loading) {
-                    loading.remove();
-                }
-            }
-        }
-    }
-
-    function openPerson(person) {
-
-        openModal(`
-
-            <div class="modal-layout">
-
-                <div>
-
-                    <div
-                        class="modal-image"
-                        id="modalPersonImage">
-
-                        <div class="person-initial">
-                            ${person.letter}
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div>
-
-                    <span class="modal-label">
-                        ${person.category}
-                    </span>
-
-                    <h2>
-                        ${person.name}
-                    </h2>
-
-                    <p>
-                        ${person.bio}
-                    </p>
-
-                    <div
-                        class="toolbar">
-
-                        ${person.tags.map(tag => `
-                            <span class="btn dark">
-                                ${tag}
-                            </span>
-                        `).join("")}
-
-                    </div>
-
-                    <h3>
-                        TIMELINE
-                    </h3>
-
-                    <div class="timeline">
-
-                        ${person.timeline.map(event => `
-
-                            <article
-                                class="timeline-item">
-
-                                <div class="timeline-year">
-                                    ${event.year}
-                                </div>
-
-                                <div class="timeline-person">
-                                    ${person.name}
-                                </div>
-
-                                <div class="timeline-title">
-                                    ${event.title}
-                                </div>
-
-                                <div class="timeline-description">
-                                    ${event.description}
-                                </div>
-
-                            </article>
-
-                        `).join("")}
-
-                    </div>
-
-                    <div class="notice">
-
-                        Use the profile as a starting point.
-                        Explore the person's actual work and
-                        additional sources for deeper research.
-
-                    </div>
-
-                </div>
-
-            </div>
-        `);
-
-        /*
-         * Reuse the already-loaded image if possible.
-         */
-        const cardImage =
-            document.querySelector(
-                `#person-image-${person.id} img`
-            );
-
-        const modalImage =
-            document.querySelector(
-                "#modalPersonImage"
-            );
-
-        if (
-            cardImage &&
-            modalImage
-        ) {
-
-            modalImage.innerHTML = `
-                <img
-                    src="${cardImage.src}"
-                    alt="${escapeHTML(person.name)}">
-            `;
-        }
-    }
-
-    /* =====================================================
-       PEOPLE TIMELINE
-       ===================================================== */
-
-    const peopleTimeline =
-        document.querySelector(
-            "#peopleTimeline"
-        );
-
-    if (peopleTimeline) {
-
-        renderTimeline("");
-
-        const filter =
-            document.querySelector(
-                "#timelineFilter"
-            );
-
-        if (filter) {
-
-            filter.addEventListener(
-                "change",
-                () => {
-
-                    renderTimeline(
-                        filter.value
-                    );
-
-                }
-            );
-        }
-    }
-
-    function renderTimeline(filter) {
-
-        if (!peopleTimeline) return;
-
-        peopleTimeline.innerHTML = "";
-
-        const events = [];
-
-        people.forEach(person => {
-
-            if (
-                filter &&
-                person.id !== filter
-            ) {
-                return;
-            }
-
-            person.timeline.forEach(event => {
-
-                events.push({
-                    ...event,
-                    person:
-                        person.name,
-                    personId:
-                        person.id
+        item.classList.add("reveal");
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
                 });
+            },
+            {
+                threshold: 0.08
+            }
+        );
 
-            });
+        observer.observe(item);
+    });
+}
+
+
+/* =========================================================
+   CLICKABLE CARDS
+   ========================================================= */
+
+function initClickableCards() {
+    document.querySelectorAll("[data-href]").forEach(card => {
+        card.addEventListener("click", event => {
+            if (event.target.closest("a, button")) return;
+
+            const destination = card.dataset.href;
+
+            if (destination) {
+                window.location.href = destination;
+            }
         });
 
-        /*
-         * Sort recognizable years first.
-         * "Today" goes to the bottom.
-         */
-        events.sort((a,b) => {
+        card.setAttribute("tabindex", "0");
 
-            const yearA =
-                parseInt(a.year);
-
-            const yearB =
-                parseInt(b.year);
-
-            if (
-                Number.isNaN(yearA) &&
-                Number.isNaN(yearB)
-            ) return 0;
-
-            if (Number.isNaN(yearA)) return 1;
-
-            if (Number.isNaN(yearB)) return -1;
-
-            return yearA - yearB;
-        });
-
-        events.forEach(event => {
-
-            const item =
-                document.createElement(
-                    "article"
-                );
-
-            item.className =
-                "timeline-item";
-
-            item.innerHTML = `
-
-                <div class="timeline-year">
-                    ${event.year}
-                </div>
-
-                <div class="timeline-person">
-                    ${event.person}
-                </div>
-
-                <div class="timeline-title">
-                    ${event.title}
-                </div>
-
-                <div class="timeline-description">
-                    ${event.description}
-                </div>
-
-            `;
-
-            peopleTimeline.appendChild(item);
-        });
-    }
-
-    /* =====================================================
-       GRAFFITI WALL
-       ===================================================== */
-
-    const graffitiWall =
-        document.querySelector(
-            "#graffitiWall"
-        );
-
-    if (graffitiWall) {
-
-        const defaultTags = [
-
-            ["MALIK", 10, 15, -5, "#e7c84b"],
-
-            ["VON", 70, 20, 7, "#d94a3a"],
-
-            ["DA'VAUN", 25, 65, -8, "#347ca6"],
-
-            ["LEAK", 72, 70, 4, "#d65b8a"],
-
-            ["BLACKOUT", 40, 40, -3, "#718d52"]
-
-        ];
-
-        defaultTags.forEach(
-            tag => createGraffitiTag(...tag)
-        );
-
-        const button =
-            document.querySelector(
-                "#addGraffiti"
-            );
-
-        if (button) {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const input =
-                        document.querySelector(
-                            "#graffitiInput"
-                        );
-
-                    if (
-                        !input ||
-                        !input.value.trim()
-                    ) {
-                        return;
-                    }
-
-                    createGraffitiTag(
-                        input.value.trim(),
-                        Math.random() * 75 + 5,
-                        Math.random() * 75 + 5,
-                        Math.random() * 18 - 9,
-                        randomGraffitiColor()
-                    );
-
-                    input.value = "";
-                }
-            );
-        }
-    }
-
-    function createGraffitiTag(
-        text,
-        left,
-        top,
-        rotation,
-        color
-    ) {
-
-        if (!graffitiWall) return;
-
-        const tag =
-            document.createElement("div");
-
-        tag.className =
-            "graffiti-tag";
-
-        tag.textContent =
-            text;
-
-        tag.style.left =
-            `${left}%`;
-
-        tag.style.top =
-            `${top}%`;
-
-        tag.style.transform =
-            `rotate(${rotation}deg)`;
-
-        tag.style.color =
-            color;
-
-        makeDraggable(tag);
-
-        graffitiWall.appendChild(tag);
-    }
-
-    function randomGraffitiColor() {
-
-        const colors = [
-            "#e7c84b",
-            "#d94a3a",
-            "#347ca6",
-            "#d65b8a",
-            "#718d52",
-            "#e77b2f",
-            "#8054a6"
-        ];
-
-        return colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
-    }
-
-    function makeDraggable(element) {
-
-        let dragging = false;
-
-        let offsetX = 0;
-        let offsetY = 0;
-
-        element.addEventListener(
-            "pointerdown",
-            event => {
-
-                dragging = true;
-
-                const rect =
-                    element.getBoundingClientRect();
-
-                offsetX =
-                    event.clientX -
-                    rect.left;
-
-                offsetY =
-                    event.clientY -
-                    rect.top;
-
-                element.setPointerCapture(
-                    event.pointerId
-                );
-            }
-        );
-
-        element.addEventListener(
-            "pointermove",
-            event => {
-
-                if (!dragging) return;
-
-                const parent =
-                    element.parentElement
-                        .getBoundingClientRect();
-
-                let x =
-                    (
-                        event.clientX -
-                        parent.left -
-                        offsetX
-                    ) /
-                    parent.width *
-                    100;
-
-                let y =
-                    (
-                        event.clientY -
-                        parent.top -
-                        offsetY
-                    ) /
-                    parent.height *
-                    100;
-
-                x =
-                    Math.max(
-                        0,
-                        Math.min(90,x)
-                    );
-
-                y =
-                    Math.max(
-                        0,
-                        Math.min(90,y)
-                    );
-
-                element.style.left =
-                    `${x}%`;
-
-                element.style.top =
-                    `${y}%`;
-            }
-        );
-
-        element.addEventListener(
-            "pointerup",
-            () => {
-                dragging = false;
-            }
-        );
-    }
-
-    /* =====================================================
-       SKETCHBOOK
-       ===================================================== */
-
-    const canvas =
-        document.querySelector(
-            "#sketchCanvas"
-        );
-
-    if (canvas) {
-        initializeSketchbook(canvas);
-    }
-
-    function initializeSketchbook(canvas) {
-
-        const ctx =
-            canvas.getContext("2d");
-
-        let drawing = false;
-
-        let color = "#111111";
-
-        let size = 8;
-
-        let eraser = false;
-
-        const undoStack = [];
-
-        const redoStack = [];
-
-        function resizeCanvas() {
-
-            const rect =
-                canvas.getBoundingClientRect();
-
-            const old =
-                canvas.width > 0 &&
-                canvas.height > 0
-                    ? canvas.toDataURL()
-                    : null;
-
-            canvas.width =
-                rect.width;
-
-            canvas.height =
-                rect.height;
-
-            ctx.fillStyle =
-                "#ebe2cf";
-
-            ctx.fillRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-            if (old) {
-
-                const image =
-                    new Image();
-
-                image.onload = () => {
-
-                    ctx.drawImage(
-                        image,
-                        0,
-                        0,
-                        canvas.width,
-                        canvas.height
-                    );
-                };
-
-                image.src =
-                    old;
-            }
-        }
-
-        resizeCanvas();
-
-        window.addEventListener(
-            "resize",
-            resizeCanvas
-        );
-
-        function position(event) {
-
-            const rect =
-                canvas.getBoundingClientRect();
-
-            return {
-                x:
-                    event.clientX -
-                    rect.left,
-
-                y:
-                    event.clientY -
-                    rect.top
-            };
-        }
-
-        function saveState() {
-
-            undoStack.push(
-                ctx.getImageData(
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                )
-            );
-
-            if (
-                undoStack.length >
-                30
-            ) {
-                undoStack.shift();
-            }
-
-            redoStack.length = 0;
-        }
-
-        canvas.addEventListener(
-            "pointerdown",
-            event => {
-
-                saveState();
-
-                drawing = true;
-
-                canvas.setPointerCapture(
-                    event.pointerId
-                );
-
-                const p =
-                    position(event);
-
-                ctx.beginPath();
-
-                ctx.moveTo(
-                    p.x,
-                    p.y
-                );
-            }
-        );
-
-        canvas.addEventListener(
-            "pointermove",
-            event => {
-
-                if (!drawing) return;
-
-                const p =
-                    position(event);
-
-                ctx.lineWidth =
-                    size;
-
-                ctx.lineCap =
-                    "round";
-
-                ctx.lineJoin =
-                    "round";
-
-                ctx.strokeStyle =
-                    eraser
-                        ? "#ebe2cf"
-                        : color;
-
-                ctx.lineTo(
-                    p.x,
-                    p.y
-                );
-
-                ctx.stroke();
-            }
-        );
-
-        canvas.addEventListener(
-            "pointerup",
-            () => {
-
-                drawing = false;
-
-                ctx.closePath();
-            }
-        );
-
-        document
-            .querySelectorAll(".color-btn")
-            .forEach(button => {
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        document
-                            .querySelectorAll(
-                                ".color-btn"
-                            )
-                            .forEach(
-                                b =>
-                                    b.classList.remove(
-                                        "active"
-                                    )
-                            );
-
-                        button.classList.add(
-                            "active"
-                        );
-
-                        color =
-                            button.dataset.color;
-
-                        eraser = false;
-                    }
-                );
-            });
-
-        const brush =
-            document.querySelector(
-                "#brushSize"
-            );
-
-        if (brush) {
-
-            brush.addEventListener(
-                "input",
-                () => {
-
-                    size =
-                        Number(
-                            brush.value
-                        );
-                }
-            );
-        }
-
-        const eraserButton =
-            document.querySelector(
-                "#eraser"
-            );
-
-        if (eraserButton) {
-
-            eraserButton.addEventListener(
-                "click",
-                () => {
-
-                    eraser =
-                        !eraser;
-
-                    eraserButton.textContent =
-                        eraser
-                            ? "ERASER ON"
-                            : "ERASER";
-                }
-            );
-        }
-
-        const undo =
-            document.querySelector(
-                "#undo"
-            );
-
-        if (undo) {
-
-            undo.addEventListener(
-                "click",
-                () => {
-
-                    if (
-                        !undoStack.length
-                    ) return;
-
-                    redoStack.push(
-                        ctx.getImageData(
-                            0,
-                            0,
-                            canvas.width,
-                            canvas.height
-                        )
-                    );
-
-                    ctx.putImageData(
-                        undoStack.pop(),
-                        0,
-                        0
-                    );
-                }
-            );
-        }
-
-        const redo =
-            document.querySelector(
-                "#redo"
-            );
-
-        if (redo) {
-
-            redo.addEventListener(
-                "click",
-                () => {
-
-                    if (
-                        !redoStack.length
-                    ) return;
-
-                    undoStack.push(
-                        ctx.getImageData(
-                            0,
-                            0,
-                            canvas.width,
-                            canvas.height
-                        )
-                    );
-
-                    ctx.putImageData(
-                        redoStack.pop(),
-                        0,
-                        0
-                    );
-                }
-            );
-        }
-
-        const clear =
-            document.querySelector(
-                "#clearCanvas"
-            );
-
-        if (clear) {
-
-            clear.addEventListener(
-                "click",
-                () => {
-
-                    saveState();
-
-                    ctx.fillStyle =
-                        "#ebe2cf";
-
-                    ctx.fillRect(
-                        0,
-                        0,
-                        canvas.width,
-                        canvas.height
-                    );
-                }
-            );
-        }
-
-        const save =
-            document.querySelector(
-                "#saveSketch"
-            );
-
-        if (save) {
-
-            save.addEventListener(
-                "click",
-                () => {
-
-                    localStorage.setItem(
-                        "blackout-sketch",
-                        canvas.toDataURL()
-                    );
-
-                    save.textContent =
-                        "SAVED ✓";
-
-                    setTimeout(
-                        () => {
-                            save.textContent =
-                                "SAVE SKETCH";
-                        },
-                        1500
-                    );
-                }
-            );
-        }
-
-        const load =
-            document.querySelector(
-                "#loadSketch"
-            );
-
-        if (load) {
-
-            load.addEventListener(
-                "click",
-                () => {
-
-                    const saved =
-                        localStorage.getItem(
-                            "blackout-sketch"
-                        );
-
-                    if (!saved) return;
-
-                    const image =
-                        new Image();
-
-                    image.onload =
-                        () => {
-
-                            ctx.clearRect(
-                                0,
-                                0,
-                                canvas.width,
-                                canvas.height
-                            );
-
-                            ctx.drawImage(
-                                image,
-                                0,
-                                0,
-                                canvas.width,
-                                canvas.height
-                            );
-                        };
-
-                    image.src =
-                        saved;
-                }
-            );
-        }
-
-        const download =
-            document.querySelector(
-                "#downloadSketch"
-            );
-
-        if (download) {
-
-            download.addEventListener(
-                "click",
-                () => {
-
-                    const link =
-                        document.createElement(
-                            "a"
-                        );
-
-                    link.download =
-                        "blackout-sketch.png";
-
-                    link.href =
-                        canvas.toDataURL(
-                            "image/png"
-                        );
-
-                    link.click();
-                }
-            );
-        }
-    }
-
-    /* =====================================================
-       JOURNAL
-       ===================================================== */
-
-    const journalForm =
-        document.querySelector(
-            "#journalForm"
-        );
-
-    if (journalForm) {
-
-        renderJournal();
-
-        journalForm.addEventListener(
-            "submit",
-            event => {
-
+        card.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-
-                const title =
-                    document
-                        .querySelector(
-                            "#journalTitle"
-                        )
-                        .value
-                        .trim();
-
-                const text =
-                    document
-                        .querySelector(
-                            "#journalText"
-                        )
-                        .value
-                        .trim();
-
-                if (!text) return;
-
-                const entries =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "blackout-journal"
-                        ) || "[]"
-                    );
-
-                entries.unshift({
-                    title:
-                        title ||
-                        "Untitled",
-
-                    text,
-
-                    date:
-                        new Date()
-                            .toLocaleDateString()
-                });
-
-                localStorage.setItem(
-                    "blackout-journal",
-                    JSON.stringify(entries)
-                );
-
-                journalForm.reset();
-
-                renderJournal();
+                card.click();
             }
-        );
+        });
+    });
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+function initModals() {
+    document.querySelectorAll("[data-modal-target]").forEach(trigger => {
+        trigger.addEventListener("click", () => {
+            const targetID = trigger.dataset.modalTarget;
+            const modal = document.getElementById(targetID);
+
+            if (modal) openModal(modal);
+        });
+    });
+
+    document.querySelectorAll(
+        ".modal-close, .close-modal, [data-close-modal]"
+    ).forEach(button => {
+        button.addEventListener("click", () => {
+            const modal = button.closest(".modal, .overlay");
+
+            if (modal) closeModal(modal);
+        });
+    });
+
+    document.querySelectorAll(".modal, .overlay").forEach(modal => {
+        modal.addEventListener("click", event => {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key !== "Escape") return;
+
+        document.querySelectorAll(
+            ".modal.active, .modal.open, .overlay.active"
+        ).forEach(closeModal);
+    });
+}
+
+function openModal(modal) {
+    modal.classList.add("active", "open");
+    document.body.style.overflow = "hidden";
+
+    const close =
+        modal.querySelector(".modal-close") ||
+        modal.querySelector(".close-modal");
+
+    close?.focus();
+}
+
+function closeModal(modal) {
+    modal.classList.remove("active", "open");
+
+    if (
+        !document.querySelector(
+            ".modal.active, .modal.open, .overlay.active"
+        )
+    ) {
+        document.body.style.overflow = "";
+    }
+}
+
+
+/* =========================================================
+   PEOPLE
+   ========================================================= */
+
+const blackoutPeople = [
+    {
+        name: "Malik",
+        type: "BLACKOUT character",
+        group: "Character",
+        role: "The observer / documentarian",
+        color: "red",
+        bio:
+            "One of the recurring BLACKOUT characters. Malik moves through the site like somebody carrying a camera, notebook, and too many questions.",
+        tags: ["BLACKOUT", "Story", "Photography"],
+        character: true
+    },
+
+    {
+        name: "Von",
+        type: "BLACKOUT character",
+        group: "Character",
+        role: "The writer / questioner",
+        color: "yellow",
+        bio:
+            "A recurring BLACKOUT character connected to writing, notes, questions, and the messy process of figuring things out.",
+        tags: ["BLACKOUT", "Writing", "Journal"],
+        character: true
+    },
+
+    {
+        name: "Da'Vaun",
+        type: "BLACKOUT character",
+        group: "Character",
+        role: "The sound / culture collector",
+        color: "blue",
+        bio:
+            "A recurring character whose world connects music, culture, movement, and the stories carried through sound.",
+        tags: ["BLACKOUT", "Music", "Culture"],
+        character: true
+    },
+
+    {
+        name: "Leak",
+        type: "BLACKOUT character",
+        group: "Character",
+        role: "The artist / wall writer",
+        color: "purple",
+        bio:
+            "A recurring BLACKOUT character connected to graffiti, visual art, sketchbooks, posters, and the physical feeling of a city wall.",
+        tags: ["BLACKOUT", "Art", "Graffiti"],
+        character: true
+    },
+
+    {
+        name: "Langston Hughes",
+        type: "Poet / writer",
+        group: "Black culture",
+        role: "Poet, writer, cultural figure",
+        wiki: "Langston_Hughes",
+        bio:
+            "American poet and writer associated with the Harlem Renaissance. His work frequently explored Black life, identity, everyday experience, music, and racial inequality.",
+        tags: ["Poetry", "Harlem Renaissance", "Literature"]
+    },
+
+    {
+        name: "Maya Angelou",
+        type: "Poet / writer",
+        group: "Black culture",
+        role: "Poet, memoirist, writer",
+        wiki: "Maya_Angelou",
+        bio:
+            "American poet, memoirist, and writer whose work explored identity, race, resilience, memory, and human dignity.",
+        tags: ["Poetry", "Memoir", "Literature"]
+    },
+
+    {
+        name: "Audre Lorde",
+        type: "Poet / writer",
+        group: "Black culture",
+        role: "Poet, essayist, activist",
+        wiki: "Audre_Lorde",
+        bio:
+            "American poet and essayist whose writing addressed race, gender, sexuality, identity, power, and resistance.",
+        tags: ["Poetry", "Essays", "Identity"]
+    },
+
+    {
+        name: "Joy Harjo",
+        type: "Poet / writer",
+        group: "Indigenous culture",
+        role: "Poet, musician, writer",
+        wiki: "Joy_Harjo",
+        bio:
+            "Muscogee poet, musician, and writer whose work connects poetry, Indigenous identity, memory, history, land, and music.",
+        tags: ["Poetry", "Indigenous", "Music"]
+    },
+
+    {
+        name: "Gwendolyn Brooks",
+        type: "Poet / writer",
+        group: "Black culture",
+        role: "Poet and writer",
+        wiki: "Gwendolyn_Brooks",
+        bio:
+            "American poet whose work frequently focused on Black communities, everyday life, social conditions, and the rhythms of urban life.",
+        tags: ["Poetry", "Chicago", "Literature"]
+    },
+
+    {
+        name: "Nikki Giovanni",
+        type: "Poet / writer",
+        group: "Black culture",
+        role: "Poet, writer, educator",
+        wiki: "Nikki_Giovanni",
+        bio:
+            "American poet, writer, and educator known for poetry addressing Black identity, family, culture, social issues, and personal experience.",
+        tags: ["Poetry", "Black Arts", "Education"]
+    }
+];
+
+
+function initPeoplePage() {
+    const container =
+        document.querySelector("#people-grid") ||
+        document.querySelector(".people-grid");
+
+    if (!container) return;
+
+    if (container.children.length > 0 &&
+        !container.dataset.dynamicPeople) {
+        enhanceExistingPeople(container);
+        return;
     }
 
-    function renderJournal() {
+    container.dataset.dynamicPeople = "true";
+    renderPeople(container, blackoutPeople);
+}
 
-        const container =
-            document.querySelector(
-                "#journalEntries"
-            );
+function renderPeople(container, people) {
+    container.innerHTML = "";
 
-        if (!container) return;
+    people.forEach(person => {
+        const card = document.createElement("article");
 
-        const entries =
-            JSON.parse(
-                localStorage.getItem(
-                    "blackout-journal"
-                ) || "[]"
-            );
+        card.className = "person-card card tape reveal visible";
+        card.dataset.personName = person.name;
 
-        container.innerHTML = "";
+        card.innerHTML = `
+            <div class="person-portrait">
+                ${
+                    person.character
+                        ? createCharacterFace(person.color)
+                        : `
+                            <div class="character-face"
+                                 data-wiki-image="${escapeHTML(person.wiki || "")}">
+                                <div class="portrait-placeholder">
+                                    ${escapeHTML(person.name.charAt(0))}
+                                </div>
+                            </div>
+                        `
+                }
+            </div>
 
-        entries.forEach(
-            (entry,index) => {
+            <span class="stamp ${person.color || ""}">
+                ${escapeHTML(person.group)}
+            </span>
 
-                const article =
-                    document.createElement(
-                        "article"
-                    );
+            <h3 class="person-name">
+                ${escapeHTML(person.name)}
+            </h3>
 
-                article.className =
-                    "card dark-card";
+            <p class="person-role">
+                ${escapeHTML(person.role)}
+            </p>
 
-                article.innerHTML = `
+            <div class="person-tags">
+                ${person.tags.map(tag =>
+                    `<span class="tag">${escapeHTML(tag)}</span>`
+                ).join("")}
+            </div>
 
-                    <div class="card-meta">
-                        ${entry.date}
-                    </div>
+            <button class="person-more" type="button">
+                OPEN FILE →
+            </button>
+        `;
 
-                    <h3>
-                        ${escapeHTML(
-                            entry.title
-                        )}
-                    </h3>
+        card.addEventListener("click", event => {
+            if (event.target.closest("button") ||
+                event.currentTarget === card) {
+                openPerson(person);
+            }
+        });
 
-                    <p>
-                        ${escapeHTML(
-                            entry.text
-                        )}
+        container.appendChild(card);
+
+        if (!person.character && person.wiki) {
+            loadWikipediaImage(person, card);
+        }
+    });
+}
+
+
+function enhanceExistingPeople(container) {
+    container.querySelectorAll(
+        ".person-card, .person, .character-card"
+    ).forEach(card => {
+        card.classList.add("person-card", "tape");
+    });
+}
+
+
+function createCharacterFace(color) {
+    return `
+        <div class="character-face character-${color}">
+            <div class="face-hair"></div>
+            <div class="face-head">
+                <span class="eye left"></span>
+                <span class="eye right"></span>
+                <span class="nose"></span>
+                <span class="mouth"></span>
+            </div>
+            <div class="face-neck"></div>
+        </div>
+    `;
+}
+
+
+async function loadWikipediaImage(person, card) {
+    const target = card.querySelector("[data-wiki-image]");
+
+    if (!target || !person.wiki) return;
+
+    try {
+        const url =
+            "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+            encodeURIComponent(person.wiki);
+
+        const response = await fetch(url);
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+
+        if (!data.thumbnail?.source) return;
+
+        target.innerHTML = `
+            <img
+                src="${escapeAttribute(data.thumbnail.source)}"
+                alt="${escapeAttribute(person.name)}"
+                loading="lazy"
+            >
+        `;
+    } catch {
+        /* Keep the BLACKOUT placeholder if the image cannot load. */
+    }
+}
+
+
+function openPerson(person) {
+    let modal = document.getElementById("blackout-person-modal");
+
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "blackout-person-modal";
+        modal.className = "modal";
+
+        modal.innerHTML = `
+            <div class="modal-content tape">
+                <button
+                    class="modal-close"
+                    type="button"
+                    aria-label="Close"
+                >×</button>
+
+                <div id="blackout-person-content"></div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        modal.querySelector(".modal-close")
+            .addEventListener("click", () => closeModal(modal));
+
+        modal.addEventListener("click", event => {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    }
+
+    const content =
+        document.getElementById("blackout-person-content");
+
+    content.innerHTML = `
+        <span class="stamp">
+            ${escapeHTML(person.type)}
+        </span>
+
+        <h2>${escapeHTML(person.name)}</h2>
+
+        <p>
+            <strong>${escapeHTML(person.role)}</strong>
+        </p>
+
+        <p>${escapeHTML(person.bio)}</p>
+
+        <div class="person-tags">
+            ${person.tags.map(tag =>
+                `<span class="tag">${escapeHTML(tag)}</span>`
+            ).join("")}
+        </div>
+
+        ${
+            person.wiki
+                ? `
+                    <p style="margin-top:2rem">
+                        <a
+                            class="button"
+                            target="_blank"
+                            rel="noopener"
+                            href="https://en.wikipedia.org/wiki/${encodeURIComponent(person.wiki)}"
+                        >
+                            EXPLORE SOURCE →
+                        </a>
                     </p>
+                `
+                : ""
+        }
+    `;
 
-                    <button
-                        class="btn red"
-                        data-delete="${index}">
-                        DELETE
-                    </button>
+    openModal(modal);
+}
 
-                `;
 
-                container.appendChild(
-                    article
-                );
-            }
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+const blackoutTimeline = [
+    {
+        year: "1920s–1930s",
+        title: "Harlem Renaissance",
+        category: "Black culture",
+        summary:
+            "A major period of Black literary, artistic, musical, and intellectual activity centered especially in Harlem.",
+        color: "red"
+    },
+
+    {
+        year: "1940s–1950s",
+        title: "Black Arts & Cultural Networks",
+        category: "Art",
+        summary:
+            "Artists, writers, musicians, and communities continued developing cultural spaces and forms that challenged exclusion and represented Black life.",
+        color: "yellow"
+    },
+
+    {
+        year: "1950s–1960s",
+        title: "Civil Rights Era",
+        category: "History",
+        summary:
+            "A period of major organizing, protest, litigation, legislation, and cultural activity around racial segregation and civil rights in the United States.",
+        color: "blue"
+    },
+
+    {
+        year: "1960s–1970s",
+        title: "Black Arts Movement",
+        category: "Art",
+        summary:
+            "Writers, visual artists, musicians, and theater makers developed work centered on Black identity, political consciousness, community, and cultural independence.",
+        color: "purple"
+    },
+
+    {
+        year: "1960s–1970s",
+        title: "Chicano Movement",
+        category: "Latino culture",
+        summary:
+            "Mexican American activists, students, workers, artists, and organizers advocated around civil rights, labor, education, land, and cultural identity.",
+        color: "green"
+    },
+
+    {
+        year: "1960s–1970s",
+        title: "American Indian Movement Era",
+        category: "Indigenous history",
+        summary:
+            "Indigenous activists organized around sovereignty, treaty rights, community issues, and the political and cultural visibility of Native peoples.",
+        color: "orange"
+    },
+
+    {
+        year: "1970s–1980s",
+        title: "Hip-Hop Emerges",
+        category: "Music",
+        summary:
+            "Hip-hop culture developed through DJing, MCing, breakdancing, graffiti, and community-centered creative practices, particularly in New York City.",
+        color: "red"
+    },
+
+    {
+        year: "1980s–1990s",
+        title: "Independent Cultural Media",
+        category: "Culture",
+        summary:
+            "Zines, independent music scenes, community publications, street art, and alternative media created additional ways for communities to tell their own stories.",
+        color: "yellow"
+    },
+
+    {
+        year: "2000s–Today",
+        title: "Digital Culture & Archiving",
+        category: "Contemporary",
+        summary:
+            "Digital platforms have expanded how artists, writers, musicians, historians, and communities document, share, remix, and preserve culture.",
+        color: "blue"
+    }
+];
+
+
+function initTimeline() {
+    const timeline =
+        document.querySelector("#people-timeline") ||
+        document.querySelector(".timeline");
+
+    if (!timeline) return;
+
+    if (
+        timeline.dataset.blackoutTimeline === "true"
+    ) {
+        renderTimeline(timeline);
+        return;
+    }
+
+    const existingItems =
+        timeline.querySelectorAll(".timeline-item");
+
+    if (existingItems.length > 0) {
+        existingItems.forEach(item => {
+            item.classList.add("timeline-item");
+        });
+
+        return;
+    }
+
+    timeline.dataset.blackoutTimeline = "true";
+    renderTimeline(timeline);
+}
+
+
+function renderTimeline(container, filter = "all") {
+    const items = filter === "all"
+        ? blackoutTimeline
+        : blackoutTimeline.filter(
+            item => item.category === filter
         );
 
-        container
-            .querySelectorAll(
-                "[data-delete]"
-            )
-            .forEach(button => {
+    container.innerHTML = items.map((item, index) => `
+        <article class="timeline-item">
+            <span class="timeline-year">
+                ${escapeHTML(item.year)}
+            </span>
 
-                button.addEventListener(
-                    "click",
-                    () => {
+            <span class="stamp ${item.color || ""}">
+                ${escapeHTML(item.category)}
+            </span>
 
-                        const entries =
-                            JSON.parse(
-                                localStorage.getItem(
-                                    "blackout-journal"
-                                ) || "[]"
-                            );
+            <h3>${escapeHTML(item.title)}</h3>
 
-                        entries.splice(
-                            Number(
-                                button.dataset.delete
-                            ),
-                            1
-                        );
+            <p>
+                ${escapeHTML(item.summary)}
+            </p>
 
-                        localStorage.setItem(
-                            "blackout-journal",
-                            JSON.stringify(
-                                entries
-                            )
-                        );
+            <button
+                type="button"
+                class="timeline-more"
+                data-index="${index}"
+            >
+                READ ENTRY →
+            </button>
+        </article>
+    `).join("");
 
-                        renderJournal();
-                    }
-                );
+    container.querySelectorAll(".timeline-more")
+        .forEach(button => {
+            button.addEventListener("click", () => {
+                const item =
+                    items[Number(button.dataset.index)];
+
+                openTimelineEntry(item);
             });
+        });
+}
+
+
+function openTimelineEntry(item) {
+    const modal = document.createElement("div");
+
+    modal.className = "modal active";
+
+    modal.innerHTML = `
+        <div class="modal-content tape">
+            <button class="modal-close" type="button">×</button>
+
+            <span class="timeline-year">
+                ${escapeHTML(item.year)}
+            </span>
+
+            <h2>${escapeHTML(item.title)}</h2>
+
+            <span class="stamp">
+                ${escapeHTML(item.category)}
+            </span>
+
+            <p>
+                ${escapeHTML(item.summary)}
+            </p>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    document.body.style.overflow = "hidden";
+
+    const close = () => {
+        modal.remove();
+        document.body.style.overflow = "";
+    };
+
+    modal.querySelector(".modal-close")
+        .addEventListener("click", close);
+
+    modal.addEventListener("click", event => {
+        if (event.target === modal) close();
+    });
+}
+
+
+/* =========================================================
+   POETRY
+   ========================================================= */
+
+const blackoutPoets = [
+    {
+        poet: "Langston Hughes",
+        title: "Selected Work",
+        category: "Harlem Renaissance",
+        excerpt:
+            "A short excerpt can be placed here from a public-domain poem.",
+        description:
+            "Explore Hughes through the relationship between poetry, music, Black life, and the Harlem Renaissance.",
+        source:
+            "https://www.poetryfoundation.org/poets/langston-hughes"
+    },
+
+    {
+        poet: "Maya Angelou",
+        title: "Selected Work",
+        category: "Identity / Memory",
+        excerpt:
+            "Use a brief authorized excerpt here rather than reproducing an entire copyrighted poem.",
+        description:
+            "Angelou's poetry and prose frequently explore identity, memory, race, resilience, and human dignity.",
+        source:
+            "https://www.poetryfoundation.org/poets/maya-angelou"
+    },
+
+    {
+        poet: "Audre Lorde",
+        title: "Selected Work",
+        category: "Identity / Power",
+        excerpt:
+            "A short excerpt belongs here when an authorized source permits it.",
+        description:
+            "Lorde's poetry and essays examine identity, power, race, gender, sexuality, and resistance.",
+        source:
+            "https://www.poetryfoundation.org/poets/audre-lorde"
+    },
+
+    {
+        poet: "Gwendolyn Brooks",
+        title: "Selected Work",
+        category: "Black Life",
+        excerpt:
+            "A short excerpt can be displayed here.",
+        description:
+            "Brooks frequently wrote about Black communities, ordinary life, social conditions, and urban experience.",
+        source:
+            "https://www.poetryfoundation.org/poets/gwendolyn-brooks"
+    },
+
+    {
+        poet: "Joy Harjo",
+        title: "Selected Work",
+        category: "Indigenous / Memory",
+        excerpt:
+            "Use a short excerpt or your own commentary here.",
+        description:
+            "Harjo's work brings poetry, music, Indigenous identity, history, memory, and place into conversation.",
+        source:
+            "https://www.poetryfoundation.org/poets/joy-harjo"
+    },
+
+    {
+        poet: "Nikki Giovanni",
+        title: "Selected Work",
+        category: "Black Arts",
+        excerpt:
+            "A short authorized excerpt can appear here.",
+        description:
+            "Giovanni's writing spans poetry, family, Black identity, culture, education, and social questions.",
+        source:
+            "https://www.poetryfoundation.org/poets/nikki-giovanni"
+    }
+];
+
+
+function initPoetryPage() {
+    const grid =
+        document.querySelector("#poetry-grid") ||
+        document.querySelector(".poetry-grid");
+
+    if (!grid) return;
+
+    if (
+        grid.children.length > 0 &&
+        !grid.dataset.blackoutPoetry
+    ) {
+        grid.dataset.blackoutPoetry = "true";
+        enhancePoetryCards(grid);
+        return;
     }
 
-    /* =====================================================
-       SAFE TEXT
-       ===================================================== */
+    renderPoetry(grid, blackoutPoets);
+}
 
-    function escapeHTML(value) {
 
-        return String(value)
-            .replaceAll(
-                "&",
-                "&amp;"
-            )
-            .replaceAll(
-                "<",
-                "&lt;"
-            )
-            .replaceAll(
-                ">",
-                "&gt;"
-            )
-            .replaceAll(
-                '"',
-                "&quot;"
-            )
-            .replaceAll(
-                "'",
-                "&#039;"
-            );
-    }
+function renderPoetry(container, poems) {
+    container.innerHTML = poems.map(poem => `
+        <article class="poetry-card poem-card tape">
+            <span class="stamp">
+                ${escapeHTML(poem.category)}
+            </span>
 
-});
+            <h3 class="poet-name">
+                ${escapeHTML(poem.poet)}
+            </h3>
+
+            <p class="poem-title">
+                ${escapeHTML(poem.title)}
+            </p>
+
+            <blockquote>
+                ${escapeHTML(poem.excerpt)}
+            </blockquote>
+
+            <p>
+                ${escapeHTML(poem.description)}
+            </p>
+
+            <a
+                class="button"
+                href="${escapeAttribute(poem.source)}"
+                target="_blank"
+                rel="noopener"
+            >
+                READ / EXPLORE →
+            </a>
+        </article>
+    `).join("");
+}
+
+
+function enhancePoetryCards(grid) {
+    grid.querySelectorAll(
+        ".poetry-card, .poem-card"
+    ).forEach(card => {
+        card.classList.add("poem-card", "tape");
+    });
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+function initSearch() {
+    document.querySelectorAll(
+        "[data-search-input]"
+    ).forEach(input => {
+        const targetSelector =
+            input.dataset.searchTarget;
+
+        const target =
+            document.querySelector(targetSelector);
+
+        if (!target) return;
+
+        input.addEventListener("input", () => {
+            const query =
+                input.value.trim().toLowerCase();
+
+            target.querySelectorAll(
+                ".card, .poem-card, .person-card, " +
+                ".story-card, .resource-card, " +
+                ".archive-card, .timeline-item"
+            ).forEach(item => {
+                const text =
+                    item.textContent.toLowerCase();
+
+                item.style.display =
+                    !query || text.includes(query)
+                        ? ""
+                        : "none";
+            });
+        });
+    });
+}
+
+
+/* =========================================================
+   KEYBOARD SUPPORT
+   ========================================================= */
+
+function initKeyboardSupport() {
+    document.addEventListener("keydown", event => {
+        if (event.key !== "Escape") return;
+
+        document.querySelectorAll(
+            ".modal.active, .modal.open, .overlay.active"
+        ).forEach(closeModal);
+    });
+}
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function escapeHTML(value) {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function escapeAttribute(value) {
+    return escapeHTML(value);
+}
