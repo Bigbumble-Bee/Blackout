@@ -1,118 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>The Journal — BLACKOUT</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Permanent+Marker&display=swap"
-rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body>
+<body data-page="journal">
 
 <div class="grain"></div>
 
 <header class="site-header">
+    <a href="index.html" class="brand">
+        <span class="brand-box">B</span>LACKOUT
+    </a>
 
-<a href="index.html" class="brand">
-<span class="brand-box">B</span>
-LACKOUT
-</a>
+    <button class="menu-toggle" type="button">MENU</button>
 
-<button class="menu-toggle">MENU</button>
-
-<nav class="main-nav">
-<a href="people.html">People</a>
-<a href="music.html">Music</a>
-<a href="art.html">Art</a>
-<a href="history.html">History</a>
-<a href="politics.html">Politics</a>
-<a href="poetry.html">Poetry</a>
-<a href="stories.html">Stories</a>
-<a href="archive.html">Archive</a>
-<a href="gallery.html">Gallery</a>
-<a href="journal.html">Journal</a>
-<a href="resources.html">Resources</a>
-<a href="about.html">About</a>
-</nav>
-
+    <nav class="main-nav">
+        <a href="people.html">People</a>
+        <a href="music.html">Music</a>
+        <a href="art.html">Art</a>
+        <a href="history.html">History</a>
+        <a href="politics.html">Politics</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="stories.html">Stories</a>
+        <a href="archive.html">Archive</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="journal.html">Journal</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+    </nav>
 </header>
 
+<div class="wall-spray spray-red">WRITE</div>
+<div class="wall-spray spray-yellow">THINK</div>
+<div class="wall-spray spray-blue">REMEMBER</div>
+
+<main>
 
 <section class="page-hero">
 
-<p class="section-label">
-10 / THE JOURNAL
-</p>
+    <p class="section-label">10 / THE JOURNAL</p>
 
-<h1>
-THE JOURNAL
-</h1>
+    <h1>
+        THE<br>
+        JOURNAL
+    </h1>
 
-<p class="handwriting">
-your thoughts don't need a permission slip.
-</p>
+    <p class="handwriting">
+        your thoughts don't need a permission slip.
+    </p>
+
+    <div class="hero-copy">
+        <p>
+            Notes. Questions. Reactions. Ideas.
+            Things you want to research later.
+            Things you don't want to forget.
+        </p>
+    </div>
 
 </section>
 
 
 <section class="section">
 
-<form id="journalForm" class="journal-form">
+    <div class="tape tape-yellow"></div>
 
-<input
-type="text"
-name="title"
-maxlength="100"
-placeholder="title"
-required
->
+    <p class="section-label">NEW ENTRY</p>
 
-<textarea
-name="body"
-placeholder="write whatever is on your mind..."
-required
-></textarea>
+    <h2>
+        PUT IT<br>
+        ON PAPER.
+    </h2>
 
-<button
-type="submit"
-class="button red"
->
-PIN IT TO THE WALL
-</button>
+    <form id="journalForm" class="journal-form">
 
-<p class="tiny">
-Your entries stay inside this browser.
-They are not uploaded to a server.
-</p>
+        <input
+            type="text"
+            name="title"
+            maxlength="100"
+            placeholder="TITLE"
+            required
+        >
 
-</form>
+        <textarea
+            name="body"
+            rows="10"
+            placeholder="write whatever is on your mind..."
+            required
+        ></textarea>
+
+        <button
+            type="submit"
+            class="button red"
+        >
+            PIN IT TO THE WALL
+        </button>
+
+        <p class="tiny">
+            Your entries stay inside this browser.
+            They are not uploaded to a server.
+        </p>
+
+    </form>
 
 </section>
 
 
-<section id="journalEntries" class="journal-entries"></section>
+<section class="section">
 
+    <p class="section-label">YOUR WALL</p>
+
+    <h2>
+        NOTES<br>
+        LEFT BEHIND.
+    </h2>
+
+    <div id="journalEntries" class="card-grid"></div>
+
+    <p id="emptyJournal" class="handwriting">
+        the wall is empty. write something.
+    </p>
+
+</section>
+
+
+<section class="section dark-section">
+
+    <p class="section-label yellow">JOURNAL PROMPTS</p>
+
+    <div class="quote-wall">
+
+        <div class="quote-card">
+            <span>01</span>
+            <strong>What did I learn today?</strong>
+        </div>
+
+        <div class="quote-card">
+            <span>02</span>
+            <strong>What question won't leave me alone?</strong>
+        </div>
+
+        <div class="quote-card">
+            <span>03</span>
+            <strong>What do I want to investigate next?</strong>
+        </div>
+
+        <div class="quote-card">
+            <span>04</span>
+            <strong>What changed my mind?</strong>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
 
 <footer class="site-footer">
-
-<strong>BLACKOUT</strong>
-<span>made by Von</span>
-
+    <strong>BLACKOUT</strong>
+    <span>made by Von</span>
 </footer>
 
 <script src="script.js"></script>
+
+<script>
+const journalForm = document.getElementById("journalForm");
+const journalEntries = document.getElementById("journalEntries");
+const emptyJournal = document.getElementById("emptyJournal");
+
+let journalData =
+    JSON.parse(localStorage.getItem("blackoutJournal") || "[]");
+
+function saveJournal() {
+    localStorage.setItem(
+        "blackoutJournal",
+        JSON.stringify(journalData)
+    );
+}
+
+function renderJournal() {
+
+    journalEntries.innerHTML = "";
+
+    emptyJournal.style.display =
+        journalData.length ? "none" : "block";
+
+    [...journalData].reverse().forEach((entry, reverseIndex) => {
+
+        const actualIndex =
+            journalData.length - 1 - reverseIndex;
+
+        const article = document.createElement("article");
+
+        article.className = "person-card";
+
+        article.innerHTML = `
+            <span class="tagline">JOURNAL ENTRY</span>
+            <h3>${escapeHTML(entry.title)}</h3>
+            <p>${escapeHTML(entry.body).replace(/\n/g, "<br>")}</p>
+            <small>${entry.date}</small>
+            <br><br>
+            <button class="button red delete-entry" type="button">
+                REMOVE
+            </button>
+        `;
+
+        article
+            .querySelector(".delete-entry")
+            .addEventListener("click", () => {
+
+                journalData.splice(actualIndex, 1);
+                saveJournal();
+                renderJournal();
+            });
+
+        journalEntries.appendChild(article);
+    });
+}
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+journalForm.addEventListener("submit", event => {
+
+    event.preventDefault();
+
+    const formData = new FormData(journalForm);
+
+    journalData.push({
+        title: formData.get("title"),
+        body: formData.get("body"),
+        date: new Date().toLocaleDateString()
+    });
+
+    saveJournal();
+
+    journalForm.reset();
+
+    renderJournal();
+});
+
+renderJournal();
+</script>
 
 </body>
 </html>
