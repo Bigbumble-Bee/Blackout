@@ -1,1925 +1,1193 @@
+/* =========================================================
+   BLACKOUT — STREET WALL / ZINE / GRAFFITI SYSTEM
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 :root {
+    --black: #090909;
+    --black-2: #111111;
+    --ink: #181818;
+    --paper: #e8dfcc;
+    --paper-2: #f1eadc;
+    --cream: #f7f0df;
 
-  --black: #151311;
-  --paper: #e8ddc8;
-  --cream: #f5eddd;
+    --red: #d94a3a;
+    --orange: #e77b2f;
+    --yellow: #e7c84b;
+    --green: #718d52;
+    --blue: #347ca6;
+    --pink: #d65b8a;
+    --purple: #8054a6;
 
-  --red: #b72f2f;
-  --yellow: #dfbd3d;
-  --orange: #d66c2c;
-  --green: #566c4b;
-  --blue: #4d707d;
-  --purple: #705671;
-  --pink: #c66e7b;
+    --muted: #a99f8d;
 
-  --shadow: 6px 7px 0 var(--black);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --hard-shadow: 7px 7px 0 #000;
 
+    --display: "Bebas Neue", Impact, sans-serif;
+    --marker: "Permanent Marker", "Comic Sans MS", cursive;
+    --hand: "Caveat", cursive;
+    --mono: "IBM Plex Mono", monospace;
+    --body: "Space Grotesk", Arial, sans-serif;
 }
 
+/* =========================================================
+   RESET
+   ========================================================= */
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
-
 
 body {
-
-  margin: 0;
-
-  background:
-    linear-gradient(
-      rgba(232,221,200,.96),
-      rgba(232,221,200,.96)
-    );
-
-  color: var(--black);
-
-  font-family:
-    "Libre Baskerville",
-    Georgia,
-    serif;
-
-  line-height: 1.7;
-
-  overflow-x: hidden;
-
+    margin: 0;
+    min-height: 100vh;
+    color: var(--cream);
+    background:
+        radial-gradient(circle at 10% 15%, rgba(217,74,58,.18), transparent 20%),
+        radial-gradient(circle at 85% 20%, rgba(52,124,166,.17), transparent 23%),
+        radial-gradient(circle at 40% 80%, rgba(128,84,166,.13), transparent 25%),
+        #090909;
+    font-family: var(--body);
+    overflow-x: hidden;
 }
 
+/* =========================================================
+   GRAFFITI BACKGROUND
+   ========================================================= */
 
-.grain {
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    pointer-events: none;
 
-  position: fixed;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  z-index: 999;
-
-  opacity: .04;
-
-  background-image:
-    radial-gradient(
-      #000 1px,
-      transparent 1px
-    );
-
-  background-size: 6px 6px;
-
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255,255,255,.018) 0,
+            rgba(255,255,255,.018) 2px,
+            transparent 2px,
+            transparent 9px
+        ),
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(217,74,58,.12) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 70% 65%,
+            rgba(231,200,75,.10) 0 3px,
+            transparent 4px
+        );
+    background-size: auto, 90px 90px, 130px 130px;
+    opacity: .9;
 }
 
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            145deg,
+            transparent 0 15%,
+            rgba(255,255,255,.03) 15.2%,
+            transparent 15.5% 100%
+        ),
+        linear-gradient(
+            25deg,
+            transparent 0 60%,
+            rgba(217,74,58,.07) 60.2%,
+            transparent 60.5%
+        );
+    opacity: .8;
+}
+
+/* Decorative graffiti strokes */
+.wall-spray {
+    position: fixed;
+    z-index: -3;
+    pointer-events: none;
+    font-family: var(--marker);
+    font-size: clamp(5rem, 15vw, 15rem);
+    opacity: .035;
+    transform: rotate(-13deg);
+    user-select: none;
+}
+
+.wall-spray.one {
+    left: -2vw;
+    top: 18vh;
+    color: var(--red);
+}
+
+.wall-spray.two {
+    right: -3vw;
+    top: 48vh;
+    color: var(--blue);
+    transform: rotate(12deg);
+}
+
+.wall-spray.three {
+    left: 25vw;
+    bottom: -5vh;
+    color: var(--yellow);
+    transform: rotate(-5deg);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 0;
+}
+
+h1,
+h2 {
+    font-family: var(--display);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+h3,
+h4 {
+    font-family: var(--body);
+}
 
 a {
-
-  color: inherit;
-
-  text-decoration: none;
-
+    color: inherit;
 }
 
-
-button,
-input,
-textarea,
-select {
-
-  font: inherit;
-
+::selection {
+    background: var(--yellow);
+    color: #000;
 }
 
-
-/* HEADER */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-  position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
 
-  top: 0;
+    padding: .8rem 4vw;
 
-  z-index: 100;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(9,9,9,.98),
+            rgba(17,17,17,.94),
+            rgba(9,9,9,.98)
+        );
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 20px;
-
-  padding: 12px 4vw;
-
-  background:
-    rgba(232,221,200,.96);
-
-  border-bottom:
-    3px solid var(--black);
-
-  box-shadow:
-    0 3px 0 rgba(0,0,0,.12);
-
+    border-bottom: 2px solid rgba(255,255,255,.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    backdrop-filter: blur(12px);
 }
 
-
-.brand {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 6px;
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 2rem;
-
-  letter-spacing: .04em;
-
-  white-space: nowrap;
-
+.logo {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
 }
 
-
-.brand-box {
-
-  display: grid;
-
-  place-items: center;
-
-  width: 36px;
-
-  height: 36px;
-
-  color: var(--cream);
-
-  background: var(--black);
-
-  transform: rotate(-7deg);
-
+.logo-main {
+    display: block;
+    color: #fff;
+    font-family: var(--marker);
+    font-size: 2rem;
+    line-height: .8;
+    transform: rotate(-3deg);
+    text-shadow:
+        3px 3px 0 var(--red),
+        -2px -2px 0 var(--blue);
 }
 
+.logo-sub {
+    display: block;
+    margin-left: 2.5rem;
+    margin-top: .2rem;
+    font-family: var(--mono);
+    font-size: .55rem;
+    letter-spacing: .2em;
+    color: var(--yellow);
+}
+
+.nav-toggle {
+    display: none;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    padding: .5rem;
+    cursor: pointer;
+}
 
 .main-nav {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  justify-content: flex-end;
-
-  gap: 5px;
-
-  margin-left: auto;
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .7rem;
-
-  font-weight: 700;
-
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .35rem;
 }
-
 
 .main-nav a {
-
-  padding: 5px 7px;
-
-  border: 2px solid transparent;
-
+    padding: .45rem .55rem;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #ddd;
+    border: 1px solid transparent;
+    transition: .2s ease;
 }
 
-
-.main-nav a:hover {
-
-  background: var(--black);
-
-  color: var(--cream);
-
-  transform: rotate(-2deg);
-
+.main-nav a:hover,
+.main-nav a.active {
+    color: #000;
+    background: var(--yellow);
+    border-color: #000;
+    transform: rotate(-2deg);
 }
 
+/* =========================================================
+   PAGE STRUCTURE
+   ========================================================= */
 
-.menu-toggle {
-
-  display: none;
-
-  margin-left: auto;
-
-  border: 2px solid var(--black);
-
-  background: var(--black);
-
-  color: var(--cream);
-
-  padding: 8px 12px;
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
+.page {
+    width: min(1400px, 92vw);
+    margin: 0 auto;
+    padding: 4rem 0 7rem;
 }
-
-
-/* HERO */
-
-.hero {
-
-  min-height: 78vh;
-
-  display: grid;
-
-  grid-template-columns:
-    1.1fr .9fr;
-
-  align-items: center;
-
-  gap: 5vw;
-
-  padding: 7vw;
-
-  background:
-    linear-gradient(
-      130deg,
-      #d9ccb6,
-      #eee6d7,
-      #cfc1a9
-    );
-
-  border-bottom:
-    3px solid var(--black);
-
-}
-
-
-.spray-label {
-
-  display: inline-block;
-
-  padding: 5px 9px;
-
-  background: var(--yellow);
-
-  border: 2px solid var(--black);
-
-  box-shadow:
-    3px 3px 0 var(--black);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .7rem;
-
-  font-weight: 700;
-
-  transform: rotate(-2deg);
-
-}
-
-
-.hero h1 {
-
-  margin: 25px 0;
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size:
-    clamp(5rem, 12vw, 10rem);
-
-  line-height: .78;
-
-}
-
-
-.hero h1 span {
-
-  display: block;
-
-  color: var(--red);
-
-  font-family:
-    "Permanent Marker",
-    cursive;
-
-  font-size: .65em;
-
-  transform:
-    rotate(-4deg);
-
-}
-
-
-.hero-text > p {
-
-  max-width: 700px;
-
-  font-size: 1.05rem;
-
-}
-
-
-.hero-buttons {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 15px;
-
-  margin-top: 30px;
-
-}
-
-
-.button {
-
-  display: inline-block;
-
-  padding: 11px 15px;
-
-  border: 2px solid var(--black);
-
-  box-shadow:
-    4px 4px 0 var(--black);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .72rem;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition: .15s;
-
-}
-
-
-.button:hover {
-
-  transform:
-    translate(3px,3px);
-
-  box-shadow:
-    1px 1px 0 var(--black);
-
-}
-
-
-.button.red {
-
-  background: var(--red);
-
-  color: white;
-
-}
-
-
-.button.cream {
-
-  background: var(--cream);
-
-}
-
-
-/* GRAFFITI WALL */
-
-.graffiti-wall {
-
-  position: relative;
-
-  min-height: 500px;
-
-  overflow: hidden;
-
-  background: #292824;
-
-  border: 4px solid var(--black);
-
-  box-shadow:
-    11px 13px 0 var(--black);
-
-  transform:
-    rotate(2deg);
-
-}
-
-
-.graffiti-wall::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    repeating-linear-gradient(
-      85deg,
-      transparent 0 38px,
-      rgba(255,255,255,.035) 39px,
-      transparent 42px
-    );
-
-}
-
-
-.tag {
-
-  position: absolute;
-
-  font-family:
-    "Permanent Marker",
-    cursive;
-
-  font-size: 2rem;
-
-  color: var(--cream);
-
-  text-shadow:
-    3px 3px 0 var(--red);
-
-}
-
-
-.tag-von {
-
-  top: 8%;
-
-  left: 8%;
-
-}
-
-
-.tag-malik {
-
-  top: 25%;
-
-  right: 8%;
-
-  color: var(--yellow);
-
-  transform: rotate(8deg);
-
-}
-
-
-.tag-davaun {
-
-  bottom: 20%;
-
-  left: 5%;
-
-  color: #91b7bd;
-
-}
-
-
-.tag-leak {
-
-  bottom: 7%;
-
-  right: 10%;
-
-  color: var(--pink);
-
-  transform: rotate(-9deg);
-
-}
-
-
-.poster {
-
-  position: absolute;
-
-  top: 27%;
-
-  left: 20%;
-
-  width: 60%;
-
-  padding: 25px 20px;
-
-  text-align: center;
-
-  background: var(--cream);
-
-  border: 2px solid var(--black);
-
-  box-shadow:
-    8px 8px 0 rgba(0,0,0,.45);
-
-  transform:
-    rotate(-4deg);
-
-}
-
-
-.poster small {
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .65rem;
-
-  font-weight: 700;
-
-}
-
-
-.poster strong {
-
-  display: block;
-
-  margin: 15px 0;
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 4rem;
-
-  line-height: .8;
-
-}
-
-
-.poster em {
-
-  color: var(--red);
-
-  font-family:
-    "Caveat",
-    cursive;
-
-  font-size: 1.2rem;
-
-}
-
-
-/* TICKER */
-
-.ticker {
-
-  overflow: hidden;
-
-  white-space: nowrap;
-
-  padding: 10px 0;
-
-  background: var(--red);
-
-  color: white;
-
-  border-bottom:
-    3px solid var(--black);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .75rem;
-
-  font-weight: 700;
-
-}
-
-
-.ticker div {
-
-  display: inline-block;
-
-  animation:
-    marquee 30s linear infinite;
-
-}
-
-
-@keyframes marquee {
-
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-
-}
-
-
-/* SECTIONS */
 
 .section {
-
-  max-width: 1250px;
-
-  margin: auto;
-
-  padding: 90px 6vw;
-
+    margin: 6rem 0;
 }
 
-
-.section-label {
-
-  color: var(--red);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .72rem;
-
-  font-weight: 700;
-
-  letter-spacing: .1em;
-
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-
-.section-label.yellow {
-
-  color: var(--yellow);
-
+.section-heading h2 {
+    font-size: clamp(2.7rem, 6vw, 5.5rem);
+    line-height: .85;
+    margin: 0;
 }
 
-
-.section h2 {
-
-  margin:
-    15px 0 25px;
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size:
-    clamp(3.5rem, 7vw, 6rem);
-
-  line-height: .85;
-
+.section-heading p {
+    max-width: 500px;
+    color: #bdb5a7;
+    font-family: var(--mono);
+    font-size: .8rem;
 }
 
+/* =========================================================
+   HERO
+   ========================================================= */
 
-.handwriting {
-
-  font-family:
-    "Caveat",
-    cursive;
-
-  font-size: 1.7rem;
-
-  color: var(--red);
-
-  transform:
-    rotate(-3deg);
-
+.hero {
+    min-height: 78vh;
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    align-items: center;
+    gap: 3rem;
+    position: relative;
 }
 
-
-.intro {
-
-  display: grid;
-
-  grid-template-columns:
-    .8fr 1.2fr;
-
-  gap: 8vw;
-
+.hero::before {
+    content: "BLACKOUT";
+    position: absolute;
+    z-index: -1;
+    right: -5vw;
+    top: 10%;
+    font-family: var(--marker);
+    font-size: clamp(8rem, 22vw, 23rem);
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255,255,255,.08);
+    transform: rotate(-8deg);
+    pointer-events: none;
 }
 
-
-.intro-copy {
-
-  font-size: 1.05rem;
-
+.hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: .35rem .6rem;
+    background: var(--red);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: .7rem;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    box-shadow: 4px 4px 0 #000;
 }
 
-
-/* DOORS */
-
-.door-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 20px;
-
+.hero h1 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(5rem, 14vw, 13rem);
+    line-height: .72;
+    text-shadow:
+        8px 8px 0 var(--red),
+        -4px -4px 0 var(--blue);
 }
 
-
-.door {
-
-  min-height: 180px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: flex-end;
-
-  padding: 25px;
-
-  border: 3px solid var(--black);
-
-  box-shadow:
-    7px 8px 0 var(--black);
-
-  transition: .18s;
-
+.hero h1 span {
+    display: block;
+    font-family: var(--marker);
+    font-size: .35em;
+    letter-spacing: .02em;
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 #000;
+    transform: rotate(-3deg);
 }
 
-
-.door:hover {
-
-  transform:
-    translate(-4px,-5px)
-    rotate(-1deg);
-
+.hero-copy {
+    max-width: 650px;
+    color: #d3ccbd;
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 
-
-.door span {
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 3rem;
-
-  line-height: .8;
-
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    margin-top: 2rem;
 }
 
-
-.door small {
-
-  margin-top: 15px;
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .67rem;
-
+.hero-art {
+    position: relative;
+    min-height: 430px;
+    transform: rotate(2deg);
 }
 
+.hero-art .poster {
+    position: absolute;
+    inset: 5% 5% 10% 5%;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
-.door-red {
-  background: var(--red);
-  color: white;
+    background:
+        linear-gradient(135deg, rgba(217,74,58,.9), rgba(128,84,166,.85)),
+        #222;
+
+    border: 5px solid #050505;
+    box-shadow: 15px 15px 0 rgba(0,0,0,.8);
+    transform: rotate(-5deg);
 }
 
-
-.door-yellow {
-  background: var(--yellow);
+.poster-text {
+    font-family: var(--marker);
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: .8;
+    color: #fff;
+    text-shadow:
+        6px 6px 0 #000,
+        -3px -3px 0 var(--yellow);
 }
 
-
-.door-blue {
-  background: var(--blue);
-  color: white;
+.sticker {
+    position: absolute;
+    z-index: 3;
+    padding: .5rem .8rem;
+    color: #000;
+    background: var(--yellow);
+    font-family: var(--marker);
+    box-shadow: 5px 5px 0 #000;
+    transform: rotate(-8deg);
 }
 
-
-.door-green {
-  background: var(--green);
-  color: white;
+.sticker.a {
+    left: -3%;
+    top: 12%;
 }
 
-
-.door-purple {
-  background: var(--purple);
-  color: white;
+.sticker.b {
+    right: -5%;
+    bottom: 12%;
+    background: var(--pink);
+    transform: rotate(8deg);
 }
 
-
-.door-orange {
-  background: var(--orange);
+.sticker.c {
+    left: 10%;
+    bottom: 0;
+    background: var(--blue);
+    color: white;
+    transform: rotate(3deg);
 }
 
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
-/* WALL */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
 
-.wall-section {
+    min-height: 44px;
+    padding: .65rem 1rem;
 
-  background: #302e2a;
+    border: 2px solid #000;
+    background: var(--cream);
+    color: #000;
 
-  color: var(--cream);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
 
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #000;
+    transition: .18s ease;
 }
 
-
-.interactive-wall {
-
-  position: relative;
-
-  height: 450px;
-
-  margin-top: 35px;
-
-  overflow: hidden;
-
-  border: 4px solid var(--black);
-
-  background: #48453f;
-
-  box-shadow:
-    9px 10px 0 var(--red);
-
+.btn:hover {
+    transform: translate(3px, 3px) rotate(-1deg);
+    box-shadow: 2px 2px 0 #000;
 }
 
-
-.interactive-wall::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    repeating-linear-gradient(
-      80deg,
-      transparent 0 40px,
-      rgba(255,255,255,.03) 41px,
-      transparent 43px
-    );
-
+.btn.dark {
+    background: #111;
+    color: white;
+    border-color: white;
 }
 
-
-.wall-tag {
-
-  position: absolute;
-
-  z-index: 2;
-
-  padding: 8px 11px;
-
-  font-family:
-    "Permanent Marker",
-    cursive;
-
-  font-size: 1.4rem;
-
-  cursor: grab;
-
-  user-select: none;
-
+.btn.red {
+    background: var(--red);
+    color: white;
 }
 
-
-.existing-tag.one {
-
-  top: 15%;
-
-  left: 7%;
-
-  color: #e7aaa3;
-
-  transform: rotate(-5deg);
-
+.btn.yellow {
+    background: var(--yellow);
 }
 
-
-.existing-tag.two {
-
-  top: 50%;
-
-  left: 28%;
-
-  color: var(--yellow);
-
-  transform: rotate(7deg);
-
+.btn.blue {
+    background: var(--blue);
+    color: white;
 }
 
-
-.existing-tag.three {
-
-  top: 28%;
-
-  right: 10%;
-
-  color: #9dc2b3;
-
-  transform: rotate(-9deg);
-
+.btn.green {
+    background: var(--green);
+    color: white;
 }
 
-
-.existing-tag.four {
-
-  right: 30%;
-
-  bottom: 10%;
-
-  color: #a6bdcf;
-
-}
-
-
-.wall-form {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin-top: 25px;
-
-}
-
-
-.wall-form input,
-.wall-form select {
-
-  padding: 11px;
-
-  border: 2px solid var(--black);
-
-  background: var(--cream);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .75rem;
-
-}
-
-
-.wall-form input {
-
-  flex: 1;
-
-  min-width: 200px;
-
-}
-
-
-/* QUOTE */
-
-.quote-section {
-
-  margin-top: 70px;
-
-  text-align: center;
-
-  background: var(--cream);
-
-  border:
-    3px solid var(--black);
-
-  box-shadow:
-    9px 9px 0 var(--black);
-
-  transform:
-    rotate(-1deg);
-
-}
-
-
-.quote-section blockquote {
-
-  max-width: 900px;
-
-  margin: 30px auto;
-
-  font-family:
-    "Caveat",
-    cursive;
-
-  font-size:
-    clamp(2rem,5vw,4rem);
-
-  line-height: 1.05;
-
-}
-
-
-#quoteAuthor {
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .75rem;
-
-  font-weight: 700;
-
-}
-
-
-.small-button {
-
-  padding: 8px 11px;
-
-  border: 2px solid var(--black);
-
-  background: var(--yellow);
-
-  box-shadow:
-    3px 3px 0 var(--black);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .65rem;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-}
-
-
-/* MANIFESTO */
-
-.manifesto {
-
-  position: relative;
-
-  max-width: 900px;
-
-  margin-top: 80px;
-
-  background: #d4c4a9;
-
-  border:
-    2px solid var(--black);
-
-  box-shadow:
-    9px 9px 0 var(--red);
-
-  transform:
-    rotate(1deg);
-
-}
-
-
-.manifesto::before {
-
-  content: " ";
-
-  position: absolute;
-
-  width: 120px;
-
-  height: 30px;
-
-  top: -15px;
-
-  left: 42%;
-
-  background:
-    rgba(235,214,162,.8);
-
-  transform:
-    rotate(4deg);
-
-}
-
-
-.manifesto h2 {
-
-  font-size: 4.5rem;
-
-}
-
-
-/* PAGE HERO */
-
-.page-hero {
-
-  padding:
-    100px 7vw 70px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #d9ccb5,
-      #eee6d6
-    );
-
-  border-bottom:
-    3px solid var(--black);
-
-}
-
-
-.page-hero h1 {
-
-  margin: 15px 0;
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size:
-    clamp(5rem, 13vw, 11rem);
-
-  line-height: .78;
-
-}
-
-
-/* SEARCH */
-
-.search-section {
-
-  max-width: 1000px;
-
-  margin: auto;
-
-  padding: 50px 6vw 10px;
-
-}
-
-
-.search-section input {
-
-  width: 100%;
-
-  padding: 16px;
-
-  border: 3px solid var(--black);
-
-  background: var(--cream);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-}
-
-
-/* CARDS */
+/* =========================================================
+   CARDS
+   ========================================================= */
 
 .card-grid {
-
-  max-width: 1250px;
-
-  margin: auto;
-
-  padding:
-    60px 6vw;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap: 25px;
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
 }
 
+.card {
+    position: relative;
+    padding: 1.4rem;
+    min-height: 240px;
+
+    color: #111;
+    background: var(--paper);
+
+    border: 3px solid #050505;
+    box-shadow: var(--hard-shadow);
+
+    transform: rotate(var(--tilt, 0deg));
+    transition: .25s ease;
+}
+
+.card:nth-child(2n) {
+    --tilt: 1deg;
+}
+
+.card:nth-child(3n) {
+    --tilt: -1.3deg;
+}
+
+.card:hover {
+    transform:
+        translateY(-9px)
+        rotate(0deg)
+        scale(1.015);
+    box-shadow: 10px 14px 0 #000;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 20px;
+    top: -11px;
+    left: 30px;
+    background: rgba(230, 200, 100, .72);
+    transform: rotate(-4deg);
+    opacity: .8;
+}
+
+.card.dark-card {
+    color: var(--cream);
+    background: #151515;
+    border-color: #000;
+}
+
+.card h3 {
+    margin-bottom: .6rem;
+    font-size: 1.4rem;
+}
+
+.card p {
+    line-height: 1.65;
+}
+
+.card-meta {
+    font-family: var(--mono);
+    font-size: .65rem;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.dark-card .card-meta {
+    color: #aaa;
+}
+
+/* =========================================================
+   PEOPLE
+   ========================================================= */
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.4rem;
+}
 
 .person-card {
-
-  position: relative;
-
-  padding: 25px;
-
-  background: var(--cream);
-
-  border:
-    2px solid var(--black);
-
-  box-shadow:
-    6px 6px 0 var(--black);
-
+    position: relative;
+    overflow: hidden;
+    min-height: 370px;
+    cursor: pointer;
+    border: 4px solid #050505;
+    background: #151515;
+    box-shadow: 9px 9px 0 #000;
+    transition: .25s ease;
 }
 
-
-.person-card:nth-child(3n+1) {
-
-  transform:
-    rotate(-1deg);
-
+.person-card:hover {
+    transform: translateY(-10px) rotate(-1deg);
 }
 
-
-.person-card:nth-child(3n) {
-
-  transform:
-    rotate(1deg);
-
+.person-image {
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.2), transparent 28%),
+        linear-gradient(135deg, #2b2b2b, #111);
 }
 
-
-.person-card h2 {
-
-  margin:
-    10px 0;
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 2.6rem;
-
-  line-height: .9;
-
+.person-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-
-.person-card p {
-
-  font-size: .9rem;
-
+.person-initial {
+    font-family: var(--marker);
+    font-size: 7rem;
+    color: var(--yellow);
+    text-shadow:
+        5px 5px 0 var(--red),
+        -4px -4px 0 var(--blue);
 }
 
-
-.tagline {
-
-  color: var(--red);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .65rem;
-
-  font-weight: 700;
-
+.person-info {
+    padding: 1rem;
 }
 
-
-.fake-photo {
-
-  display: grid;
-
-  place-items: center;
-
-  height: 150px;
-
-  margin:
-    -25px -25px 20px;
-
-  background: var(--black);
-
-  color: var(--cream);
-
-  font-family:
-    "Permanent Marker",
-    cursive;
-
-  font-size: 3rem;
-
+.person-info h3 {
+    margin: 0 0 .25rem;
+    color: white;
+    font-family: var(--display);
+    font-size: 2rem;
 }
 
-
-.red-bg {
-  background: var(--red);
+.person-info p {
+    margin: 0;
+    color: #aaa;
+    font-family: var(--mono);
+    font-size: .7rem;
+    text-transform: uppercase;
 }
 
-.yellow-bg {
-  background: var(--yellow);
-  color: var(--black);
+.click-label {
+    position: absolute;
+    right: .7rem;
+    bottom: .7rem;
+    padding: .3rem .45rem;
+    background: var(--red);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: .55rem;
 }
 
-.blue-bg {
-  background: var(--blue);
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.timeline {
+    position: relative;
+    margin: 3rem 0;
+    padding-left: 2rem;
+    border-left: 4px dashed var(--yellow);
 }
 
-.green-bg {
-  background: var(--green);
+.timeline-item {
+    position: relative;
+    margin: 0 0 2rem;
+    padding: 1.3rem;
+
+    background: #171717;
+    border: 2px solid rgba(255,255,255,.2);
+    box-shadow: 7px 7px 0 #000;
 }
 
-.purple-bg {
-  background: var(--purple);
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -2.65rem;
+    top: 1.2rem;
+    width: 15px;
+    height: 15px;
+    border: 3px solid #000;
+    background: var(--red);
+    border-radius: 50%;
 }
 
-.orange-bg {
-  background: var(--orange);
+.timeline-year {
+    color: var(--yellow);
+    font-family: var(--display);
+    font-size: 2rem;
 }
 
+/* =========================================================
+   POETRY
+   ========================================================= */
 
-/* FILTER */
-
-.filter-bar {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  max-width: 1250px;
-
-  margin: auto;
-
-  padding:
-    40px 6vw 0;
-
+.poetry-wall {
+    columns: 3 260px;
+    column-gap: 1.3rem;
 }
 
+.poem-card {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1.3rem;
+    padding: 1.5rem;
 
-.filter-bar button {
+    color: #111;
+    background: var(--paper-2);
 
-  padding: 8px 11px;
+    border: 3px solid #000;
+    box-shadow: 7px 7px 0 #000;
 
-  border:
-    2px solid var(--black);
-
-  background: transparent;
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .65rem;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
+    cursor: pointer;
+    transition: .2s;
 }
 
-
-.filter-bar button:hover,
-.filter-bar button.active {
-
-  background: var(--black);
-
-  color: var(--cream);
-
+.poem-card:hover {
+    transform: rotate(1deg) translateY(-5px);
 }
 
-
-/* SPECIAL SECTIONS */
-
-.dark-section {
-
-  max-width: none;
-
-  background: var(--black);
-
-  color: var(--cream);
-
+.poem-card:nth-child(2n) {
+    background: #d9d1b9;
 }
 
-
-.colored-section {
-
-  max-width: none;
-
-  background:
-    #d3c2a5;
-
+.poem-card:nth-child(3n) {
+    background: #dfc1b4;
 }
 
-
-.quote-list {
-
-  max-width: 950px;
-
-  margin: auto;
-
-  padding: 50px 6vw;
-
+.poem-title {
+    font-family: var(--marker);
+    font-size: 1.6rem;
 }
 
-
-.quote-card-small {
-
-  margin: 30px 0;
-
-  padding:
-    20px 30px;
-
-  background: var(--cream);
-
-  border-left:
-    7px solid var(--red);
-
+.poem-preview {
+    font-family: var(--hand);
+    font-size: 1.35rem;
+    line-height: 1.2;
+    white-space: pre-line;
 }
 
-
-.quote-card-small blockquote {
-
-  margin: 0;
-
-  font-family:
-    "Caveat",
-    cursive;
-
-  font-size: 1.7rem;
-
-}
-
-
-.quote-card-small cite {
-
-  display: block;
-
-  margin-top: 10px;
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .7rem;
-
-}
-
-
-.text-link {
-
-  display: inline-block;
-
-  margin-top: 10px;
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .7rem;
-
-  font-weight: 700;
-
-  text-decoration: underline;
-
-}
-
-
-/* GALLERY */
-
-.gallery-grid {
-
-  max-width: 1300px;
-
-  margin: auto;
-
-  padding: 60px 6vw;
-
-  columns: 3 240px;
-
-  column-gap: 18px;
-
-}
-
-
-.gallery-tile {
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  break-inside: avoid;
-
-  min-height: 260px;
-
-  margin-bottom: 18px;
-
-  padding: 22px;
-
-  background: var(--black);
-
-  color: var(--cream);
-
-  border: 3px solid var(--black);
-
-  position: relative;
-
-}
-
-
-.gallery-tile:nth-child(2n) {
-
-  min-height: 330px;
-
-  background: var(--red);
-
-}
-
-
-.gallery-tile:nth-child(3n) {
-
-  background: var(--green);
-
-}
-
-
-.gallery-tile strong {
-
-  font-family:
-    "Permanent Marker",
-    cursive;
-
-  font-size: 3rem;
-
-  line-height: .9;
-
-  transform:
-    rotate(-4deg);
-
-}
-
-
-.gallery-tile small {
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .65rem;
-
-}
-
-
-/* JOURNAL */
-
-.journal-form {
-
-  max-width: 900px;
-
-  margin: auto;
-
-  display: grid;
-
-  gap: 12px;
-
-}
-
-
-.journal-form input,
-.journal-form textarea {
-
-  width: 100%;
-
-  padding: 14px;
-
-  border:
-    2px solid var(--black);
-
-  background: var(--cream);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-}
-
-
-.journal-form textarea {
-
-  min-height: 260px;
-
-  resize: vertical;
-
-}
-
-
-.tiny {
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .65rem;
-
-}
-
-
-.journal-entries {
-
-  max-width: 900px;
-
-  margin: auto;
-
-  padding:
-    0 6vw 70px;
-
-}
-
-
-.journal-entry {
-
-  padding:
-    30px 0;
-
-  border-top:
-    3px solid var(--black);
-
-}
-
-
-.journal-entry h2 {
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 2.8rem;
-
-}
-
-
-/* RESOURCES */
-
-.resources-list {
-
-  max-width: 1000px;
-
-  margin: auto;
-
-  padding:
-    70px 6vw;
-
-  display: grid;
-
-  gap: 16px;
-
-}
-
-
-.resources-list a {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 5px;
-
-  padding: 20px;
-
-  background: var(--cream);
-
-  border:
-    2px solid var(--black);
-
-  box-shadow:
-    5px 5px 0 var(--black);
-
-}
-
-
-.resources-list a:hover {
-
-  background: var(--yellow);
-
-  transform:
-    translate(2px,2px);
-
-}
-
-
-.resources-list strong {
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 2rem;
-
-}
-
-
-.resources-list span {
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .7rem;
-
-}
-
-
-/* ABOUT */
-
-.about-content {
-
-  max-width: 1000px;
-
-  margin: auto;
-
-  padding:
-    70px 6vw;
-
-}
-
-
-.about-content > p {
-
-  font-size: 1.05rem;
-
-}
-
-
-.principles {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap: 18px;
-
-  margin-top: 45px;
-
-}
-
-
-.principle {
-
-  padding: 25px;
-
-  background: var(--cream);
-
-  border:
-    2px solid var(--black);
-
-  box-shadow:
-    5px 5px 0 var(--black);
-
-}
-
-
-.principle strong {
-
-  font-family:
-    "Bebas Neue",
-    sans-serif;
-
-  font-size: 2rem;
-
-}
-
-
-/* FOOTER */
-
-.site-footer {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  flex-wrap: wrap;
-
-  gap: 15px;
-
-  padding:
-    35px 6vw;
-
-  background: var(--black);
-
-  color: var(--cream);
-
-  font-family:
-    "IBM Plex Mono",
-    monospace;
-
-  font-size: .68rem;
-
-  text-transform: uppercase;
-
-}
-
-
-/* MOBILE */
-
-@media (max-width: 900px) {
-
-  .site-header {
+.poem-tools {
+    display: flex;
     flex-wrap: wrap;
-  }
+    gap: .5rem;
+    margin: 1.5rem 0;
+}
 
-  .menu-toggle {
-    display: block;
-  }
+/* =========================================================
+   FILTERS / SEARCH
+   ========================================================= */
 
-  .main-nav {
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.search-box,
+.select-box,
+.text-input,
+.text-area {
+    width: 100%;
+    padding: .85rem 1rem;
+
+    color: #fff;
+    background: #111;
+
+    border: 2px solid rgba(255,255,255,.35);
+    outline: none;
+
+    font-family: var(--mono);
+}
+
+.search-box {
+    max-width: 430px;
+}
+
+.search-box:focus,
+.select-box:focus,
+.text-input:focus,
+.text-area:focus {
+    border-color: var(--yellow);
+}
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
 
     display: none;
+    align-items: center;
+    justify-content: center;
 
-    width: 100%;
+    padding: 1rem;
 
-    justify-content: flex-start;
-
-  }
-
-  .main-nav.open {
-    display: flex;
-  }
-
-  .hero {
-
-    grid-template-columns: 1fr;
-
-    padding:
-      60px 6vw;
-
-  }
-
-  .intro {
-
-    grid-template-columns: 1fr;
-
-  }
-
-  .door-grid {
-
-    grid-template-columns:
-      repeat(2,1fr);
-
-  }
-
-  .card-grid {
-
-    grid-template-columns:
-      repeat(2,1fr);
-
-  }
-
-  .principles {
-
-    grid-template-columns: 1fr;
-
-  }
-
+    background: rgba(0,0,0,.84);
+    backdrop-filter: blur(9px);
 }
 
+.modal.open {
+    display: flex;
+}
 
-@media (max-width: 600px) {
+.modal-content {
+    position: relative;
 
-  .hero h1 {
+    width: min(1000px, 95vw);
+    max-height: 90vh;
+    overflow-y: auto;
 
-    font-size: 5.5rem;
+    padding: 2rem;
 
-  }
+    color: #111;
+    background: var(--paper);
 
-  .hero-wall {
+    border: 4px solid #000;
+    box-shadow: 15px 15px 0 rgba(0,0,0,.8);
 
-    min-height: 370px;
+    animation: modalIn .25s ease;
+}
 
-  }
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) rotate(-2deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
 
-  .poster strong {
+.modal-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
 
-    font-size: 3rem;
+    width: 40px;
+    height: 40px;
 
-  }
+    border: 3px solid #000;
+    background: var(--red);
+    color: #fff;
 
-  .door-grid,
-  .card-grid {
+    font-family: var(--marker);
+    font-size: 1.2rem;
 
-    grid-template-columns: 1fr;
+    cursor: pointer;
+}
 
-  }
+.modal-layout {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 2rem;
+}
 
-  .section {
+.modal-image {
+    min-height: 350px;
+    background: #111;
+    border: 3px solid #000;
+}
 
-    padding:
-      60px 6vw;
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    object-fit: cover;
+}
 
-  }
+.modal h2 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    margin-bottom: .5rem;
+}
 
-  .page-hero {
+.modal-label {
+    font-family: var(--mono);
+    font-size: .7rem;
+    text-transform: uppercase;
+    color: #777;
+}
 
-    padding:
-      70px 6vw;
+/* =========================================================
+   SKETCHBOOK
+   ========================================================= */
 
-  }
+.sketchbook-shell {
+    background: #121212;
+    border: 4px solid #000;
+    box-shadow: 12px 12px 0 #000;
+    padding: 1rem;
+}
 
-  .page-hero h1 {
+.sketch-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+    padding: .8rem;
+    background: #1c1c1c;
+    border-bottom: 3px solid #000;
+}
 
-    font-size: 6rem;
+.tool-group {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    padding-right: .7rem;
+    margin-right: .2rem;
+    border-right: 1px solid #444;
+}
 
-  }
+.color-btn {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
 
-  .interactive-wall {
+.color-btn.active {
+    outline: 3px solid var(--yellow);
+    outline-offset: 2px;
+}
 
-    height: 360px;
+#sketchCanvas {
+    display: block;
+    width: 100%;
+    height: min(65vh, 650px);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(217,74,58,.15), transparent 18%),
+        radial-gradient(circle at 80% 70%, rgba(52,124,166,.15), transparent 20%),
+        #ebe2cf;
+    cursor: crosshair;
+    touch-action: none;
+}
 
-  }
+/* =========================================================
+   GRAFFITI WALL
+   ========================================================= */
 
-  .site-footer {
+.graffiti-wall {
+    position: relative;
+    min-height: 550px;
+    overflow: hidden;
 
-    flex-direction: column;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(217,74,58,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            45deg,
+            rgba(52,124,166,.1),
+            transparent 35%
+        ),
+        #111;
 
-  }
+    border: 5px solid #000;
+    box-shadow: 12px 12px 0 #000;
+}
 
+.graffiti-tag {
+    position: absolute;
+    padding: .4rem .7rem;
+
+    font-family: var(--marker);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    color: var(--yellow);
+
+    text-shadow:
+        3px 3px 0 #000,
+        -2px -2px 0 var(--red);
+
+    cursor: grab;
+    user-select: none;
+}
+
+.graffiti-tag:active {
+    cursor: grabbing;
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: .35rem;
+    font-family: var(--mono);
+    font-size: .7rem;
+    text-transform: uppercase;
+    color: #aaa;
+}
+
+.text-area {
+    min-height: 180px;
+    resize: vertical;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    position: relative;
+    padding: 4rem 4vw;
+    background: #050505;
+    border-top: 3px solid #222;
+}
+
+.footer-graffiti {
+    font-family: var(--marker);
+    font-size: clamp(3rem, 9vw, 8rem);
+    color: transparent;
+    -webkit-text-stroke: 2px var(--red);
+    transform: rotate(-3deg);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.footer-grid p {
+    color: #999;
+    font-family: var(--mono);
+    font-size: .75rem;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   UTILITY
+   ========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+.muted {
+    color: #999;
+}
+
+.hand {
+    font-family: var(--hand);
+}
+
+.marker {
+    font-family: var(--marker);
+}
+
+.mono {
+    font-family: var(--mono);
+}
+
+.big-number {
+    font-family: var(--display);
+    font-size: 5rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.notice {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-left: 5px solid var(--yellow);
+    background: rgba(231,200,75,.1);
+    font-family: var(--mono);
+    font-size: .75rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+    .people-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        min-height: 330px;
+    }
+}
+
+@media (max-width: 760px) {
+    .site-header {
+        flex-wrap: wrap;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .main-nav a {
+        text-align: center;
+    }
+
+    .page {
+        width: 94vw;
+        padding-top: 2rem;
+    }
+
+    .people-grid,
+    .card-grid,
+    .form-grid,
+    .modal-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 6rem;
+    }
+
+    .section {
+        margin: 4rem 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+
+    .hero-art {
+        min-height: 280px;
+    }
+
+    .person-image {
+        height: 220px;
+    }
 }
