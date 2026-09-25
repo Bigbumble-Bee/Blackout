@@ -1,46 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>The Wall — BLACKOUT</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
 
-    <title>BLACKOUT — Gallery</title>
-
-    <link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body data-page="gallery">
 
-<div class="wall-spray one">DRAW</div>
-<div class="wall-spray two">CREATE</div>
-<div class="wall-spray three">PAINT</div>
+<div class="grain"></div>
 
 <header class="site-header">
-
-    <a href="index.html" class="logo">
-
-        <span class="logo-main">
-            BLACKOUT
-        </span>
-
-        <span class="logo-sub">
-            culture / memory / resistance
-        </span>
-
+    <a href="index.html" class="brand">
+        <span class="brand-box">B</span>LACKOUT
     </a>
 
-    <button class="nav-toggle">
-        MENU
-    </button>
+    <button class="menu-toggle" type="button">MENU</button>
 
     <nav class="main-nav">
-
-        <a href="index.html">Home</a>
         <a href="people.html">People</a>
         <a href="music.html">Music</a>
         <a href="art.html">Art</a>
@@ -50,206 +34,241 @@
         <a href="stories.html">Stories</a>
         <a href="archive.html">Archive</a>
         <a href="gallery.html">Gallery</a>
-        <a href="sketchbook.html">Sketchbook</a>
         <a href="journal.html">Journal</a>
         <a href="resources.html">Resources</a>
         <a href="about.html">About</a>
-
     </nav>
-
 </header>
 
-<main class="page">
+<div class="wall-spray spray-red">DRAW</div>
+<div class="wall-spray spray-yellow">CREATE</div>
+<div class="wall-spray spray-blue">PAINT</div>
 
-    <section class="hero">
+<main>
 
-        <div>
+<section class="page-hero">
 
-            <span class="hero-eyebrow">
-                GALLERY / STREET ART / COMMUNITY WALL
-            </span>
+    <p class="section-label">09 / THE WALL</p>
 
-            <h1>
-                THE WALL
-                <span>don't just look.</span>
-            </h1>
+    <h1>
+        THE<br>
+        WALL
+    </h1>
 
-            <p class="hero-copy">
-                This isn't supposed to feel like a museum.
-                It's supposed to feel like somebody handed you
-                a marker and said, "Put something here."
-            </p>
+    <p class="handwriting">
+        don't just look.
+    </p>
 
-            <div class="hero-buttons">
+    <div class="hero-copy">
+        <p>
+            This isn't supposed to feel like a museum.
+            It's supposed to feel like somebody handed
+            you a marker and said, "Put something here."
+        </p>
+    </div>
 
-                <a
-                    href="sketchbook.html"
-                    class="btn yellow">
-                    OPEN SKETCHBOOK
-                </a>
+    <div class="sticker-row">
+        <span class="sticker red">MAKE</span>
+        <span class="sticker yellow">DRAW</span>
+        <span class="sticker blue">LEAVE A MARK</span>
+    </div>
 
-                <a
-                    href="#graffiti"
-                    class="btn red">
-                    TAG THE WALL
-                </a>
+</section>
 
-            </div>
 
-        </div>
+<section id="graffiti" class="section">
 
-        <div class="hero-art">
+    <div class="tape tape-red"></div>
 
-            <div class="poster">
+    <p class="section-label">INTERACTIVE WALL</p>
 
-                <div class="poster-text">
-                    MAKE<br>
-                    YOUR<br>
-                    MARK
-                </div>
+    <h2>
+        TAG<br>
+        THE WALL.
+    </h2>
 
-            </div>
+    <p>
+        Type something. Add it. Drag it around.
+        Reloading the page will clear the temporary wall.
+    </p>
 
-            <span class="sticker a">
-                NO PERFECT ART
-            </span>
+    <div class="toolbar">
 
-            <span class="sticker b">
-                JUST MAKE
-            </span>
+        <input
+            id="graffitiInput"
+            type="text"
+            maxlength="25"
+            placeholder="TYPE YOUR TAG..."
+        >
 
-        </div>
+        <button
+            id="addGraffiti"
+            class="button yellow"
+            type="button"
+        >
+            ADD TO WALL
+        </button>
 
-    </section>
+        <button
+            id="clearGraffiti"
+            class="button red"
+            type="button"
+        >
+            CLEAR WALL
+        </button>
 
-    <section
-        id="graffiti"
-        class="section">
+    </div>
 
-        <div class="section-heading">
+    <div id="graffitiWall" class="graffiti-wall"></div>
 
-            <h2>GRAFFITI WALL</h2>
+</section>
 
-            <p>
-                Add a tag, then drag it around the wall.
-                The wall belongs to everybody who contributes.
-            </p>
 
-        </div>
+<section class="section">
 
-        <div class="toolbar">
+    <p class="section-label">MAKE ART</p>
 
-            <input
-                id="graffitiInput"
-                class="text-input"
-                style="max-width:400px;"
-                maxlength="25"
-                placeholder="Type your tag..."
-            >
+    <h2>
+        DIFFERENT<br>
+        WAYS TO<br>
+        LEAVE A MARK.
+    </h2>
 
-            <button
-                id="addGraffiti"
-                class="btn yellow">
-                ADD TO WALL
-            </button>
+    <div class="card-grid">
 
-        </div>
+        <article class="person-card">
+            <span class="tagline">DIGITAL</span>
 
-        <div
-            id="graffitiWall"
-            class="graffiti-wall">
-        </div>
-
-    </section>
-
-    <section class="section">
-
-        <div class="section-heading">
-
-            <h2>MAKE ART</h2>
+            <h3>Draw</h3>
 
             <p>
-                Open the full BLACKOUT sketchbook to draw,
-                erase, undo, redo, save and download.
+                Open the BLACKOUT sketchbook and
+                experiment with tags, characters,
+                symbols, patterns, and posters.
             </p>
 
-        </div>
+            <a href="sketchbook.html" class="button red">
+                OPEN SKETCHBOOK →
+            </a>
+        </article>
 
-        <div class="card-grid">
 
-            <article class="card">
+        <article class="person-card">
+            <span class="tagline">PHOTO</span>
 
-                <div class="card-meta">
-                    DIGITAL SKETCHBOOK
-                </div>
+            <h3>Street Photography</h3>
 
-                <h3>
-                    Draw
-                </h3>
+            <p>
+                Build a collection of photographs,
+                murals, signs, architecture, and
+                ordinary moments worth remembering.
+            </p>
+        </article>
 
-                <p>
-                    A blank digital page with a graffiti-inspired
-                    environment around it.
-                </p>
 
-                <a
-                    href="sketchbook.html"
-                    class="btn red">
-                    OPEN SKETCHBOOK
-                </a>
+        <article class="person-card">
+            <span class="tagline">COLLAGE</span>
 
-            </article>
+            <h3>Cut + Paste</h3>
 
-            <article class="card">
+            <p>
+                Combine images, words, shapes,
+                notes, colors, and fragments into
+                a visual page.
+            </p>
+        </article>
 
-                <div class="card-meta">
-                    PHOTO
-                </div>
+    </div>
 
-                <h3>
-                    Street Photography
-                </h3>
+</section>
 
-                <p>
-                    Build a collection of photographs,
-                    murals, signs, architecture and ordinary
-                    moments worth remembering.
-                </p>
 
-            </article>
+<section class="section dark-section">
 
-            <article class="card">
+    <p class="section-label yellow">BLACKOUT WALL</p>
 
-                <div class="card-meta">
-                    COLLAGE
-                </div>
+    <h2>
+        MALIK.<br>
+        VON.<br>
+        DA'VAUN.<br>
+        LEAK.
+    </h2>
 
-                <h3>
-                    Cut + Paste
-                </h3>
+    <p>
+        The BLACKOUT crew can appear in sketches,
+        margins, posters, stickers, graffiti,
+        and little interruptions throughout the site.
+    </p>
 
-                <p>
-                    Combine images, words, shapes, notes,
-                    colors and fragments into a visual page.
-                </p>
-
-            </article>
-
-        </div>
-
-    </section>
+</section>
 
 </main>
 
 <footer class="site-footer">
-
-    <div class="footer-graffiti">
-        MAKE YOUR MARK.
-    </div>
-
+    <strong>BLACKOUT</strong>
+    <span>MAKE YOUR MARK.</span>
 </footer>
 
 <script src="script.js"></script>
+
+<script>
+const graffitiInput = document.getElementById("graffitiInput");
+const graffitiButton = document.getElementById("addGraffiti");
+const graffitiClear = document.getElementById("clearGraffiti");
+const graffitiWall = document.getElementById("graffitiWall");
+
+const graffitiColors = [
+    "var(--red)",
+    "var(--yellow)",
+    "var(--blue)",
+    "var(--green)",
+    "var(--orange)",
+    "var(--pink)"
+];
+
+function addTag(text) {
+
+    if (!text.trim()) return;
+
+    const tag = document.createElement("div");
+
+    tag.className = "graffiti-tag";
+
+    tag.textContent = text.trim();
+
+    tag.style.color =
+        graffitiColors[
+            Math.floor(Math.random() * graffitiColors.length)
+        ];
+
+    tag.style.left =
+        Math.floor(Math.random() * 80 + 5) + "%";
+
+    tag.style.top =
+        Math.floor(Math.random() * 70 + 10) + "%";
+
+    tag.style.transform =
+        `rotate(${Math.floor(Math.random() * 16) - 8}deg)`;
+
+    graffitiWall.appendChild(tag);
+
+    graffitiInput.value = "";
+}
+
+graffitiButton.addEventListener("click", () => {
+    addTag(graffitiInput.value);
+});
+
+graffitiInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        addTag(graffitiInput.value);
+    }
+});
+
+graffitiClear.addEventListener("click", () => {
+    graffitiWall.innerHTML = "";
+});
+</script>
 
 </body>
 </html>
