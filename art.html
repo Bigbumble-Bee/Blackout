@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,269 +8,433 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Permanent+Marker&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body>
+<body data-page="art">
 
 <div class="grain"></div>
 
 <header class="site-header">
+    <a href="index.html" class="brand">
+        <span class="brand-box">B</span>LACKOUT
+    </a>
 
-<a href="index.html" class="brand">
-<span class="brand-box">B</span>
-LACKOUT
-</a>
+    <button class="menu-toggle" type="button">MENU</button>
 
-<button class="menu-toggle">MENU</button>
-
-<nav class="main-nav">
-<a href="people.html">People</a>
-<a href="music.html">Music</a>
-<a href="art.html">Art</a>
-<a href="history.html">History</a>
-<a href="politics.html">Politics</a>
-<a href="poetry.html">Poetry</a>
-<a href="stories.html">Stories</a>
-<a href="archive.html">Archive</a>
-<a href="gallery.html">Gallery</a>
-<a href="journal.html">Journal</a>
-<a href="resources.html">Resources</a>
-<a href="about.html">About</a>
-</nav>
-
+    <nav class="main-nav">
+        <a href="people.html">People</a>
+        <a href="music.html">Music</a>
+        <a href="art.html">Art</a>
+        <a href="history.html">History</a>
+        <a href="politics.html">Politics</a>
+        <a href="poetry.html">Poetry</a>
+        <a href="stories.html">Stories</a>
+        <a href="archive.html">Archive</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="journal.html">Journal</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+    </nav>
 </header>
 
+<div class="wall-spray spray-red">ART</div>
+<div class="wall-spray spray-yellow">MAKE</div>
+<div class="wall-spray spray-blue">LOOK</div>
+
+<main>
 
 <section class="page-hero">
 
-<p class="section-label">
-03 / THE ART
-</p>
+    <p class="section-label">03 / THE ART</p>
 
-<h1>
-THE ART
-</h1>
+    <h1>
+        THE<br>
+        ART
+    </h1>
 
-<p class="handwriting">
-paint the wall before somebody sells it.
-</p>
+    <p class="handwriting">
+        paint the wall before somebody sells it.
+    </p>
+
+    <div class="hero-copy">
+        <p>
+            Graffiti. Photography. Film. Zines.
+            Murals. Collage. Posters. Visual culture.
+        </p>
+    </div>
+
+    <div class="sticker-row">
+        <span class="sticker red">LOOK CLOSER</span>
+        <span class="sticker yellow">MAKE SOMETHING</span>
+        <span class="sticker blue">QUESTION THE FRAME</span>
+    </div>
 
 </section>
 
 
 <section class="section">
 
-<p>
-Street art can be public argument, decoration,
-memorial, identity, humor, protest, or all of
-those things at once.
-</p>
+    <div class="tape tape-red"></div>
+
+    <p class="section-label">THE WALL</p>
+
+    <h2>
+        ART IS<br>
+        EVERYWHERE.
+    </h2>
+
+    <p>
+        Street art can be public argument, decoration,
+        memorial, identity, humor, protest, documentation,
+        or several of those things at once.
+    </p>
 
 </section>
 
 
-<div class="filter-bar">
+<section class="section">
 
-<button class="active" data-filter="all">
-ALL
-</button>
+    <div class="filter-bar art-filters">
 
-<button data-filter="graffiti">
-GRAFFITI
-</button>
+        <button class="active" data-art-filter="all">
+            ALL
+        </button>
 
-<button data-filter="photography">
-PHOTOGRAPHY
-</button>
+        <button data-art-filter="graffiti">
+            GRAFFITI
+        </button>
 
-<button data-filter="film">
-FILM
-</button>
+        <button data-art-filter="photography">
+            PHOTOGRAPHY
+        </button>
 
-<button data-filter="zines">
-ZINES
-</button>
+        <button data-art-filter="film">
+            FILM
+        </button>
 
-</div>
+        <button data-art-filter="zines">
+            ZINES
+        </button>
 
+        <button data-art-filter="murals">
+            MURALS
+        </button>
 
-<section class="card-grid art-grid">
-
-
-<article class="person-card" data-category="graffiti">
-
-<div class="fake-photo">
-TAG
-</div>
-
-<span class="tagline">
-GRAFFITI
-</span>
-
-<h2>
-Letters have bodies.
-</h2>
-
-<p>
-Look at shape, rhythm, scale, placement,
-repetition, and the relationship between
-a tag and its surroundings.
-</p>
-
-</article>
+    </div>
 
 
-<article class="person-card" data-category="photography">
+    <div class="chaos-grid art-grid" id="artWall">
 
-<div class="fake-photo red-bg">
-FRAME
-</div>
+        <article class="person-card art-card tilt-left" data-category="graffiti">
 
-<span class="tagline">
-PHOTOGRAPHY
-</span>
+            <div class="fake-photo">
+                TAG
+            </div>
 
-<h2>
-The street remembers.
-</h2>
+            <span class="tagline">GRAFFITI</span>
 
-<p>
-Photography can preserve murals, protests,
-neighborhoods, family stories, and visual
-details official archives overlook.
-</p>
+            <h3>Letters have bodies.</h3>
 
-</article>
+            <p>
+                Look at shape, rhythm, scale, placement,
+                repetition, movement, and the relationship
+                between a tag and its surroundings.
+            </p>
 
+            <button class="expand-card" type="button">
+                LOOK CLOSER +
+            </button>
 
-<article class="person-card" data-category="film">
+            <div class="hidden-note">
+                What makes one letter feel heavy?
+                What makes another feel fast?
+            </div>
 
-<div class="fake-photo blue-bg">
-CUT
-</div>
-
-<span class="tagline">
-FILM / MEDIA
-</span>
-
-<h2>
-Who gets the camera?
-</h2>
-
-<p>
-Study who is behind the camera, who is represented,
-who gets to tell the story, and who controls distribution.
-</p>
-
-</article>
+        </article>
 
 
-<article class="person-card" data-category="zines">
+        <article class="person-card art-card tilt-right" data-category="photography">
 
-<div class="fake-photo yellow-bg">
-ZINE
-</div>
+            <div class="fake-photo red-bg">
+                FRAME
+            </div>
 
-<span class="tagline">
-ZINES
-</span>
+            <span class="tagline">PHOTOGRAPHY</span>
 
-<h2>
-Low budget. High signal.
-</h2>
+            <h3>The street remembers.</h3>
 
-<p>
-Zines turn layout into voice:
-photocopies, handwriting, collage,
-headlines, marginalia, and repetition.
-</p>
+            <p>
+                Photography can preserve murals,
+                neighborhoods, family stories,
+                demonstrations, celebrations,
+                and everyday life.
+            </p>
 
-</article>
+            <button class="expand-card" type="button">
+                LOOK CLOSER +
+            </button>
 
+            <div class="hidden-note">
+                Ask what is inside the frame —
+                and what the photographer left outside it.
+            </div>
 
-<article class="person-card" data-category="graffiti">
-
-<div class="fake-photo green-bg">
-VON
-</div>
-
-<span class="tagline">
-THE HOMEBOYS
-</span>
-
-<h2>
-Malik / Von / Da'Vaun / Leak
-</h2>
-
-<p>
-Your recurring crew appears throughout
-BLACKOUT as tags, doodles, marginal notes,
-and little visual interruptions.
-</p>
-
-</article>
+        </article>
 
 
-<article class="person-card" data-category="zines">
+        <article class="person-card art-card tilt-small" data-category="film">
 
-<div class="fake-photo purple-bg">
-✦
-</div>
+            <div class="fake-photo blue-bg">
+                CUT
+            </div>
 
-<span class="tagline">
-BLACKOUT PRINCIPLE
-</span>
+            <span class="tagline">FILM / MEDIA</span>
 
-<h2>
-Make something.
-</h2>
+            <h3>Who gets the camera?</h3>
 
-<p>
-Don't just consume art.
-Make something that wasn't there before.
-</p>
+            <p>
+                Study who is behind the camera,
+                who is represented, who gets to
+                tell the story, and who controls
+                distribution.
+            </p>
 
-</article>
+            <button class="expand-card" type="button">
+                LOOK CLOSER +
+            </button>
 
+            <div class="hidden-note">
+                Change the camera angle.
+                How does the story change?
+            </div>
+
+        </article>
+
+
+        <article class="person-card art-card tilt-left" data-category="zines">
+
+            <div class="fake-photo yellow-bg">
+                ZINE
+            </div>
+
+            <span class="tagline">ZINES</span>
+
+            <h3>Low budget. High signal.</h3>
+
+            <p>
+                Photocopies, handwriting, collage,
+                headlines, marginalia, repetition,
+                tape, and intentional mess.
+            </p>
+
+            <button class="expand-card" type="button">
+                LOOK CLOSER +
+            </button>
+
+            <div class="hidden-note">
+                A zine does not need permission
+                to become a document.
+            </div>
+
+        </article>
+
+
+        <article class="person-card art-card tilt-right" data-category="murals graffiti">
+
+            <div class="fake-photo green-bg">
+                WALL
+            </div>
+
+            <span class="tagline">MURALS</span>
+
+            <h3>THE WALL TALKS.</h3>
+
+            <p>
+                Murals can transform ordinary walls
+                into community memory, celebration,
+                political commentary, or public art.
+            </p>
+
+            <button class="expand-card" type="button">
+                LOOK CLOSER +
+            </button>
+
+            <div class="hidden-note">
+                Who commissioned it?
+                Who painted it?
+                Who is represented?
+            </div>
+
+        </article>
+
+
+        <article class="person-card art-card tilt-small" data-category="graffiti zines">
+
+            <div class="fake-photo purple-bg">
+                CREW
+            </div>
+
+            <span class="tagline">BLACKOUT</span>
+
+            <h3>Malik / Von / Da'Vaun / Leak</h3>
+
+            <p>
+                The recurring BLACKOUT crew appears
+                throughout the site as tags, doodles,
+                marginal notes, stickers, and interruptions.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="section dark-section">
+
+    <p class="section-label yellow">VISUAL LANGUAGE</p>
+
+    <h2>
+        WHY DOES<br>
+        THIS LOOK<br>
+        LIKE THIS?
+    </h2>
+
+    <div class="quote-wall">
+
+        <div class="quote-card">
+            <span>01</span>
+            <strong>
+                Torn paper = imperfect records.
+            </strong>
+        </div>
+
+        <div class="quote-card">
+            <span>02</span>
+            <strong>
+                Tape = things being kept together.
+            </strong>
+        </div>
+
+        <div class="quote-card">
+            <span>03</span>
+            <strong>
+                Graffiti = public space becoming voice.
+            </strong>
+        </div>
+
+        <div class="quote-card">
+            <span>04</span>
+            <strong>
+                Scribbles = thinking in progress.
+            </strong>
+        </div>
+
+    </div>
 
 </section>
 
 
 <section class="section manifesto">
 
-<p class="handwriting">
-important
-</p>
+    <p class="handwriting">important</p>
 
-<h2>
-ART IS NOT A COSTUME.
-</h2>
+    <h2>
+        ART IS<br>
+        NOT A COSTUME.
+    </h2>
 
-<p>
-BLACKOUT can borrow visual language from
-graffiti, zines, album covers, murals,
-newspapers, and street photography without
-turning real cultures into caricatures.
-</p>
+    <p>
+        BLACKOUT can borrow visual language from
+        graffiti, zines, album covers, murals,
+        newspapers, and street photography without
+        turning real cultures into caricatures.
+    </p>
+
+    <p>
+        The goal is to learn from the work,
+        understand the context, and make something
+        of your own.
+    </p>
 
 </section>
 
 
+<section class="section">
+
+    <p class="section-label">MAKE YOUR OWN</p>
+
+    <h2>
+        LEAVE<br>
+        SOMETHING<br>
+        ON THE WALL.
+    </h2>
+
+    <p>
+        Use the sketchbook to draw a tag,
+        design a poster, write a visual idea,
+        or build a BLACKOUT character.
+    </p>
+
+    <a href="sketchbook.html" class="button red">
+        OPEN THE SKETCHBOOK →
+    </a>
+
+</section>
+
+</main>
+
+
 <footer class="site-footer">
-
-<strong>BLACKOUT</strong>
-<span>made by Von</span>
-
+    <strong>BLACKOUT</strong>
+    <span>made by Von</span>
 </footer>
 
+
 <script src="script.js"></script>
+
+<script>
+const artButtons = document.querySelectorAll("[data-art-filter]");
+const artCards = document.querySelectorAll(".art-card");
+
+artButtons.forEach(button => {
+    button.addEventListener("click", () => {
+
+        artButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const filter = button.dataset.artFilter;
+
+        artCards.forEach(card => {
+            const categories = card.dataset.category || "";
+
+            if (filter === "all" || categories.includes(filter)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+});
+
+
+document.querySelectorAll(".art-card .expand-card").forEach(button => {
+    button.addEventListener("click", () => {
+
+        const card = button.closest(".art-card");
+
+        card.classList.toggle("expanded");
+
+        button.textContent = card.classList.contains("expanded")
+            ? "CLOSE NOTE −"
+            : "LOOK CLOSER +";
+    });
+});
+</script>
 
 </body>
 </html>
