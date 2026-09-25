@@ -14,265 +14,1209 @@
 
 </head>
 
+
 <body data-page="poetry">
 
-<div class="wall-spray one">POETRY</div>
-<div class="wall-spray two">WORDS</div>
-<div class="wall-spray three">VOICE</div>
-
-<header class="site-header">
-
-    <a href="index.html" class="logo">
-
-        <span class="logo-main">
-            BLACKOUT
-        </span>
-
-        <span class="logo-sub">
-            culture / memory / resistance
-        </span>
-
-    </a>
-
-    <button class="nav-toggle">
-        MENU
-    </button>
-
-    <nav class="main-nav">
-
-        <a href="index.html">Home</a>
-        <a href="people.html">People</a>
-        <a href="music.html">Music</a>
-        <a href="art.html">Art</a>
-        <a href="history.html">History</a>
-        <a href="politics.html">Politics</a>
-        <a href="poetry.html">Poetry</a>
-        <a href="stories.html">Stories</a>
-        <a href="archive.html">Archive</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="sketchbook.html">Sketchbook</a>
-        <a href="journal.html">Journal</a>
-        <a href="resources.html">Resources</a>
-        <a href="about.html">About</a>
-
-    </nav>
-
-</header>
-
-<main class="page">
-
-    <section class="hero">
-
-        <div>
-
-            <span class="hero-eyebrow">
-                POETRY / SPOKEN WORD / WRITING
-            </span>
-
-            <h1>
-                WORDS
-                <span>can leave a mark.</span>
-            </h1>
-
-            <p class="hero-copy">
-                Poetry doesn't have to sit quietly on a page.
-                Read it. Hear it. Remix the prompt.
-                Write something. Put it on the wall.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a
-                    href="#poetryWall"
-                    class="btn yellow">
-                    READ
-                </a>
-
-                <a
-                    href="#write"
-                    class="btn red">
-                    WRITE
-                </a>
-
-                <button
-                    id="randomText"
-                    class="btn blue">
-                    GIVE ME A LINE
-                </button>
-
-            </div>
-
-            <div
-                id="randomOutput"
-                class="hand"
-                style="
-                    margin-top:2rem;
-                    font-size:2rem;
-                    color:#e7c84b;
-                ">
-                Click the button.
-            </div>
-
-        </div>
-
-        <div class="hero-art">
-
-            <div class="poster">
-
-                <div class="poster-text">
-                    SAY<br>
-                    IT<br>
-                    LOUD
-                </div>
-
-            </div>
-
-            <span class="sticker a">
-                SPOKEN
-            </span>
-
-            <span class="sticker b">
-                WRITE
-            </span>
-
-        </div>
-
-    </section>
-
-    <section class="section">
-
-        <div class="section-heading">
-
-            <h2>THE POETRY WALL</h2>
-
-            <p>
-                Click any poem to open the full piece.
-                Save favorites and generate writing prompts.
-            </p>
-
-        </div>
-
-        <div class="toolbar">
-
-            <input
-                id="poemSearch"
-                class="search-box"
-                type="search"
-                placeholder="Search poems or themes..."
-            >
-
-        </div>
-
-        <div
-            id="poetryWall"
-            class="poetry-wall">
-        </div>
-
-    </section>
-
-    <section
-        id="write"
-        class="section">
-
-        <div class="section-heading">
-
-            <h2>MAKE SOMETHING</h2>
-
-            <p>
-                Start with a prompt or let the site build
-                you a strange little poem to remix.
-            </p>
-
-        </div>
-
-        <div class="card-grid">
-
-            <article class="card">
-
-                <div class="card-meta">
-                    WRITING MACHINE
-                </div>
-
-                <h3>
-                    Random Poem
-                </h3>
-
-                <p>
-                    Generate five original lines and use them
-                    as a starting point. Change everything you want.
-                </p>
-
-                <button
-                    id="generatePoem"
-                    class="btn red">
-                    GENERATE
-                </button>
-
-            </article>
-
-            <article class="card">
-
-                <div class="card-meta">
-                    PROMPT
-                </div>
-
-                <h3>
-                    The Wall
-                </h3>
-
-                <p>
-                    Write from the perspective of a wall that
-                    has watched the same neighborhood change
-                    for fifty years.
-                </p>
-
-            </article>
-
-            <article class="card">
-
-                <div class="card-meta">
-                    PROMPT
-                </div>
-
-                <h3>
-                    Five Sounds
-                </h3>
-
-                <p>
-                    Build a poem from five sounds you heard today.
-                    Don't explain them. Let the sounds create the scene.
-                </p>
-
-            </article>
-
-        </div>
-
-        <div
-            id="generatedPoem"
-            class="card dark-card"
-            style="
-                margin-top:2rem;
-                white-space:pre-line;
-                font-family:var(--hand);
-                font-size:2rem;
-                min-height:180px;
-            ">
-            Your generated poem will appear here.
-        </div>
-
-    </section>
-
-</main>
-
-<footer class="site-footer">
-
-    <div class="footer-graffiti">
-        WORDS LEAVE TRACES.
+    <!-- =====================================================
+         BACKGROUND WALL
+         ===================================================== -->
+
+    <div class="wall-spray one" aria-hidden="true">
+        POETRY
     </div>
 
-</footer>
+    <div class="wall-spray two" aria-hidden="true">
+        WORDS
+    </div>
 
-<script src="script.js"></script>
+    <div class="wall-spray three" aria-hidden="true">
+        VOICE
+    </div>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="site-header">
+
+        <div class="navbar">
+
+            <a
+                href="index.html"
+                class="logo"
+                aria-label="BLACKOUT Home">
+
+                <span class="logo-main">
+                    BLACKOUT
+                </span>
+
+                <span class="logo-sub">
+                    culture / memory / resistance
+                </span>
+
+            </a>
+
+
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+                MENU
+            </button>
+
+
+            <nav
+                class="main-nav nav-links"
+                aria-label="Main navigation">
+
+                <a class="nav-link" href="index.html">
+                    Home
+                </a>
+
+                <a class="nav-link" href="people.html">
+                    People
+                </a>
+
+                <a class="nav-link" href="music.html">
+                    Music
+                </a>
+
+                <a class="nav-link" href="art.html">
+                    Art
+                </a>
+
+                <a class="nav-link" href="history.html">
+                    History
+                </a>
+
+                <a class="nav-link" href="politics.html">
+                    Politics
+                </a>
+
+                <a class="nav-link" href="poetry.html">
+                    Poetry
+                </a>
+
+                <a class="nav-link" href="stories.html">
+                    Stories
+                </a>
+
+                <a class="nav-link" href="archive.html">
+                    Archive
+                </a>
+
+                <a class="nav-link" href="gallery.html">
+                    Gallery
+                </a>
+
+                <a class="nav-link" href="sketchbook.html">
+                    Sketchbook
+                </a>
+
+                <a class="nav-link" href="journal.html">
+                    Journal
+                </a>
+
+                <a class="nav-link" href="resources.html">
+                    Resources
+                </a>
+
+                <a class="nav-link" href="about.html">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="page">
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="hero page-hero">
+
+            <div>
+
+                <span class="stamp red">
+                    POETRY / SPOKEN WORD / WRITING
+                </span>
+
+
+                <h1 class="page-title">
+
+                    WORDS
+
+                    <span style="
+                        display:block;
+                        font-size:.48em;
+                        margin-top:1rem;
+                        color:var(--yellow);
+                    ">
+                        can leave a mark.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-copy">
+
+                    Poetry doesn't have to sit quietly on a page.
+                    Read it. Hear it. Remix the prompt.
+                    Write something. Put it on the wall.
+
+                </p>
+
+
+                <div
+                    class="hero-buttons"
+                    style="
+                        display:flex;
+                        flex-wrap:wrap;
+                        gap:.7rem;
+                        margin-top:1.5rem;
+                    ">
+
+                    <a
+                        href="#poetryWall"
+                        class="button">
+                        READ
+                    </a>
+
+                    <a
+                        href="#write"
+                        class="button"
+                        style="background:var(--red);">
+                        WRITE
+                    </a>
+
+                    <button
+                        id="randomText"
+                        class="button"
+                        style="background:var(--blue);">
+                        GIVE ME A LINE
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="randomOutput"
+                    style="
+                        margin-top:2rem;
+                        max-width:750px;
+                        min-height:70px;
+                        padding:1rem;
+                        font-family:var(--marker);
+                        font-size:clamp(1.5rem,4vw,2.4rem);
+                        color:var(--yellow);
+                        border-left:5px solid var(--red);
+                    ">
+
+                    Click the button.
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO ART -->
+
+            <div class="hero-art">
+
+                <div
+                    class="poster tape"
+                    style="
+                        width:210px;
+                        min-height:270px;
+                        padding:2rem;
+                        background:var(--yellow);
+                        color:#080808;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        transform:rotate(4deg);
+                        box-shadow:10px 12px 0 #000;
+                    ">
+
+                    <div style="
+                        font-family:var(--marker);
+                        font-size:3.2rem;
+                        line-height:.85;
+                        text-align:center;
+                    ">
+
+                        SAY<br>
+                        IT<br>
+                        LOUD
+
+                    </div>
+
+                </div>
+
+
+                <span
+                    class="stamp red"
+                    style="
+                        position:absolute;
+                        top:12%;
+                        right:3%;
+                        transform:rotate(8deg);
+                    ">
+
+                    SPOKEN
+
+                </span>
+
+
+                <span
+                    class="stamp blue"
+                    style="
+                        position:absolute;
+                        bottom:25%;
+                        left:2%;
+                        transform:rotate(-8deg);
+                    ">
+
+                    WRITE
+
+                </span>
+
+
+                <span
+                    class="stamp green"
+                    style="
+                        position:absolute;
+                        bottom:8%;
+                        right:12%;
+                        transform:rotate(5deg);
+                    ">
+
+                    FEEL IT
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             POETS ON THE WALL
+             ================================================= -->
+
+        <section
+            id="poetryWall"
+            class="section">
+
+            <div class="section-heading">
+
+                <span class="stamp">
+                    01 / POETS ON THE WALL
+                </span>
+
+                <h2>
+                    POETRY
+                </h2>
+
+                <p>
+                    A growing wall of poets, voices, movements,
+                    and ideas. Use the source links to continue
+                    reading the full works.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="toolbar">
+
+                <label
+                    for="poemSearch"
+                    style="
+                        width:100%;
+                        font-family:var(--typewriter);
+                        color:var(--yellow);
+                    ">
+
+                    SEARCH THE POETRY WALL
+
+                </label>
+
+
+                <input
+                    id="poemSearch"
+                    data-search-input
+                    data-search-target="#poetry-grid"
+                    class="search-box"
+                    type="search"
+                    placeholder="Search poet, theme, movement..."
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- FILTER BUTTONS -->
+
+            <div
+                class="filter-bar"
+                aria-label="Poetry filters">
+
+                <button
+                    type="button"
+                    class="poetry-filter active"
+                    data-poetry-filter="all">
+                    ALL
+                </button>
+
+                <button
+                    type="button"
+                    class="poetry-filter"
+                    data-poetry-filter="Black">
+                    BLACK VOICES
+                </button>
+
+                <button
+                    type="button"
+                    class="poetry-filter"
+                    data-poetry-filter="Indigenous">
+                    INDIGENOUS
+                </button>
+
+                <button
+                    type="button"
+                    class="poetry-filter"
+                    data-poetry-filter="Identity">
+                    IDENTITY
+                </button>
+
+                <button
+                    type="button"
+                    class="poetry-filter"
+                    data-poetry-filter="Renaissance">
+                    RENAISSANCE
+                </button>
+
+            </div>
+
+
+            <!-- POETRY GRID -->
+
+            <div
+                id="poetry-grid"
+                class="poetry-grid">
+
+                <!--
+                    script.js populates this wall.
+                -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             POET SPOTLIGHT
+             ================================================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <span class="stamp blue">
+                    02 / LOOK CLOSER
+                </span>
+
+                <h2>
+                    POET ≠ JUST A NAME
+                </h2>
+
+                <p>
+                    A poet's work exists inside a larger world:
+                    history, place, language, music, identity,
+                    relationships, politics, memory, and culture.
+                </p>
+
+            </div>
+
+
+            <div class="card-grid">
+
+                <article class="card tape">
+
+                    <div class="stamp red">
+                        LANGSTON HUGHES
+                    </div>
+
+                    <h3>
+                        Harlem / Music / Black Life
+                    </h3>
+
+                    <p>
+                        Look at how rhythm, ordinary speech,
+                        music, Black identity, and everyday life
+                        interact in Hughes's writing.
+                    </p>
+
+                    <a
+                        class="button"
+                        href="https://www.poetryfoundation.org/poets/langston-hughes"
+                        target="_blank"
+                        rel="noopener">
+
+                        EXPLORE →
+
+                    </a>
+
+                </article>
+
+
+                <article class="card tape">
+
+                    <div class="stamp">
+                        AUDRE LORDE
+                    </div>
+
+                    <h3>
+                        Identity / Power / Voice
+                    </h3>
+
+                    <p>
+                        Explore the relationship between poetry,
+                        identity, language, power, and lived experience.
+                    </p>
+
+                    <a
+                        class="button"
+                        href="https://www.poetryfoundation.org/poets/audre-lorde"
+                        target="_blank"
+                        rel="noopener">
+
+                        EXPLORE →
+
+                    </a>
+
+                </article>
+
+
+                <article class="card tape">
+
+                    <div class="stamp green">
+                        JOY HARJO
+                    </div>
+
+                    <h3>
+                        Memory / Place / Music
+                    </h3>
+
+                    <p>
+                        Look at the connections between poetry,
+                        Indigenous identity, memory, land, history,
+                        and music.
+                    </p>
+
+                    <a
+                        class="button"
+                        href="https://www.poetryfoundation.org/poets/joy-harjo"
+                        target="_blank"
+                        rel="noopener">
+
+                        EXPLORE →
+
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MAKE SOMETHING
+             ================================================= -->
+
+        <section
+            id="write"
+            class="section">
+
+            <div class="section-heading">
+
+                <span class="stamp red">
+                    03 / MAKE SOMETHING
+                </span>
+
+                <h2>
+                    YOUR TURN.
+                </h2>
+
+                <p>
+                    Start with a prompt, a sound, a memory,
+                    a sentence, or absolutely nothing.
+                </p>
+
+            </div>
+
+
+            <div class="card-grid">
+
+
+                <!-- RANDOM POEM -->
+
+                <article class="card tape">
+
+                    <div class="stamp red">
+                        WRITING MACHINE
+                    </div>
+
+                    <h3>
+                        Random Poem
+                    </h3>
+
+                    <p>
+                        Generate five original lines and use
+                        them as a starting point. Change everything
+                        you want.
+                    </p>
+
+                    <button
+                        id="generatePoem"
+                        class="button">
+
+                        GENERATE
+
+                    </button>
+
+                </article>
+
+
+                <!-- PROMPT -->
+
+                <article class="card tape">
+
+                    <div class="stamp blue">
+                        PROMPT
+                    </div>
+
+                    <h3>
+                        THE WALL
+                    </h3>
+
+                    <p>
+                        Write from the perspective of a wall
+                        that has watched the same neighborhood
+                        change for fifty years.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="button prompt-button"
+                        data-prompt="
+                            Write as a wall that has watched
+                            one neighborhood change for fifty years.
+                        ">
+
+                        USE PROMPT
+
+                    </button>
+
+                </article>
+
+
+                <!-- PROMPT -->
+
+                <article class="card tape">
+
+                    <div class="stamp green">
+                        PROMPT
+                    </div>
+
+                    <h3>
+                        FIVE SOUNDS
+                    </h3>
+
+                    <p>
+                        Build a poem from five sounds you heard
+                        today. Don't explain them. Let the sounds
+                        create the scene.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="button prompt-button"
+                        data-prompt="
+                            Build a poem from five sounds you
+                            heard today. Do not explain them.
+                        ">
+
+                        USE PROMPT
+
+                    </button>
+
+                </article>
+
+            </div>
+
+
+            <!-- GENERATED POEM -->
+
+            <div
+                id="generatedPoem"
+                class="card tape"
+                style="
+                    margin-top:2rem;
+                    min-height:220px;
+                    white-space:pre-line;
+                ">
+
+                <div class="stamp">
+                    YOUR GENERATED POEM
+                </div>
+
+                <p style="
+                    font-family:var(--marker);
+                    font-size:clamp(1.4rem,3vw,2rem);
+                    line-height:1.6;
+                ">
+                    Your generated poem will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- WRITE YOUR OWN -->
+
+            <div
+                class="card tape"
+                style="
+                    margin-top:2rem;
+                ">
+
+                <div class="stamp blue">
+                    BLACKOUT NOTEBOOK
+                </div>
+
+                <h3>
+                    WRITE YOUR OWN
+                </h3>
+
+                <p>
+                    Put something on the wall. It doesn't have
+                    to be polished.
+                </p>
+
+
+                <textarea
+                    id="ownPoem"
+                    rows="10"
+                    placeholder="Start here..."></textarea>
+
+
+                <div
+                    style="
+                        display:flex;
+                        flex-wrap:wrap;
+                        gap:.7rem;
+                        margin-top:1rem;
+                    ">
+
+                    <button
+                        id="saveOwnPoem"
+                        class="button">
+
+                        SAVE ON THIS DEVICE
+
+                    </button>
+
+                    <button
+                        id="clearOwnPoem"
+                        class="button"
+                        style="background:var(--red);">
+
+                        CLEAR
+
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="poemSaveStatus"
+                    style="
+                        font-family:var(--typewriter);
+                        color:var(--green);
+                    "
+                    aria-live="polite">
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             POETRY NOTE
+             ================================================= -->
+
+        <section class="section">
+
+            <div
+                class="card tape"
+                style="
+                    background:var(--paper-dark);
+                ">
+
+                <div class="stamp">
+                    BLACKOUT NOTE
+                </div>
+
+                <h3>
+                    READ THE FULL WORK
+                </h3>
+
+                <p>
+                    This site uses short excerpts, commentary,
+                    poet information, and source links rather than
+                    reproducing complete copyrighted poems.
+                    Use the source links to continue reading.
+                </p>
+
+                <p>
+                    Public-domain material can be treated differently,
+                    but source information is still included whenever
+                    possible.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-graffiti">
+            WORDS LEAVE TRACES.
+        </div>
+
+        <p>
+            BLACKOUT — poetry, language, memory, voice.
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         GLOBAL SCRIPT
+         ===================================================== -->
+
+    <script src="script.js"></script>
+
+
+    <!-- =====================================================
+         POETRY-SPECIFIC INTERACTIONS
+         ===================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            /*
+             * -------------------------------------------------
+             * RANDOM LINES
+             * -------------------------------------------------
+             */
+
+            const randomButton =
+                document.getElementById("randomText");
+
+            const randomOutput =
+                document.getElementById("randomOutput");
+
+
+            const randomLines = [
+
+                "the wall remembers what the city forgets.",
+
+                "some stories survive because somebody kept writing.",
+
+                "music is memory with a pulse.",
+
+                "the page does not have to stay clean.",
+
+                "every archive begins with somebody deciding to keep something.",
+
+                "there is a history underneath the noise.",
+
+                "write the thing you keep trying not to write.",
+
+                "a voice can travel farther than a photograph.",
+
+                "the street has its own handwriting.",
+
+                "some words are meant to be heard."
+
+            ];
+
+
+            if (randomButton && randomOutput) {
+
+                randomButton.addEventListener("click", () => {
+
+                    const line =
+                        randomLines[
+                            Math.floor(
+                                Math.random() *
+                                randomLines.length
+                            )
+                        ];
+
+                    randomOutput.textContent = line;
+
+                    randomOutput.animate(
+                        [
+                            {
+                                opacity: 0,
+                                transform: "translateY(8px) rotate(-1deg)"
+                            },
+                            {
+                                opacity: 1,
+                                transform: "translateY(0) rotate(0)"
+                            }
+                        ],
+                        {
+                            duration: 350,
+                            easing: "ease-out"
+                        }
+                    );
+
+                });
+
+            }
+
+
+            /*
+             * -------------------------------------------------
+             * GENERATED POEM
+             * -------------------------------------------------
+             */
+
+            const generateButton =
+                document.getElementById("generatePoem");
+
+            const generatedPoem =
+                document.getElementById("generatedPoem");
+
+
+            const poemStarts = [
+
+                "Tonight the street",
+                "A photograph remembers",
+                "Somewhere behind the noise",
+                "The notebook opens",
+                "Under the city lights",
+                "Nobody told the wall",
+                "The old record spins",
+                "A voice crosses the room",
+                "I found a name",
+                "The page stays open"
+
+            ];
+
+
+            const poemMiddles = [
+
+                "holds a piece of yesterday",
+                "keeps the shape of a conversation",
+                "waits for someone to notice",
+                "turns memory into movement",
+                "carries the sound of footsteps",
+                "keeps listening",
+                "leaves fingerprints on everything",
+                "refuses to disappear",
+                "asks another question",
+                "turns the silence sideways"
+
+            ];
+
+
+            const poemEnds = [
+
+                "and nobody calls it history yet.",
+                "until somebody writes it down.",
+                "because remembering is an action.",
+                "and the story keeps moving.",
+                "while the city keeps breathing.",
+                "before the morning arrives.",
+                "like a song you almost remember.",
+                "and leaves the door unlocked.",
+                "for whoever comes next.",
+                "without asking permission."
+
+            ];
+
+
+            function randomItem(array) {
+
+                return array[
+                    Math.floor(
+                        Math.random() * array.length
+                    )
+                ];
+
+            }
+
+
+            if (generateButton && generatedPoem) {
+
+                generateButton.addEventListener(
+                    "click",
+                    () => {
+
+                        const poem = [
+
+                            randomItem(poemStarts),
+
+                            randomItem(poemMiddles),
+
+                            randomItem(poemStarts),
+
+                            randomItem(poemMiddles),
+
+                            randomItem(poemEnds)
+
+                        ].join("\n");
+
+
+                        generatedPoem.innerHTML = `
+
+                            <div class="stamp red">
+                                GENERATED
+                            </div>
+
+                            <p style="
+                                font-family:var(--marker);
+                                font-size:clamp(1.4rem,3vw,2rem);
+                                line-height:1.6;
+                                white-space:pre-line;
+                            ">${poem}</p>
+
+                            <small style="
+                                font-family:var(--typewriter);
+                            ">
+                                Remix it. Rewrite it. Throw it away.
+                                Make something else.
+                            </small>
+
+                        `;
+
+                    }
+                );
+
+            }
+
+
+            /*
+             * -------------------------------------------------
+             * PROMPT BUTTONS
+             * -------------------------------------------------
+             */
+
+            document.querySelectorAll(
+                ".prompt-button"
+            ).forEach(button => {
+
+                button.addEventListener("click", () => {
+
+                    const prompt =
+                        button.dataset.prompt;
+
+                    const textarea =
+                        document.getElementById("ownPoem");
+
+                    if (!textarea) return;
+
+                    textarea.value =
+                        prompt.trim() + "\n\n";
+
+                    textarea.focus();
+
+                    textarea.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                });
+
+            });
+
+
+            /*
+             * -------------------------------------------------
+             * SAVE PERSONAL POEM
+             * -------------------------------------------------
+             */
+
+            const ownPoem =
+                document.getElementById("ownPoem");
+
+            const saveButton =
+                document.getElementById("saveOwnPoem");
+
+            const clearButton =
+                document.getElementById("clearOwnPoem");
+
+            const saveStatus =
+                document.getElementById("poemSaveStatus");
+
+
+            const savedPoem =
+                localStorage.getItem(
+                    "blackout-own-poem"
+                );
+
+
+            if (ownPoem && savedPoem) {
+
+                ownPoem.value = savedPoem;
+
+            }
+
+
+            if (saveButton && ownPoem) {
+
+                saveButton.addEventListener(
+                    "click",
+                    () => {
+
+                        localStorage.setItem(
+                            "blackout-own-poem",
+                            ownPoem.value
+                        );
+
+                        if (saveStatus) {
+
+                            saveStatus.textContent =
+                                "Saved on this device.";
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            if (clearButton && ownPoem) {
+
+                clearButton.addEventListener(
+                    "click",
+                    () => {
+
+                        ownPoem.value = "";
+
+                        localStorage.removeItem(
+                            "blackout-own-poem"
+                        );
+
+                        if (saveStatus) {
+
+                            saveStatus.textContent =
+                                "Cleared.";
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            /*
+             * -------------------------------------------------
+             * POETRY FILTERS
+             * -------------------------------------------------
+             */
+
+            const poetryFilters =
+                document.querySelectorAll(
+                    "[data-poetry-filter]"
+                );
+
+            const poetryGrid =
+                document.getElementById(
+                    "poetry-grid"
+                );
+
+
+            poetryFilters.forEach(filterButton => {
+
+                filterButton.addEventListener(
+                    "click",
+                    () => {
+
+                        poetryFilters.forEach(button => {
+                            button.classList.remove("active");
+                        });
+
+                        filterButton.classList.add("active");
+
+                        const filter =
+                            filterButton.dataset.poetryFilter
+                                .toLowerCase();
+
+                        if (!poetryGrid) return;
+
+                        poetryGrid
+                            .querySelectorAll(
+                                ".poem-card"
+                            )
+                            .forEach(card => {
+
+                                if (filter === "all") {
+
+                                    card.style.display = "";
+
+                                    return;
+
+                                }
+
+                                const text =
+                                    card.textContent
+                                        .toLowerCase();
+
+                                card.style.display =
+                                    text.includes(filter)
+                                        ? ""
+                                        : "none";
+
+                            });
+
+                    }
+                );
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
